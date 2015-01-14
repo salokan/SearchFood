@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=234238
+using SearchFood.SearchFoodServiceReference;
 
 namespace SearchFood
 {
@@ -22,9 +23,17 @@ namespace SearchFood
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        SearchFoodServiceClient client = new SearchFoodServiceClient();
+
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string txt = await client.GetDataAsync(1);
+            test.Text = txt;
         }
     }
 }
