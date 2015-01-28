@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="searchfoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id_Categorie" />
+          </Key>
+          <Property Name="Id_Categorie" Type="int" Nullable="false" />
+          <Property Name="Nom_Categorie" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Commentaire">
+          <Key>
+            <PropertyRef Name="Id_Commentaire" />
+          </Key>
+          <Property Name="Id_Commentaire" Type="int" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="int" />
+          <Property Name="Id_Utilisateur" Type="int" />
+          <Property Name="Commentaire" Type="varchar(max)" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'searchfood.dbo.Historique' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="Historique">
+          <Key>
+            <PropertyRef Name="Id_Restaurant" />
+            <PropertyRef Name="Id_Utilisateur" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Id_Restaurant" Type="int" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'searchfood.dbo.Note' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+        <EntityType Name="Note">
+          <Property Name="Id_Utilisateur" Type="int" />
+          <Property Name="Id_Restaurant" Type="int" />
+          <Property Name="Note" Type="float" />
+        </EntityType>-->
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="Id_Restaurant" />
+          </Key>
+          <Property Name="Id_Restaurant" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Site_Web" Type="varchar" MaxLength="50" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" />
+          <Property Name="Adresse" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code_Postal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ville" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="20" />
+          <Property Name="Latitude" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Longitude" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Duree_repas" Type="int" />
+          <Property Name="Prix" Type="float" />
+          <Property Name="Id_Categorie" Type="int" Nullable="false" />
+          <Property Name="Id_Type_Cuisine" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type_Cuisine">
+          <Key>
+            <PropertyRef Name="Id_Type_Cuisine" />
+          </Key>
+          <Property Name="Id_Type_Cuisine" Type="int" Nullable="false" />
+          <Property Name="Type_Cuisine" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id_Utilisateur" />
+          </Key>
+          <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="Pseudonyme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Adresse" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code_Postal" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Ville" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Commentaire_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Commentaire">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Commentaire_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Commentaire">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historique_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Historique" Type="Self.Historique" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Historique">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historique_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Historique" Type="Self.Historique" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Historique">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Erreurs détectées durant la génération :
+erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, mais elle est introuvable.
+        <Association Name="FK_Note_Restaurant" />-->
+        <!--Erreurs détectées durant la génération :
+erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, mais elle est introuvable.
+        <Association Name="FK_Note_Utilisateur" />-->
+        <Association Name="FK_Restaurant_Categorie">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id_Categorie" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="Id_Categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Type_Cuisine">
+          <End Role="Type_Cuisine" Type="Self.Type_Cuisine" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Cuisine">
+              <PropertyRef Name="Id_Type_Cuisine" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="Id_Type_Cuisine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="searchfoodModelStoreContainer">
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commentaire" EntityType="Self.Commentaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_Cuisine" EntityType="Self.Type_Cuisine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historique" EntityType="Self.Historique" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Historique].[Id_Restaurant] AS [Id_Restaurant], 
+    [Historique].[Id_Utilisateur] AS [Id_Utilisateur], 
+    [Historique].[Date] AS [Date]
+    FROM [dbo].[Historique] AS [Historique]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Commentaire_Restaurant" Association="Self.FK_Commentaire_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Commentaire" EntitySet="Commentaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Commentaire_Utilisateur" Association="Self.FK_Commentaire_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Commentaire" EntitySet="Commentaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historique_Restaurant" Association="Self.FK_Historique_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Historique" EntitySet="Historique" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historique_Utilisateur" Association="Self.FK_Historique_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Historique" EntitySet="Historique" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Categorie" Association="Self.FK_Restaurant_Categorie">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Type_Cuisine" Association="Self.FK_Restaurant_Type_Cuisine">
+            <End Role="Type_Cuisine" EntitySet="Type_Cuisine" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="searchfoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="Id_Categorie" />
+          </Key>
+          <Property Name="Id_Categorie" Type="Int32" Nullable="false" />
+          <Property Name="Nom_Categorie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Restaurant_Categorie" FromRole="Categorie" ToRole="Restaurant" />
+        </EntityType>
+        <EntityType Name="Commentaire">
+          <Key>
+            <PropertyRef Name="Id_Commentaire" />
+          </Key>
+          <Property Name="Id_Commentaire" Type="Int32" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="Int32" />
+          <Property Name="Id_Utilisateur" Type="Int32" />
+          <Property Name="Commentaire1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Commentaire_Restaurant" FromRole="Commentaire" ToRole="Restaurant" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Commentaire_Utilisateur" FromRole="Commentaire" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="Id_Restaurant" />
+          </Key>
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Site_Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_Postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Longitude" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Duree_repas" Type="Int32" />
+          <Property Name="Prix" Type="Double" />
+          <Property Name="Id_Categorie" Type="Int32" Nullable="false" />
+          <Property Name="Id_Type_Cuisine" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK_Restaurant_Categorie" FromRole="Restaurant" ToRole="Categorie" />
+          <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Restaurant" FromRole="Restaurant" ToRole="Commentaire" />
+          <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Restaurant" FromRole="Restaurant" ToRole="Historique" />
+          <NavigationProperty Name="Type_Cuisine" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Restaurant" ToRole="Type_Cuisine" />
+        </EntityType>
+        <EntityType Name="Type_Cuisine">
+          <Key>
+            <PropertyRef Name="Id_Type_Cuisine" />
+          </Key>
+          <Property Name="Id_Type_Cuisine" Type="Int32" Nullable="false" />
+          <Property Name="Type_Cuisine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Type_Cuisine" ToRole="Restaurant" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id_Utilisateur" />
+          </Key>
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="Pseudonyme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code_Postal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Utilisateur" FromRole="Utilisateur" ToRole="Commentaire" />
+          <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Utilisateur" FromRole="Utilisateur" ToRole="Historique" />
+        </EntityType>
+        <EntityType Name="Historique">
+          <Key>
+            <PropertyRef Name="Id_Restaurant" />
+            <PropertyRef Name="Id_Utilisateur" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Historique_Restaurant" FromRole="Historique" ToRole="Restaurant" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Historique_Utilisateur" FromRole="Historique" ToRole="Utilisateur" />
+        </EntityType>
+        <Association Name="FK_Restaurant_Categorie">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="Id_Categorie" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="Id_Categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Commentaire_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Commentaire">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Commentaire_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Commentaire">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historique_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Historique" Type="Self.Historique" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Historique">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Type_Cuisine">
+          <End Role="Type_Cuisine" Type="Self.Type_Cuisine" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Cuisine">
+              <PropertyRef Name="Id_Type_Cuisine" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="Id_Type_Cuisine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historique_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Historique" Type="Self.Historique" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Historique">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="searchfoodEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" />
+          <EntitySet Name="Commentaire" EntityType="Self.Commentaire" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" />
+          <EntitySet Name="Type_Cuisine" EntityType="Self.Type_Cuisine" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
+          <EntitySet Name="Historique" EntityType="Self.Historique" />
+          <AssociationSet Name="FK_Restaurant_Categorie" Association="Self.FK_Restaurant_Categorie">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Commentaire_Restaurant" Association="Self.FK_Commentaire_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Commentaire" EntitySet="Commentaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Commentaire_Utilisateur" Association="Self.FK_Commentaire_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Commentaire" EntitySet="Commentaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historique_Restaurant" Association="Self.FK_Historique_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Historique" EntitySet="Historique" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Type_Cuisine" Association="Self.FK_Restaurant_Type_Cuisine">
+            <End Role="Type_Cuisine" EntitySet="Type_Cuisine" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historique_Utilisateur" Association="Self.FK_Historique_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Historique" EntitySet="Historique" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="searchfoodModelStoreContainer" CdmEntityContainer="searchfoodEntities">
+          <EntitySetMapping Name="Categorie">
+            <EntityTypeMapping TypeName="searchfoodModel.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="Id_Categorie" ColumnName="Id_Categorie" />
+                <ScalarProperty Name="Nom_Categorie" ColumnName="Nom_Categorie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commentaire">
+            <EntityTypeMapping TypeName="searchfoodModel.Commentaire">
+              <MappingFragment StoreEntitySet="Commentaire">
+                <ScalarProperty Name="Id_Commentaire" ColumnName="Id_Commentaire" />
+                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
+                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
+                <ScalarProperty Name="Commentaire1" ColumnName="Commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurant">
+            <EntityTypeMapping TypeName="searchfoodModel.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Site_Web" ColumnName="Site_Web" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Code_Postal" ColumnName="Code_Postal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Duree_repas" ColumnName="Duree_repas" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="Id_Categorie" ColumnName="Id_Categorie" />
+                <ScalarProperty Name="Id_Type_Cuisine" ColumnName="Id_Type_Cuisine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_Cuisine">
+            <EntityTypeMapping TypeName="searchfoodModel.Type_Cuisine">
+              <MappingFragment StoreEntitySet="Type_Cuisine">
+                <ScalarProperty Name="Id_Type_Cuisine" ColumnName="Id_Type_Cuisine" />
+                <ScalarProperty Name="Type_Cuisine1" ColumnName="Type_Cuisine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateur">
+            <EntityTypeMapping TypeName="searchfoodModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
+                <ScalarProperty Name="Pseudonyme" ColumnName="Pseudonyme" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Code_Postal" ColumnName="Code_Postal" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historique">
+            <EntityTypeMapping TypeName="searchfoodModel.Historique">
+              <MappingFragment StoreEntitySet="Historique">
+                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
+                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
