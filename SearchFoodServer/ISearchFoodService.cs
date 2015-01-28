@@ -1,42 +1,99 @@
 ﻿using System.Runtime.Serialization;
-using System.ServiceModel; 
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace SearchFoodServer
 {
-    // REMARQUE : vous pouvez utiliser la commande Renommer du menu Refactoriser pour changer le nom d'interface "IService1" à la fois dans le code et le fichier de configuration.
     [ServiceContract]
     public interface ISearchFoodService
     {
-
+        #region Categories
         [OperationContract]
-        string GetData(int value);
-
+        string GetCategories();
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        int GetCategorie(int id);
+        [OperationContract]
+        void AddCategories();
+        [OperationContract]
+        void DeleteCategories();
+        [OperationContract]
+        void UpdateCategories();
+        #endregion
 
-        // TODO: ajoutez vos opérations de service ici
-    }
+        #region Commentaires
+        [OperationContract]
+        List<int> GetCommentaires();
+        [OperationContract]
+        int GetCommentaire(int id);
+        [OperationContract]
+        void AddCommentaires();
+        [OperationContract]
+        void DeleteCommentaires();
+        [OperationContract]
+        void UpdateCommentaires();
+        #endregion
 
+        #region Historique
+        [OperationContract]
+        int GetHistorique();
+        [OperationContract]
+        void AddHistorique();
+        [OperationContract]
+        void DeleteHistorique();
+        [OperationContract]
+        void UpdateHistorique();
+        #endregion
 
-    // Utilisez un contrat de données comme indiqué dans l'exemple ci-après pour ajouter les types composites aux opérations de service.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        #region Notes
+        [OperationContract]
+        List<int> GetNotes();
+        [OperationContract]
+        int GetNote(int id);
+        [OperationContract]
+        void AddNotes();
+        [OperationContract]
+        void DeleteNotes();
+        [OperationContract]
+        void UpdateNotes();
+        #endregion
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        #region Restaurants
+        [OperationContract]
+        List<int> GetRestaurants();
+        [OperationContract]
+        int GetRestaurant(int id);
+        [OperationContract]
+        void AddRestaurants();
+        [OperationContract]
+        void DeleteRestaurants();
+        [OperationContract]
+        void UpdateRestaurants();
+        #endregion
 
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        #region TypesCuisine
+        [OperationContract]
+        List<int> GetTypesCuisine();
+        [OperationContract]
+        int GetTypeCuisine(int id);
+        [OperationContract]
+        void AddTypesCuisine();
+        [OperationContract]
+        void DeleteTypesCuisine();
+        [OperationContract]
+        void UpdateTypesCuisine();
+        #endregion
+
+        #region Utilisateurs
+        [OperationContract]
+        List<int> GetUtilisateurs();
+        [OperationContract]
+        int GetUtilisateur(int id);
+        [OperationContract]
+        void AddUtilisateurs();
+        [OperationContract]
+        void DeleteUtilisateurs();
+        [OperationContract]
+        void UpdateUtilisateurs();
+        #endregion
     }
 }
