@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=234238
-using SearchFood.SearchFoodServiceReference;
+using SearchFood.Webservices;
 
 namespace SearchFood
 {
@@ -23,7 +11,7 @@ namespace SearchFood
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        SearchFoodServiceClient client = new SearchFoodServiceClient();
+        Services _service = new Services();
 
         public MainPage()
         {
@@ -32,7 +20,7 @@ namespace SearchFood
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string txt = await client.GetDataAsync(1);
+            string txt = await _service._categories.GetCategories();
             test.Text = txt;
         }
     }
