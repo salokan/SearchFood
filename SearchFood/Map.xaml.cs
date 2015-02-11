@@ -9,19 +9,13 @@ namespace SearchFood
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class Map : Page
     {
         Services _service = new Services();
 
-        public MainPage()
+        public Map()
         {
             this.InitializeComponent();
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //string txt = await _service._categories.GetCategories();
-            //test.Text = txt;
         }
     }
 }
