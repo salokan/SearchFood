@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="Rechercher" HorizontalAlignment="Left" Margin="253,320,0,0" VerticalAlignment="Top" Height="128" Width="128"/>
+        <Button Content="Surprend-moi" HorizontalAlignment="Left" Margin="622,320,0,0" VerticalAlignment="Top" Height="128" Width="128"/>
+        <Button Content="Mon Profil" HorizontalAlignment="Left" Margin="995,320,0,0" VerticalAlignment="Top" Height="128" Width="128"/>
 
     </Grid>
 </Page>
