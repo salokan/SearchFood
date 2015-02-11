@@ -20,8 +20,8 @@ namespace SearchFood
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string txt = await _service._categories.GetCategories();
-            test.Text = txt;
+            //string txt = await _service._categories.GetCategories();
+            //test.Text = txt;
         }
     }
 }

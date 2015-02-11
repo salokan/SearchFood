@@ -102,10 +102,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <WCFMetadata Include="SearchFoodService2.xsd\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -113,13 +109,19 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchFoodService2.xsd\SearchFoodService2.xsd\Reference.cs">
+    <Compile Include="Service References\SearchFoodServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Webservices\CategoriesCad.cs" />
+    <Compile Include="Webservices\CommentairesCad.cs" />
+    <Compile Include="Webservices\HistoriqueCad.cs" />
+    <Compile Include="Webservices\NotesCad.cs" />
+    <Compile Include="Webservices\RestaurantsCad.cs" />
     <Compile Include="Webservices\Services.cs" />
+    <Compile Include="Webservices\TypesCuisineCad.cs" />
+    <Compile Include="Webservices\UtilisateursCad.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -127,17 +129,35 @@
     </AppxManifest>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="SearchFood_TemporaryKey.pfx" />
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService.wsdl" />
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService.xsd">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Categorie.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Commentaire.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Historique.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Note.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Restaurant.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Type_Cuisine.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Utilisateur.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFoodService.wsdl" />
+    <None Include="Service References\SearchFoodServiceReference\SearchFoodService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService1.xsd">
+    <None Include="Service References\SearchFoodServiceReference\SearchFoodService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService3.xsd">
+    <None Include="Service References\SearchFoodServiceReference\SearchFoodService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -146,12 +166,12 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\Reference.svcmap">
+    <None Include="Service References\SearchFoodServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\configuration.svcinfo" />
-    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\configuration91.svcinfo" />
+    <None Include="Service References\SearchFoodServiceReference\configuration.svcinfo" />
+    <None Include="Service References\SearchFoodServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -164,9 +184,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="SearchFoodService2.xsd\SearchFoodService2.xsd\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SearchFoodServiceReference\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SearchFoodServer
@@ -37,13 +36,13 @@ namespace SearchFoodServer
         [OperationContract]
         List<Historique> GetHistoriques();
         [OperationContract]
-        List<Historique> GetHistoriqueByUser();
+        List<Historique> GetHistoriqueByUser(int idUser);
         [OperationContract]
-        void AddHistorique();
+        void AddHistorique(Historique h);
         [OperationContract]
-        void DeleteHistorique();
+        void DeleteHistorique(Historique h);
         [OperationContract]
-        void UpdateHistorique();
+        void UpdateHistorique(Historique h);
         #endregion
 
         #region Notes
@@ -54,11 +53,11 @@ namespace SearchFoodServer
         [OperationContract]
         List<Note> GetNoteByUser(int idUser);
         [OperationContract]
-        void AddNotes();
+        void AddNotes(Note n);
         [OperationContract]
-        void DeleteNotes();
+        void DeleteNotes(Note n);
         [OperationContract]
-        void UpdateNotes();
+        void UpdateNotes(Note n);
         #endregion
 
         #region Restaurants

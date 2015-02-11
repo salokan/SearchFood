@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using SearchFood.SearchFoodServiceReference;
 
 namespace SearchFood.Webservices
@@ -12,29 +13,29 @@ namespace SearchFood.Webservices
             _client = client;
         }
 
-        public async Task<string> GetCategories()
+        public async Task<ObservableCollection<Categorie>> GetCategories()
         {
             return await _client.GetCategoriesAsync();           
         }
 
-        public async Task<int> GetCategorie(int id)
+        public async Task<Categorie> GetCategorie(int id)
         {
             return await _client.GetCategorieAsync(id);    
         }
 
-        public async void AddCategories()
+        public async void AddCategories(Categorie c)
         {
-            await _client.AddCategoriesAsync();
+            await _client.AddCategoriesAsync(c);
         }
 
-        public async void DeleteCategories()
+        public async void DeleteCategories(int id)
         {
-            await _client.DeleteCategoriesAsync();
+            await _client.DeleteCategoriesAsync(id);
         }
 
-        public async void UpdateCategories()
+        public async void UpdateCategories(Categorie c)
         {
-            await _client.UpdateCategoriesAsync();
+            await _client.UpdateCategoriesAsync(c);
         }
     }
 }
