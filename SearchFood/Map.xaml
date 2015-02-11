@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="SearchFood.Map"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SearchFood"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bm="using:Bing.Maps"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Side Panel -->
+        <ScrollViewer Background="Gray" Grid.ColumnSpan="2" Margin="0,384,710,0">
+            <StackPanel Margin="10,10,20,10">
+
+                <!-- Distance and time Panel -->
+
+                <!-- Route Itinerary Panel -->
+                <StackPanel Name="RouteResults">
+                    <ListBox ItemsSource="{Binding RouteLegs}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding ItineraryItems}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Instruction.Text}"  
+                                                           TextWrapping="Wrap" Width="200"/>
+                                                <TextBlock Text="{Binding TravelDistance}"  
+                                                           Margin="10,0,0,0" />
+                                                <TextBlock Text="km"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <bm:Map Credentials="AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog" x:Name="myMap" Margin="0,0,710,384" Grid.ColumnSpan="2" >
+            <bm:Map.RenderTransform>
+                <CompositeTransform Rotation="-0.021"/>
+            </bm:Map.RenderTransform>
+        </bm:Map>
+    </Grid>
+</Page>

@@ -17,6 +17,9 @@
         <AssociationConnector Association="searchfoodModel.FK_Historique_Restaurant" ManuallyRouted="false" />
         <AssociationConnector Association="searchfoodModel.FK_Restaurant_Type_Cuisine" ManuallyRouted="false" />
         <AssociationConnector Association="searchfoodModel.FK_Historique_Utilisateur" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="searchfoodModel.Note" Width="1.5" PointX="5.875" PointY="7.125" />
+        <AssociationConnector Association="searchfoodModel.FK_Note_Restaurant" />
+        <AssociationConnector Association="searchfoodModel.FK_Note_Utilisateur" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

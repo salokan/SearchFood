@@ -15,24 +15,20 @@ namespace SearchFoodServer
 using System;
     using System.Collections.Generic;
     
-public partial class Categorie
+public partial class Note
 {
 
-    public Categorie()
-    {
+    public int Id_Utilisateur { get; set; }
 
-        this.Restaurant = new HashSet<Restaurant>();
+    public int Id_Restaurant { get; set; }
 
-    }
-
-
-    public int Id_Categorie { get; set; }
-
-    public string Nom_Categorie { get; set; }
+    public double Note1 { get; set; }
 
 
 
-    public virtual ICollection<Restaurant> Restaurant { get; set; }
+    public virtual Restaurant Restaurant { get; set; }
+
+    public virtual Utilisateur Utilisateur { get; set; }
 
 }
 
