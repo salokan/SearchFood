@@ -1,16 +1,10 @@
-﻿using Windows.UI.Xaml.Controls; 
- 
-using SearchFood.SearchFoodServiceReference;
-
-namespace SearchFood
-{ 
-    public sealed partial class MainPage : Page
+﻿namespace SearchFood.View
+{
+    public sealed partial class MainPage
     {
-        SearchFoodServiceClient client = new SearchFoodServiceClient();
-
         public MainPage()
         {
-            this.InitializeComponent();
-        } 
+            InitializeComponent();
+        }
     }
 }
