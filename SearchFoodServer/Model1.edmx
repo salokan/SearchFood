@@ -4,19 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="searchfoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="searchfoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categorie">
           <Key>
             <PropertyRef Name="Id_Categorie" />
           </Key>
-          <Property Name="Id_Categorie" Type="int" Nullable="false" />
+          <Property Name="Id_Categorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom_Categorie" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Commentaire">
           <Key>
             <PropertyRef Name="Id_Commentaire" />
           </Key>
-          <Property Name="Id_Commentaire" Type="int" Nullable="false" />
+          <Property Name="Id_Commentaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Restaurant" Type="int" />
           <Property Name="Id_Utilisateur" Type="int" />
           <Property Name="Commentaire" Type="varchar(max)" />
@@ -34,17 +34,22 @@ avertissement 6002: La table/vue 'searchfood.dbo.Historique' n'a pas de clé pri
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
-avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'searchfood.dbo.Note' ; en outre, aucune clé primaire valide n'a pu être déduite. Cette table/vue a été exclue. Pour utiliser l'entité, vous devez passer en revue votre schéma, ajouter les clés appropriées et supprimer le commentaire associé.
+avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Note">
-          <Property Name="Id_Utilisateur" Type="int" />
-          <Property Name="Id_Restaurant" Type="int" />
-          <Property Name="Note" Type="float" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="Id_Utilisateur" />
+            <PropertyRef Name="Id_Restaurant" />
+            <PropertyRef Name="Note" />
+          </Key>
+          <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="int" Nullable="false" />
+          <Property Name="Note" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="Restaurant">
           <Key>
             <PropertyRef Name="Id_Restaurant" />
           </Key>
-          <Property Name="Id_Restaurant" Type="int" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Site_Web" Type="varchar" MaxLength="50" />
           <Property Name="Mail" Type="varchar" MaxLength="50" />
@@ -63,14 +68,14 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'searc
           <Key>
             <PropertyRef Name="Id_Type_Cuisine" />
           </Key>
-          <Property Name="Id_Type_Cuisine" Type="int" Nullable="false" />
+          <Property Name="Id_Type_Cuisine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type_Cuisine" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Utilisateur">
           <Key>
             <PropertyRef Name="Id_Utilisateur" />
           </Key>
-          <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Pseudonyme" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
@@ -129,12 +134,30 @@ avertissement 6013: Aucune clé primaire n'est définie pour la table/vue 'searc
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Erreurs détectées durant la génération :
-erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, mais elle est introuvable.
-        <Association Name="FK_Note_Restaurant" />-->
-        <!--Erreurs détectées durant la génération :
-erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, mais elle est introuvable.
-        <Association Name="FK_Note_Utilisateur" />-->
+        <Association Name="FK_Note_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Note" Type="Self.Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Note">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Note_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Note" Type="Self.Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Note">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Restaurant_Categorie">
           <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
           <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
@@ -172,6 +195,13 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
     [Historique].[Date] AS [Date]
     FROM [dbo].[Historique] AS [Historique]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Note" EntityType="Self.Note" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Note].[Id_Utilisateur] AS [Id_Utilisateur], 
+    [Note].[Id_Restaurant] AS [Id_Restaurant], 
+    [Note].[Note] AS [Note]
+    FROM [dbo].[Note] AS [Note]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Commentaire_Restaurant" Association="Self.FK_Commentaire_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Commentaire" EntitySet="Commentaire" />
@@ -188,6 +218,14 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Historique" EntitySet="Historique" />
           </AssociationSet>
+          <AssociationSet Name="FK_Note_Restaurant" Association="Self.FK_Note_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Note" EntitySet="Note" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Note_Utilisateur" Association="Self.FK_Note_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Note" EntitySet="Note" />
+          </AssociationSet>
           <AssociationSet Name="FK_Restaurant_Categorie" Association="Self.FK_Restaurant_Categorie">
             <End Role="Categorie" EntitySet="Categorie" />
             <End Role="Restaurant" EntitySet="Restaurant" />
@@ -197,8 +235,7 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
             <End Role="Restaurant" EntitySet="Restaurant" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="searchfoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -243,6 +280,7 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
           <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Restaurant" FromRole="Restaurant" ToRole="Commentaire" />
           <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Restaurant" FromRole="Restaurant" ToRole="Historique" />
           <NavigationProperty Name="Type_Cuisine" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Restaurant" ToRole="Type_Cuisine" />
+          <NavigationProperty Name="Note" Relationship="searchfoodModel.FK_Note_Restaurant" FromRole="Restaurant" ToRole="Note" />
         </EntityType>
         <EntityType Name="Type_Cuisine">
           <Key>
@@ -268,6 +306,7 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
           <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Utilisateur" FromRole="Utilisateur" ToRole="Commentaire" />
           <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Utilisateur" FromRole="Utilisateur" ToRole="Historique" />
+          <NavigationProperty Name="Note" Relationship="searchfoodModel.FK_Note_Utilisateur" FromRole="Utilisateur" ToRole="Note" />
         </EntityType>
         <EntityType Name="Historique">
           <Key>
@@ -384,7 +423,52 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Historique" EntitySet="Historique" />
           </AssociationSet>
+          <EntitySet Name="Note" EntityType="searchfoodModel.Note" />
+          <AssociationSet Name="FK_Note_Restaurant" Association="searchfoodModel.FK_Note_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Note" EntitySet="Note" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Note_Utilisateur" Association="searchfoodModel.FK_Note_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Note" EntitySet="Note" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id_Utilisateur" />
+            <PropertyRef Name="Id_Restaurant" />
+            <PropertyRef Name="Note1" />
+          </Key>
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Note1" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="searchfoodModel.FK_Note_Restaurant" FromRole="Note" ToRole="Restaurant" />
+          <NavigationProperty Name="Utilisateur" Relationship="searchfoodModel.FK_Note_Utilisateur" FromRole="Note" ToRole="Utilisateur" />
+        </EntityType>
+        <Association Name="FK_Note_Restaurant">
+          <End Type="searchfoodModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+          <End Type="searchfoodModel.Note" Role="Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Note">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Note_Utilisateur">
+          <End Type="searchfoodModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="searchfoodModel.Note" Role="Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Note">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -459,6 +543,15 @@ erreur 6004: La table 'searchfood.dbo.Note' est référencée par une relation, 
                 <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
                 <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Note">
+            <EntityTypeMapping TypeName="searchfoodModel.Note">
+              <MappingFragment StoreEntitySet="Note">
+                <ScalarProperty Name="Note1" ColumnName="Note" />
+                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
+                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

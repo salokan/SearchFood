@@ -1,72 +1,78 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SearchFoodServer.CAD
 {
     public class RestaurantsCad
     {
-        public List<int> GetRestaurants()
+        public List<Restaurant> GetRestaurants()
         {
-            //var requete = from restaurants in bdd.Restaurants
-            //              select restaurants;
+            List<Restaurant> restaurant;
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from r in bdd.Restaurant
+                              select r;
 
-            return new List<int>();
+                restaurant = requete.ToList();
+            }
+            return restaurant;
         }
 
-        public int GetRestaurant(int id)
+        public Restaurant GetRestaurant(int id)
         {
-            //var requete = from restaurants in bdd.Restaurants
-            //              where restaurants.Id == id
-            //              select restaurants;
-            return 0;
+            Restaurant restaurant;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from r in bdd.Restaurant
+                              where r.Id_Restaurant == id
+                              select r;
+
+                restaurant = requete.FirstOrDefault();
+            }
+
+            return restaurant;
         }
 
-        public void AddRestaurants()
+        public void AddRestaurants(Restaurant r)
         {
-            //using (Restaurants bdd = new Restaurants())
-            //{
-            //    EditeurInformatique OReilly = new EditeurInformatique()
-            //    {
-            //        Id = "OReilly",
-            //        NombreLivresInfoEdites = 1800
-            //    };
-
-            //    bdd.AddToEditeur(OReilly);
-            //    bdd.SaveChanges();
-            //}
+            using (var bdd = new searchfoodEntities())
+            {
+                bdd.Restaurant.Add(r);
+                bdd.SaveChanges();
+            }
         }
 
-        public void DeleteRestaurants()
+        public void DeleteRestaurants(int id)
         {
-            //using (Modele bdd = new Modele())
-            //{
-            //    var requete = from c in bdd.Client
-            //                  where c.Nom == "Oliver"
-            //                  select c;
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from r in bdd.Restaurant
+                              where r.Id_Restaurant == id
+                              select r;
 
-            //    var client = requete.FirstOrDefault();
+                Restaurant restaurant = requete.FirstOrDefault();
 
-            //    if (client != null)
-            //    {
-            //        bdd.DeleteObject(client);
-            //        bdd.SaveChanges();
-            //    }
-            //}
+                if (restaurant != null)
+                {
+                    bdd.Restaurant.Remove(restaurant);
+                    bdd.SaveChanges();
+                }
+            }
         }
 
-        public void UpdateRestaurants()
+        public void UpdateRestaurants(Restaurant r)
         {
-            //using (Modele bdd = new Modele())
-            //{
-            //    Client client = (from c in bdd.Client
-            //                     where c.Nom == "Oliver"
-            //                     select c).FirstOrDefault();
-            //    if (client != null)
-            //    {
-            //        client.Ville = "Bruxelles";
-            //        client.Pays = "Belgique";
-            //        bdd.SaveChanges();
-            //    }
-            //}
+            using (var bdd = new searchfoodEntities())
+            {
+                Restaurant restaurant = bdd.Restaurant.Find(r.Id_Restaurant);
+
+                if (restaurant != null)
+                {
+                    bdd.Entry(restaurant).CurrentValues.SetValues(r);
+                    bdd.SaveChanges();
+                }
+            }
         }
     }
 }

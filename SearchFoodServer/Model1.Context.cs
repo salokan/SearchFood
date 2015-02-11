@@ -31,5 +31,6 @@ namespace SearchFoodServer
         public virtual DbSet<Type_Cuisine> Type_Cuisine { get; set; }
         public virtual DbSet<Utilisateur> Utilisateur { get; set; }
         public virtual DbSet<Historique> Historique { get; set; }
+        public virtual DbSet<Note> Note { get; set; }
     }
 }

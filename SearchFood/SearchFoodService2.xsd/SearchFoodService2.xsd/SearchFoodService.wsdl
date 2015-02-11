@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SearchFoodService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:24048/SearchFoodService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:24048/SearchFoodService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:24048/SearchFoodService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer" />
+      <xsd:import schemaLocation="http://localhost:24048/SearchFoodService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISearchFoodService_GetCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCategorie_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategorie" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCategorie_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategorieResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCategories" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategories" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCategories" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCommentaires_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentaires" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCommentaires_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentairesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCommentaire_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentaire" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCommentaire_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentaireResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddCommentaires_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentaires" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddCommentaires_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentairesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteCommentaires_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommentaires" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteCommentaires_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCommentairesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateCommentaires_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCommentaires" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateCommentaires_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCommentairesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetHistorique_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistorique" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetHistorique_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistoriqueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddHistorique_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddHistorique" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddHistorique_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddHistoriqueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteHistorique_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHistorique" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteHistorique_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHistoriqueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateHistorique_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHistorique" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateHistorique_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHistoriqueResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNote" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddNotes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNotes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateNotes_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateNotes" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateNotes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetRestaurants_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRestaurants" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetRestaurants_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRestaurantsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetRestaurant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRestaurant" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetRestaurant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRestaurantResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddRestaurants_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRestaurants" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddRestaurants_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRestaurantsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteRestaurants_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRestaurants" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteRestaurants_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRestaurantsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateRestaurants_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRestaurants" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateRestaurants_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRestaurantsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetTypesCuisine_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTypesCuisine" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetTypesCuisine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTypesCuisineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetTypeCuisine_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTypeCuisine" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetTypeCuisine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTypeCuisineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddTypesCuisine_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTypesCuisine" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddTypesCuisine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTypesCuisineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteTypesCuisine_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTypesCuisine" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteTypesCuisine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTypesCuisineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateTypesCuisine_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTypesCuisine" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateTypesCuisine_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTypesCuisineResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetUtilisateurs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUtilisateurs" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetUtilisateurs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUtilisateursResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetUtilisateur_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUtilisateur" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetUtilisateur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUtilisateurResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddUtilisateurs_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUtilisateurs" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AddUtilisateurs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUtilisateursResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteUtilisateurs_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUtilisateurs" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_DeleteUtilisateurs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUtilisateursResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateUtilisateurs_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUtilisateurs" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_UpdateUtilisateurs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUtilisateursResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISearchFoodService">
+    <wsdl:operation name="GetCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetCategories" message="tns:ISearchFoodService_GetCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetCategoriesResponse" message="tns:ISearchFoodService_GetCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategorie">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetCategorie" message="tns:ISearchFoodService_GetCategorie_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetCategorieResponse" message="tns:ISearchFoodService_GetCategorie_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddCategories" message="tns:ISearchFoodService_AddCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddCategoriesResponse" message="tns:ISearchFoodService_AddCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteCategories" message="tns:ISearchFoodService_DeleteCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteCategoriesResponse" message="tns:ISearchFoodService_DeleteCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateCategories" message="tns:ISearchFoodService_UpdateCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateCategoriesResponse" message="tns:ISearchFoodService_UpdateCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentaires">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentaires" message="tns:ISearchFoodService_GetCommentaires_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentairesResponse" message="tns:ISearchFoodService_GetCommentaires_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentaire">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentaire" message="tns:ISearchFoodService_GetCommentaire_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentaireResponse" message="tns:ISearchFoodService_GetCommentaire_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCommentaires">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddCommentaires" message="tns:ISearchFoodService_AddCommentaires_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddCommentairesResponse" message="tns:ISearchFoodService_AddCommentaires_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCommentaires">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteCommentaires" message="tns:ISearchFoodService_DeleteCommentaires_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteCommentairesResponse" message="tns:ISearchFoodService_DeleteCommentaires_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCommentaires">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateCommentaires" message="tns:ISearchFoodService_UpdateCommentaires_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateCommentairesResponse" message="tns:ISearchFoodService_UpdateCommentaires_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistorique">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistorique" message="tns:ISearchFoodService_GetHistorique_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistoriqueResponse" message="tns:ISearchFoodService_GetHistorique_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHistorique">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddHistorique" message="tns:ISearchFoodService_AddHistorique_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddHistoriqueResponse" message="tns:ISearchFoodService_AddHistorique_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHistorique">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteHistorique" message="tns:ISearchFoodService_DeleteHistorique_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteHistoriqueResponse" message="tns:ISearchFoodService_DeleteHistorique_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHistorique">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateHistorique" message="tns:ISearchFoodService_UpdateHistorique_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateHistoriqueResponse" message="tns:ISearchFoodService_UpdateHistorique_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNotes" message="tns:ISearchFoodService_GetNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetNotesResponse" message="tns:ISearchFoodService_GetNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNote" message="tns:ISearchFoodService_GetNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteResponse" message="tns:ISearchFoodService_GetNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddNotes" message="tns:ISearchFoodService_AddNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddNotesResponse" message="tns:ISearchFoodService_AddNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteNotes" message="tns:ISearchFoodService_DeleteNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteNotesResponse" message="tns:ISearchFoodService_DeleteNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateNotes" message="tns:ISearchFoodService_UpdateNotes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateNotesResponse" message="tns:ISearchFoodService_UpdateNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRestaurants">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetRestaurants" message="tns:ISearchFoodService_GetRestaurants_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetRestaurantsResponse" message="tns:ISearchFoodService_GetRestaurants_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRestaurant">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetRestaurant" message="tns:ISearchFoodService_GetRestaurant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetRestaurantResponse" message="tns:ISearchFoodService_GetRestaurant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRestaurants">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddRestaurants" message="tns:ISearchFoodService_AddRestaurants_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddRestaurantsResponse" message="tns:ISearchFoodService_AddRestaurants_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRestaurants">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteRestaurants" message="tns:ISearchFoodService_DeleteRestaurants_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteRestaurantsResponse" message="tns:ISearchFoodService_DeleteRestaurants_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRestaurants">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateRestaurants" message="tns:ISearchFoodService_UpdateRestaurants_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateRestaurantsResponse" message="tns:ISearchFoodService_UpdateRestaurants_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTypesCuisine">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetTypesCuisine" message="tns:ISearchFoodService_GetTypesCuisine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetTypesCuisineResponse" message="tns:ISearchFoodService_GetTypesCuisine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTypeCuisine">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetTypeCuisine" message="tns:ISearchFoodService_GetTypeCuisine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetTypeCuisineResponse" message="tns:ISearchFoodService_GetTypeCuisine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTypesCuisine">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddTypesCuisine" message="tns:ISearchFoodService_AddTypesCuisine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddTypesCuisineResponse" message="tns:ISearchFoodService_AddTypesCuisine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTypesCuisine">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteTypesCuisine" message="tns:ISearchFoodService_DeleteTypesCuisine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteTypesCuisineResponse" message="tns:ISearchFoodService_DeleteTypesCuisine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTypesCuisine">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateTypesCuisine" message="tns:ISearchFoodService_UpdateTypesCuisine_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateTypesCuisineResponse" message="tns:ISearchFoodService_UpdateTypesCuisine_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilisateurs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetUtilisateurs" message="tns:ISearchFoodService_GetUtilisateurs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetUtilisateursResponse" message="tns:ISearchFoodService_GetUtilisateurs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilisateur">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetUtilisateur" message="tns:ISearchFoodService_GetUtilisateur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetUtilisateurResponse" message="tns:ISearchFoodService_GetUtilisateur_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUtilisateurs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddUtilisateurs" message="tns:ISearchFoodService_AddUtilisateurs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddUtilisateursResponse" message="tns:ISearchFoodService_AddUtilisateurs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUtilisateurs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteUtilisateurs" message="tns:ISearchFoodService_DeleteUtilisateurs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/DeleteUtilisateursResponse" message="tns:ISearchFoodService_DeleteUtilisateurs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUtilisateurs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateUtilisateurs" message="tns:ISearchFoodService_UpdateUtilisateurs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateUtilisateursResponse" message="tns:ISearchFoodService_UpdateUtilisateurs_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISearchFoodService" type="tns:ISearchFoodService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategorie">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetCategorie" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategories">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategories">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCategories">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentaires">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetCommentaires" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentaire">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetCommentaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCommentaires">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddCommentaires" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCommentaires">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteCommentaires" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCommentaires">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateCommentaires" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistorique">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetHistorique" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHistorique">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddHistorique" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHistorique">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteHistorique" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHistorique">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateHistorique" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotes">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNote">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNotes">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNotes">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotes">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestaurants">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetRestaurants" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRestaurant">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetRestaurant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRestaurants">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddRestaurants" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRestaurants">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteRestaurants" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRestaurants">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateRestaurants" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTypesCuisine">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetTypesCuisine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTypeCuisine">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetTypeCuisine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTypesCuisine">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddTypesCuisine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTypesCuisine">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteTypesCuisine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTypesCuisine">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateTypesCuisine" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilisateurs">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetUtilisateurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUtilisateur">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetUtilisateur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUtilisateurs">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddUtilisateurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUtilisateurs">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/DeleteUtilisateurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUtilisateurs">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateUtilisateurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SearchFoodService">
+    <wsdl:port name="BasicHttpBinding_ISearchFoodService" binding="tns:BasicHttpBinding_ISearchFoodService">
+      <soap:address location="http://localhost:24048/SearchFoodService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

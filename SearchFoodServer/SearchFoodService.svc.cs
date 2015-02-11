@@ -14,186 +14,197 @@ namespace SearchFoodServer
         private readonly UtilisateursCad _utilisateurs = new UtilisateursCad();
 
         #region Categories
-        public string GetCategories()
+        public List<Categorie> GetCategories()
         {
-            return "coucou";
-            //return _categories.GetCategories();
+            return _categories.GetCategories();
         }
 
-        public int GetCategorie(int id)
+        public Categorie GetCategorie(int id)
         {
             return _categories.GetCategorie(id);
         }
 
-        public void AddCategories()
+        public void AddCategories(Categorie c)
         {
-            _categories.AddCategories();
+            _categories.AddCategories(c);
         }
 
-        public void DeleteCategories()
+        public void DeleteCategories(int id)
         {
-            _categories.DeleteCategories();
+            _categories.DeleteCategories(id);
         }
 
-        public void UpdateCategories()
+        public void UpdateCategories(Categorie c)
         {
-            _categories.UpdateCategories();
+            _categories.UpdateCategories(c);
         }
         #endregion
 
         #region Commentaires
-        public List<int> GetCommentaires()
+        public List<Commentaire> GetCommentaires()
         {
             return _commentaires.GetCommentaires();
         }
 
-        public int GetCommentaire(int id)
+        public Commentaire GetCommentaire(int id)
         {
            return  _commentaires.GetCommentaire(id);
         }
 
-        public void AddCommentaires()
+        public void AddCommentaires(Commentaire c)
         {
-            _commentaires.AddCommentaires();
+            _commentaires.AddCommentaires(c);
         }
 
-        public void DeleteCommentaires()
+        public void DeleteCommentaires(int id)
         {
-           _commentaires.DeleteCommentaires();
+           _commentaires.DeleteCommentaires(id);
         }
 
-        public void UpdateCommentaires()
+        public void UpdateCommentaires(Commentaire c)
         {
-            _commentaires.UpdateCommentaires();
+            _commentaires.UpdateCommentaires(c);
         }
         #endregion
 
         #region Historique
-        public int GetHistorique()
+        public List<Historique> GetHistoriques()
         {
-           return _historique.GetHistorique();
+           return _historique.GetHistoriques();
         }
 
-        public void AddHistorique()
+        public List<Historique> GetHistoriqueByUser(int idUser)
         {
-            _historique.AddHistorique();
+            return _historique.GetHistoriqueByUser(idUser);
         }
 
-        public void DeleteHistorique()
+        public void AddHistorique(Historique h)
         {
-            _historique.DeleteHistorique();
+            _historique.AddHistorique(h);
         }
 
-        public void UpdateHistorique()
+        public void DeleteHistorique(Historique h)
         {
-            _historique.UpdateHistorique();
+            _historique.DeleteHistorique(h);
         }
+
+        public void UpdateHistorique(Historique h)
+        {
+            _historique.UpdateHistorique(h);
+        }
+
         #endregion
 
         #region Notes
-        public List<int> GetNotes()
+        public List<Note> GetNotes()
         {
             return _notes.GetNotes();
         }
 
-        public int GetNote(int id)
+        public List<Note> GetNoteByRestaurant(int idRestaurant)
         {
-            return _notes.GetNote(id);
+            return _notes.GetNoteByRestaurant(idRestaurant);
         }
 
-        public void AddNotes()
+        public List<Note> GetNoteByUser(int idUser)
         {
-            _notes.AddNotes();
+            return _notes.GetNoteByUser(idUser);
         }
 
-        public void DeleteNotes()
+        public void AddNotes(Note n)
         {
-            _notes.DeleteNotes();
+            _notes.AddNotes(n);
         }
 
-        public void UpdateNotes()
+        public void DeleteNotes(Note n)
         {
-            _notes.UpdateNotes();
+            _notes.DeleteNotes(n);
+        }
+
+        public void UpdateNotes(Note n)
+        {
+            _notes.UpdateNotes(n);
         }
         #endregion
 
         #region Restaurants
-        public List<int> GetRestaurants()
+        public List<Restaurant> GetRestaurants()
         {
             return _restaurants.GetRestaurants();
         }
 
-        public int GetRestaurant(int id)
+        public Restaurant GetRestaurant(int id)
         {
             return _restaurants.GetRestaurant(id);
         }
 
-        public void AddRestaurants()
+        public void AddRestaurants(Restaurant r)
         {
-            _restaurants.AddRestaurants();
+            _restaurants.AddRestaurants(r);
         }
 
-        public void DeleteRestaurants()
+        public void DeleteRestaurants(int id)
         {
-            _restaurants.DeleteRestaurants();
+            _restaurants.DeleteRestaurants(id);
         }
 
-        public void UpdateRestaurants()
-        {_restaurants.UpdateRestaurants();
+        public void UpdateRestaurants(Restaurant r)
+        {
+            _restaurants.UpdateRestaurants(r);
         }
         #endregion
 
         #region Types Cuisine
-        public List<int> GetTypesCuisine()
+        public List<Type_Cuisine> GetTypesCuisine()
         {
             return _typesCuisine.GetTypesCuisine();
         }
 
-        public int GetTypeCuisine(int id)
+        public Type_Cuisine GetTypeCuisine(int id)
         {
             return _typesCuisine.GetTypeCuisine(id);
         }
 
-        public void AddTypesCuisine()
+        public void AddTypesCuisine(Type_Cuisine tc)
         {
-            _typesCuisine.AddTypesCuisine();
+            _typesCuisine.AddTypesCuisine(tc);
         }
 
-        public void DeleteTypesCuisine()
+        public void DeleteTypesCuisine(int id)
         {
-            _typesCuisine.DeleteTypesCuisine();
+            _typesCuisine.DeleteTypesCuisine(id);
         }
 
-        public void UpdateTypesCuisine()
+        public void UpdateTypesCuisine(Type_Cuisine tc)
         {
-            _typesCuisine.UpdateTypesCuisine();
+            _typesCuisine.UpdateTypesCuisine(tc);
         }
         #endregion
 
         #region Utilisateurs
-        public List<int> GetUtilisateurs()
+        public List<Utilisateur> GetUtilisateurs()
         {
             return _utilisateurs.GetUtilisateurs();
         }
 
-        public int GetUtilisateur(int id)
+        public Utilisateur GetUtilisateur(int id)
         {
             return _utilisateurs.GetUtilisateur(id);
         }
 
-        public void AddUtilisateurs()
+        public void AddUtilisateurs(Utilisateur u)
         {
-            _utilisateurs.AddUtilisateurs();
+            _utilisateurs.AddUtilisateurs(u);
         }
 
-        public void DeleteUtilisateurs()
+        public void DeleteUtilisateurs(int id)
         {
-            _utilisateurs.DeleteUtilisateurs();
+            _utilisateurs.DeleteUtilisateurs(id);
         }
 
-        public void UpdateUtilisateurs()
+        public void UpdateUtilisateurs(Utilisateur u)
         {
-            _utilisateurs.UpdateUtilisateurs();
+            _utilisateurs.UpdateUtilisateurs(u);
         }
         #endregion
     }

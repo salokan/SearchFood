@@ -18,6 +18,7 @@ namespace SearchFoodServer
         {
             this.Commentaire = new HashSet<Commentaire>();
             this.Historique = new HashSet<Historique>();
+            this.Note = new HashSet<Note>();
         }
     
         public int Id_Restaurant { get; set; }
@@ -39,5 +40,6 @@ namespace SearchFoodServer
         public virtual ICollection<Commentaire> Commentaire { get; set; }
         public virtual ICollection<Historique> Historique { get; set; }
         public virtual Type_Cuisine Type_Cuisine { get; set; }
+        public virtual ICollection<Note> Note { get; set; }
     }
 }

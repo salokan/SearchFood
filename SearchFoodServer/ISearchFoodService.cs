@@ -9,33 +9,35 @@ namespace SearchFoodServer
     {
         #region Categories
         [OperationContract]
-        string GetCategories();
+        List<Categorie> GetCategories();
         [OperationContract]
-        int GetCategorie(int id);
+        Categorie GetCategorie(int id);
         [OperationContract]
-        void AddCategories();
+        void AddCategories(Categorie c);
         [OperationContract]
-        void DeleteCategories();
+        void DeleteCategories(int id);
         [OperationContract]
-        void UpdateCategories();
+        void UpdateCategories(Categorie c);
         #endregion
 
         #region Commentaires
         [OperationContract]
-        List<int> GetCommentaires();
+        List<Commentaire> GetCommentaires();
         [OperationContract]
-        int GetCommentaire(int id);
+        Commentaire GetCommentaire(int id);
         [OperationContract]
-        void AddCommentaires();
+        void AddCommentaires(Commentaire c);
         [OperationContract]
-        void DeleteCommentaires();
+        void DeleteCommentaires(int id);
         [OperationContract]
-        void UpdateCommentaires();
+        void UpdateCommentaires(Commentaire c);
         #endregion
 
         #region Historique
         [OperationContract]
-        int GetHistorique();
+        List<Historique> GetHistoriques();
+        [OperationContract]
+        List<Historique> GetHistoriqueByUser();
         [OperationContract]
         void AddHistorique();
         [OperationContract]
@@ -46,9 +48,11 @@ namespace SearchFoodServer
 
         #region Notes
         [OperationContract]
-        List<int> GetNotes();
+        List<Note> GetNotes();
         [OperationContract]
-        int GetNote(int id);
+        List<Note> GetNoteByRestaurant(int idRestaurant);
+        [OperationContract]
+        List<Note> GetNoteByUser(int idUser);
         [OperationContract]
         void AddNotes();
         [OperationContract]
@@ -59,41 +63,41 @@ namespace SearchFoodServer
 
         #region Restaurants
         [OperationContract]
-        List<int> GetRestaurants();
+        List<Restaurant> GetRestaurants();
         [OperationContract]
-        int GetRestaurant(int id);
+        Restaurant GetRestaurant(int id);
         [OperationContract]
-        void AddRestaurants();
+        void AddRestaurants(Restaurant r);
         [OperationContract]
-        void DeleteRestaurants();
+        void DeleteRestaurants(int id);
         [OperationContract]
-        void UpdateRestaurants();
+        void UpdateRestaurants(Restaurant r);
         #endregion
 
         #region TypesCuisine
         [OperationContract]
-        List<int> GetTypesCuisine();
+        List<Type_Cuisine> GetTypesCuisine();
         [OperationContract]
-        int GetTypeCuisine(int id);
+        Type_Cuisine GetTypeCuisine(int id);
         [OperationContract]
-        void AddTypesCuisine();
+        void AddTypesCuisine(Type_Cuisine tc);
         [OperationContract]
-        void DeleteTypesCuisine();
+        void DeleteTypesCuisine(int id);
         [OperationContract]
-        void UpdateTypesCuisine();
+        void UpdateTypesCuisine(Type_Cuisine tc);
         #endregion
 
         #region Utilisateurs
         [OperationContract]
-        List<int> GetUtilisateurs();
+        List<Utilisateur> GetUtilisateurs();
         [OperationContract]
-        int GetUtilisateur(int id);
+        Utilisateur GetUtilisateur(int id);
         [OperationContract]
-        void AddUtilisateurs();
+        void AddUtilisateurs(Utilisateur u);
         [OperationContract]
-        void DeleteUtilisateurs();
+        void DeleteUtilisateurs(int id);
         [OperationContract]
-        void UpdateUtilisateurs();
+        void UpdateUtilisateurs(Utilisateur u);
         #endregion
     }
 }

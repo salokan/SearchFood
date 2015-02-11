@@ -103,7 +103,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <WCFMetadata Include="Service References\" />
+    <WCFMetadata Include="SearchFoodService2.xsd\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -113,7 +113,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\SearchFoodServiceReference\Reference.cs">
+    <Compile Include="SearchFoodService2.xsd\SearchFoodService2.xsd\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -127,14 +127,17 @@
     </AppxManifest>
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="SearchFood_TemporaryKey.pfx" />
-    <None Include="Service References\SearchFoodServiceReference\SearchFoodService.wsdl" />
-    <None Include="Service References\SearchFoodServiceReference\SearchFoodService.xsd">
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService.wsdl" />
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFoodService1.xsd">
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFoodService2.xsd">
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\SearchFoodService3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -143,12 +146,12 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
-    <None Include="Service References\SearchFoodServiceReference\Reference.svcmap">
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\configuration.svcinfo" />
-    <None Include="Service References\SearchFoodServiceReference\configuration91.svcinfo" />
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\configuration.svcinfo" />
+    <None Include="SearchFoodService2.xsd\SearchFoodService2.xsd\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -161,7 +164,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\SearchFoodServiceReference\" />
+    <WCFMetadataStorage Include="SearchFoodService2.xsd\SearchFoodService2.xsd\" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
