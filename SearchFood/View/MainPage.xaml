@@ -3,33 +3,50 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Page.Resources>
+        <x:String x:Key="AppName">Search Food</x:String>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="Green" >
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" Margin="0,10,30,0">
-                    <Image Source="./Image/Sasuke.jpeg" Height="100" Width="100" VerticalAlignment="Center" Margin="0,0,20,0"/>
-                    <TextBlock FontSize="40" Text="Pounou" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,20,0"/>
+        <Grid Grid.Row="0" Background="Teal">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions> 
+            <TextBlock Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Orientation="Vertical">
+                    <Button  Command="{Binding Path=PopupOpenCommande}" Height="100" Width="100" VerticalAlignment="Center" BorderThickness="0" BorderBrush="Teal" Padding="0">
+                        <Image Source="/Image/Sasuke.jpeg" Stretch="Fill" Height="100" Width="100"/>
+                    </Button>
+                    <Popup IsOpen="{Binding PopupOpen}">
+                        <Grid Background="Teal" Width="120" Height="75">
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="Mon Profil"  Width="120"/>
+                                <Button Content="Deconnexion" Width="120" Command="{Binding LogoutCommand}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Popup>
                 </StackPanel>
-                <Button Content="Se Déconnecter" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock FontSize="40" Text="Visibility" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding InverseVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <Button  Command="{Binding Path=LoginCommand}" Content="Connexion" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Button  Command="{Binding Path=CreateAccountCommand}" Content="Créer un Compte" VerticalAlignment="Center" Margin="0,0,10,0"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Background="White" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Width="250" Height="250" Content="Rechercher" />
-                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Width="250" Height="250" Content="Surprend-Moi"  Margin="40,0,40,0"/>
-                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green" Width="250" Height="250" Content="Autour de moi"  />
+        <Grid Grid.Row="1" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-60,0,0">
+                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Rechercher"/>
+                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Surprend-Moi"  Margin="40,0,40,0"/>
+                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Autour de moi"  />
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2" Background="Green" >
-        </Grid>
-
     </Grid>
 </Page>
