@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d34f5df6-af22-41c0-84f8-84d778f3ff6e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3219c089-3113-4031-a68b-af5e4c62b591" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -24,10 +24,10 @@
     <MetadataSource Address="http://localhost:24048/SearchFoodService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SearchFoodService.xsd" MetadataType="Schema" ID="3f0da0c7-358e-4e19-8caf-46f5ca509fe6" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd1" />
-    <MetadataFile FileName="SearchFoodService1.xsd" MetadataType="Schema" ID="23a73be3-6f7e-4400-ac6e-3a5e51aa7cf3" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SearchFoodService.wsdl" MetadataType="Wsdl" ID="f10173eb-ec45-4da4-ab0c-e5540984345d" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?wsdl" />
-    <MetadataFile FileName="SearchFoodService2.xsd" MetadataType="Schema" ID="7a23fef6-ff97-47fa-9e21-9c661126f3d3" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SearchFoodService.xsd" MetadataType="Schema" ID="c2c894ec-d8f6-4d48-8548-5e6db7dfe867" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SearchFoodService1.xsd" MetadataType="Schema" ID="d74b0242-68e6-4fc8-a700-7b877e468770" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SearchFoodService.wsdl" MetadataType="Wsdl" ID="75c8e28d-594e-405f-a1b4-b13b1d89ec32" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?wsdl" />
+    <MetadataFile FileName="SearchFoodService2.xsd" MetadataType="Schema" ID="a10ebc9e-4bca-44f2-9e37-9eb2806e2550" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

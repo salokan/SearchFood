@@ -1,33 +1,211 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+﻿using System.Collections.Generic;
+using SearchFoodServer.CAD;
 
 namespace SearchFoodServer
 {
-    // REMARQUE : vous pouvez utiliser la commande Renommer du menu Refactoriser pour changer le nom de classe "Service1" dans le code, le fichier svc et le fichier de configuration.
-    // REMARQUE : pour lancer le client test WCF afin de tester ce service, sélectionnez Service1.svc ou Service1.svc.cs dans l'Explorateur de solutions et démarrez le débogage.
     public class SearchFoodService : ISearchFoodService
     {
-        public string GetData(int value)
+        private readonly CategoriesCad _categories = new CategoriesCad();
+        private readonly CommentairesCad _commentaires = new CommentairesCad();
+        private readonly HistoriqueCad _historique = new HistoriqueCad();
+        private readonly NotesCad _notes = new NotesCad();
+        private readonly RestaurantsCad _restaurants = new RestaurantsCad();
+        private readonly TypesCuisineCad _typesCuisine = new TypesCuisineCad();
+        private readonly UtilisateursCad _utilisateurs = new UtilisateursCad();
+
+        #region Categories
+        public List<Categorie> GetCategories()
         {
-            return string.Format("You entered: {0}", value);
+            return _categories.GetCategories();
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public Categorie GetCategorie(int id)
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return _categories.GetCategorie(id);
         }
+
+        public void AddCategories(Categorie c)
+        {
+            _categories.AddCategories(c);
+        }
+
+        public void DeleteCategories(int id)
+        {
+            _categories.DeleteCategories(id);
+        }
+
+        public void UpdateCategories(Categorie c)
+        {
+            _categories.UpdateCategories(c);
+        }
+        #endregion
+
+        #region Commentaires
+        public List<Commentaire> GetCommentaires()
+        {
+            return _commentaires.GetCommentaires();
+        }
+
+        public Commentaire GetCommentaire(int id)
+        {
+           return  _commentaires.GetCommentaire(id);
+        }
+
+        public void AddCommentaires(Commentaire c)
+        {
+            _commentaires.AddCommentaires(c);
+        }
+
+        public void DeleteCommentaires(int id)
+        {
+           _commentaires.DeleteCommentaires(id);
+        }
+
+        public void UpdateCommentaires(Commentaire c)
+        {
+            _commentaires.UpdateCommentaires(c);
+        }
+        #endregion
+
+        #region Historique
+        public List<Historique> GetHistoriques()
+        {
+           return _historique.GetHistoriques();
+        }
+
+        public List<Historique> GetHistoriqueByUser(int idUser)
+        {
+            return _historique.GetHistoriqueByUser(idUser);
+        }
+
+        public void AddHistorique(Historique h)
+        {
+            _historique.AddHistorique(h);
+        }
+
+        public void DeleteHistorique(Historique h)
+        {
+            _historique.DeleteHistorique(h);
+        }
+
+        public void UpdateHistorique(Historique h)
+        {
+            _historique.UpdateHistorique(h);
+        }
+
+        #endregion
+
+        #region Notes
+        public List<Note> GetNotes()
+        {
+            return _notes.GetNotes();
+        }
+
+        public List<Note> GetNoteByRestaurant(int idRestaurant)
+        {
+            return _notes.GetNoteByRestaurant(idRestaurant);
+        }
+
+        public List<Note> GetNoteByUser(int idUser)
+        {
+            return _notes.GetNoteByUser(idUser);
+        }
+
+        public void AddNotes(Note n)
+        {
+            _notes.AddNotes(n);
+        }
+
+        public void DeleteNotes(Note n)
+        {
+            _notes.DeleteNotes(n);
+        }
+
+        public void UpdateNotes(Note n)
+        {
+            _notes.UpdateNotes(n);
+        }
+        #endregion
+
+        #region Restaurants
+        public List<Restaurant> GetRestaurants()
+        {
+            return _restaurants.GetRestaurants();
+        }
+
+        public Restaurant GetRestaurant(int id)
+        {
+            return _restaurants.GetRestaurant(id);
+        }
+
+        public void AddRestaurants(Restaurant r)
+        {
+            _restaurants.AddRestaurants(r);
+        }
+
+        public void DeleteRestaurants(int id)
+        {
+            _restaurants.DeleteRestaurants(id);
+        }
+
+        public void UpdateRestaurants(Restaurant r)
+        {
+            _restaurants.UpdateRestaurants(r);
+        }
+        #endregion
+
+        #region Types Cuisine
+        public List<Type_Cuisine> GetTypesCuisine()
+        {
+            return _typesCuisine.GetTypesCuisine();
+        }
+
+        public Type_Cuisine GetTypeCuisine(int id)
+        {
+            return _typesCuisine.GetTypeCuisine(id);
+        }
+
+        public void AddTypesCuisine(Type_Cuisine tc)
+        {
+            _typesCuisine.AddTypesCuisine(tc);
+        }
+
+        public void DeleteTypesCuisine(int id)
+        {
+            _typesCuisine.DeleteTypesCuisine(id);
+        }
+
+        public void UpdateTypesCuisine(Type_Cuisine tc)
+        {
+            _typesCuisine.UpdateTypesCuisine(tc);
+        }
+        #endregion
+
+        #region Utilisateurs
+        public List<Utilisateur> GetUtilisateurs()
+        {
+            return _utilisateurs.GetUtilisateurs();
+        }
+
+        public Utilisateur GetUtilisateur(int id)
+        {
+            return _utilisateurs.GetUtilisateur(id);
+        }
+
+        public void AddUtilisateurs(Utilisateur u)
+        {
+            _utilisateurs.AddUtilisateurs(u);
+        }
+
+        public void DeleteUtilisateurs(int id)
+        {
+            _utilisateurs.DeleteUtilisateurs(id);
+        }
+
+        public void UpdateUtilisateurs(Utilisateur u)
+        {
+            _utilisateurs.UpdateUtilisateurs(u);
+        }
+        #endregion
     }
 }

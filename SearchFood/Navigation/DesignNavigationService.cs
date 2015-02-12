@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wikitionary.Navigation
+namespace SearchFood.Navigation
 {
     public class DesignNavigationService : INavigationService
     {

@@ -1,42 +1,102 @@
-﻿using System.Runtime.Serialization;
-using System.ServiceModel; 
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace SearchFoodServer
 {
-    // REMARQUE : vous pouvez utiliser la commande Renommer du menu Refactoriser pour changer le nom d'interface "IService1" à la fois dans le code et le fichier de configuration.
     [ServiceContract]
     public interface ISearchFoodService
     {
-
+        #region Categories
         [OperationContract]
-        string GetData(int value);
-
+        List<Categorie> GetCategories();
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        Categorie GetCategorie(int id);
+        [OperationContract]
+        void AddCategories(Categorie c);
+        [OperationContract]
+        void DeleteCategories(int id);
+        [OperationContract]
+        void UpdateCategories(Categorie c);
+        #endregion
 
-        // TODO: ajoutez vos opérations de service ici
-    }
+        #region Commentaires
+        [OperationContract]
+        List<Commentaire> GetCommentaires();
+        [OperationContract]
+        Commentaire GetCommentaire(int id);
+        [OperationContract]
+        void AddCommentaires(Commentaire c);
+        [OperationContract]
+        void DeleteCommentaires(int id);
+        [OperationContract]
+        void UpdateCommentaires(Commentaire c);
+        #endregion
 
+        #region Historique
+        [OperationContract]
+        List<Historique> GetHistoriques();
+        [OperationContract]
+        List<Historique> GetHistoriqueByUser(int idUser);
+        [OperationContract]
+        void AddHistorique(Historique h);
+        [OperationContract]
+        void DeleteHistorique(Historique h);
+        [OperationContract]
+        void UpdateHistorique(Historique h);
+        #endregion
 
-    // Utilisez un contrat de données comme indiqué dans l'exemple ci-après pour ajouter les types composites aux opérations de service.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        #region Notes
+        [OperationContract]
+        List<Note> GetNotes();
+        [OperationContract]
+        List<Note> GetNoteByRestaurant(int idRestaurant);
+        [OperationContract]
+        List<Note> GetNoteByUser(int idUser);
+        [OperationContract]
+        void AddNotes(Note n);
+        [OperationContract]
+        void DeleteNotes(Note n);
+        [OperationContract]
+        void UpdateNotes(Note n);
+        #endregion
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
+        #region Restaurants
+        [OperationContract]
+        List<Restaurant> GetRestaurants();
+        [OperationContract]
+        Restaurant GetRestaurant(int id);
+        [OperationContract]
+        void AddRestaurants(Restaurant r);
+        [OperationContract]
+        void DeleteRestaurants(int id);
+        [OperationContract]
+        void UpdateRestaurants(Restaurant r);
+        #endregion
 
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        #region TypesCuisine
+        [OperationContract]
+        List<Type_Cuisine> GetTypesCuisine();
+        [OperationContract]
+        Type_Cuisine GetTypeCuisine(int id);
+        [OperationContract]
+        void AddTypesCuisine(Type_Cuisine tc);
+        [OperationContract]
+        void DeleteTypesCuisine(int id);
+        [OperationContract]
+        void UpdateTypesCuisine(Type_Cuisine tc);
+        #endregion
+
+        #region Utilisateurs
+        [OperationContract]
+        List<Utilisateur> GetUtilisateurs();
+        [OperationContract]
+        Utilisateur GetUtilisateur(int id);
+        [OperationContract]
+        void AddUtilisateurs(Utilisateur u);
+        [OperationContract]
+        void DeleteUtilisateurs(int id);
+        [OperationContract]
+        void UpdateUtilisateurs(Utilisateur u);
+        #endregion
     }
 }
