@@ -1,4 +1,5 @@
-﻿<Page 
+﻿<!-- ReSharper disable once InconsistentNaming -->
+<Page 
     x:Name="pageRoot"
     x:Class="SearchFood.View.Create_Connexion" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

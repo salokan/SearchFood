@@ -26,12 +26,15 @@ namespace SearchFood.ViewModel
             _navigationService = navigation;
             LoginCommand = new RelayCommand(Login);
             LogoutCommand = new RelayCommand(Logout);
+            SearchCommand = new RelayCommand(Search);
             PopupOpenCommande = new RelayCommand(ClickProfil);
             CreateAccountCommand = new RelayCommand(CreateAccount);
         }
 
         # region Getter / Setter Button
         public ICommand LoginCommand { get; set; }
+
+        public ICommand SearchCommand { get; set; }
 
         public ICommand CreateAccountCommand { get; set; }
 
@@ -45,6 +48,10 @@ namespace SearchFood.ViewModel
         {
             Visibility = Visibility == Visible ? Hidden : Visible;
             InverseVisibility = _visibility == Visible ? Hidden : Visible;
+        }
+        public void Search()
+        {
+            _navigationService.Navigate(typeof(Search));
         }
 
         public void ClickProfil()
