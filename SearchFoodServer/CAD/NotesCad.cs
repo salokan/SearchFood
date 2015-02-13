@@ -18,6 +18,22 @@ namespace SearchFoodServer.CAD
             return notes;
         }
 
+        public Note GetNote(int id)
+        {
+            Note note;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from n in bdd.Note
+                              where n.Id_Note == id
+                              select n;
+
+                note = requete.FirstOrDefault();
+            }
+
+            return note;
+        }
+
         public List<Note> GetNoteByRestaurant(int idRestaurant)
         {
             List<Note> notes;
@@ -57,27 +73,29 @@ namespace SearchFoodServer.CAD
             }
         }
 
-        public void DeleteNotes(Note n)
+        public void DeleteNotes(int id)
         {
             using (var bdd = new searchfoodEntities())
             {
-                if (n != null)
+                var requete = from n in bdd.Note
+                              where n.Id_Note == id
+                              select n;
+
+                Note note = requete.FirstOrDefault();
+
+                if (note != null)
                 {
-                    bdd.Note.Remove(n);
+                    bdd.Note.Remove(note);
                     bdd.SaveChanges();
                 }
             }
         }
 
         public void UpdateNotes(Note n)
-        {   
+        {
             using (var bdd = new searchfoodEntities())
             {
-                var requete = from n2 in bdd.Note
-                              where n2.Id_Restaurant == n.Id_Restaurant && n2.Id_Utilisateur == n.Id_Utilisateur  
-                              select n2;
-
-                Note note = requete.FirstOrDefault();
+                Note note = bdd.Note.Find(n.Id_Note);
 
                 if (note != null)
                 {

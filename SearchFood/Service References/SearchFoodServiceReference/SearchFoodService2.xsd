@@ -54,8 +54,8 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Commentaire1" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id_Commentaire" type="xs:int" />
-      <xs:element minOccurs="0" name="Id_Restaurant" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Id_Utilisateur" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Id_Restaurant" type="xs:int" />
+      <xs:element minOccurs="0" name="Id_Utilisateur" type="xs:int" />
       <xs:element minOccurs="0" name="Restaurant" nillable="true" type="tns:Restaurant" />
       <xs:element minOccurs="0" name="Utilisateur" nillable="true" type="tns:Utilisateur" />
     </xs:sequence>
@@ -63,8 +63,6 @@
   <xs:element name="Commentaire" nillable="true" type="tns:Commentaire" />
   <xs:complexType name="Utilisateur">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Adresse" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Code_Postal" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Commentaire" nillable="true" type="tns:ArrayOfCommentaire" />
       <xs:element minOccurs="0" name="Historique" nillable="true" type="tns:ArrayOfHistorique" />
       <xs:element minOccurs="0" name="Id_Utilisateur" type="xs:int" />
@@ -74,8 +72,6 @@
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Prenom" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Pseudonyme" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Ville" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Utilisateur" nillable="true" type="tns:Utilisateur" />
@@ -88,6 +84,7 @@
   <xs:complexType name="Historique">
     <xs:sequence>
       <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id_Historique" type="xs:int" />
       <xs:element minOccurs="0" name="Id_Restaurant" type="xs:int" />
       <xs:element minOccurs="0" name="Id_Utilisateur" type="xs:int" />
       <xs:element minOccurs="0" name="Restaurant" nillable="true" type="tns:Restaurant" />
@@ -103,6 +100,7 @@
   <xs:element name="ArrayOfNote" nillable="true" type="tns:ArrayOfNote" />
   <xs:complexType name="Note">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Id_Note" type="xs:int" />
       <xs:element minOccurs="0" name="Id_Restaurant" type="xs:int" />
       <xs:element minOccurs="0" name="Id_Utilisateur" type="xs:int" />
       <xs:element minOccurs="0" name="Note1" type="xs:double" />

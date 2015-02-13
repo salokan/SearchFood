@@ -83,34 +83,34 @@
     <Compile Include="CAD\CategoriesCad.cs" />
     <Compile Include="CAD\RestaurantsCad.cs" />
     <Compile Include="Categorie.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Commentaire.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Historique.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Note.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Restaurant.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFoodModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchFoodModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFoodModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFoodModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchFoodModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="SearchFoodService.svc.cs">
       <DependentUpon>SearchFoodService.svc</DependentUpon>
@@ -118,10 +118,10 @@
     <Compile Include="ISearchFoodService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Type_Cuisine.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Utilisateur.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -129,22 +129,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="SearchFoodModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>SearchFoodModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model1.Context.tt">
+    <Content Include="SearchFoodModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>SearchFoodModel.edmx</DependentUpon>
+      <LastGenOutput>SearchFoodModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="SearchFoodModel.edmx.diagram">
+      <DependentUpon>SearchFoodModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="SearchFoodModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>SearchFoodModel.edmx</DependentUpon>
+      <LastGenOutput>SearchFoodModel.cs</LastGenOutput>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="searchfoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="searchfoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categorie">
           <Key>
             <PropertyRef Name="Id_Categorie" />
@@ -17,30 +17,24 @@
             <PropertyRef Name="Id_Commentaire" />
           </Key>
           <Property Name="Id_Commentaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Id_Restaurant" Type="int" />
-          <Property Name="Id_Utilisateur" Type="int" />
+          <Property Name="Id_Restaurant" Type="int" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
           <Property Name="Commentaire" Type="varchar(max)" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'searchfood.dbo.Historique' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Historique">
           <Key>
-            <PropertyRef Name="Id_Restaurant" />
-            <PropertyRef Name="Id_Utilisateur" />
-            <PropertyRef Name="Date" />
+            <PropertyRef Name="Id_Historique" />
           </Key>
+          <Property Name="Id_Historique" Type="int" Nullable="false" />
           <Property Name="Id_Restaurant" Type="int" Nullable="false" />
           <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <EntityType Name="Note">
           <Key>
-            <PropertyRef Name="Id_Utilisateur" />
-            <PropertyRef Name="Id_Restaurant" />
-            <PropertyRef Name="Note" />
+            <PropertyRef Name="Id_Note" />
           </Key>
+          <Property Name="Id_Note" Type="int" Nullable="false" />
           <Property Name="Id_Utilisateur" Type="int" Nullable="false" />
           <Property Name="Id_Restaurant" Type="int" Nullable="false" />
           <Property Name="Note" Type="float" Nullable="false" />
@@ -81,13 +75,9 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Prenom" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telephone" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Adresse" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Code_Postal" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Ville" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Commentaire_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
           <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurant">
@@ -99,7 +89,7 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Commentaire_Utilisateur">
-          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Utilisateur">
@@ -185,23 +175,11 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
         <EntityContainer Name="searchfoodModelStoreContainer">
           <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Commentaire" EntityType="Self.Commentaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historique" EntityType="Self.Historique" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Cuisine" EntityType="Self.Type_Cuisine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Historique" EntityType="Self.Historique" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Historique].[Id_Restaurant] AS [Id_Restaurant], 
-    [Historique].[Id_Utilisateur] AS [Id_Utilisateur], 
-    [Historique].[Date] AS [Date]
-    FROM [dbo].[Historique] AS [Historique]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Note" EntityType="Self.Note" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Note].[Id_Utilisateur] AS [Id_Utilisateur], 
-    [Note].[Id_Restaurant] AS [Id_Restaurant], 
-    [Note].[Note] AS [Note]
-    FROM [dbo].[Note] AS [Note]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Commentaire_Restaurant" Association="Self.FK_Commentaire_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Commentaire" EntitySet="Commentaire" />
@@ -235,7 +213,8 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
             <End Role="Restaurant" EntitySet="Restaurant" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="searchfoodModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -243,7 +222,7 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           <Key>
             <PropertyRef Name="Id_Categorie" />
           </Key>
-          <Property Name="Id_Categorie" Type="Int32" Nullable="false" />
+          <Property Name="Id_Categorie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom_Categorie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Restaurant_Categorie" FromRole="Categorie" ToRole="Restaurant" />
         </EntityType>
@@ -251,18 +230,40 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           <Key>
             <PropertyRef Name="Id_Commentaire" />
           </Key>
-          <Property Name="Id_Commentaire" Type="Int32" Nullable="false" />
-          <Property Name="Id_Restaurant" Type="Int32" />
-          <Property Name="Id_Utilisateur" Type="Int32" />
+          <Property Name="Id_Commentaire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
           <Property Name="Commentaire1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Commentaire_Restaurant" FromRole="Commentaire" ToRole="Restaurant" />
           <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Commentaire_Utilisateur" FromRole="Commentaire" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Historique">
+          <Key>
+            <PropertyRef Name="Id_Historique" />
+          </Key>
+          <Property Name="Id_Historique" Type="Int32" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Historique_Restaurant" FromRole="Historique" ToRole="Restaurant" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Historique_Utilisateur" FromRole="Historique" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id_Note" />
+          </Key>
+          <Property Name="Id_Note" Type="Int32" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Note1" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Note_Restaurant" FromRole="Note" ToRole="Restaurant" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Note_Utilisateur" FromRole="Note" ToRole="Utilisateur" />
         </EntityType>
         <EntityType Name="Restaurant">
           <Key>
             <PropertyRef Name="Id_Restaurant" />
           </Key>
-          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
+          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Site_Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -279,14 +280,14 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           <NavigationProperty Name="Categorie" Relationship="Self.FK_Restaurant_Categorie" FromRole="Restaurant" ToRole="Categorie" />
           <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Restaurant" FromRole="Restaurant" ToRole="Commentaire" />
           <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Restaurant" FromRole="Restaurant" ToRole="Historique" />
+          <NavigationProperty Name="Note" Relationship="Self.FK_Note_Restaurant" FromRole="Restaurant" ToRole="Note" />
           <NavigationProperty Name="Type_Cuisine" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Restaurant" ToRole="Type_Cuisine" />
-          <NavigationProperty Name="Note" Relationship="searchfoodModel.FK_Note_Restaurant" FromRole="Restaurant" ToRole="Note" />
         </EntityType>
         <EntityType Name="Type_Cuisine">
           <Key>
             <PropertyRef Name="Id_Type_Cuisine" />
           </Key>
-          <Property Name="Id_Type_Cuisine" Type="Int32" Nullable="false" />
+          <Property Name="Id_Type_Cuisine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type_Cuisine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Type_Cuisine" ToRole="Restaurant" />
         </EntityType>
@@ -294,31 +295,15 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           <Key>
             <PropertyRef Name="Id_Utilisateur" />
           </Key>
-          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
+          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Pseudonyme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Code_Postal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Commentaire" Relationship="Self.FK_Commentaire_Utilisateur" FromRole="Utilisateur" ToRole="Commentaire" />
           <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Utilisateur" FromRole="Utilisateur" ToRole="Historique" />
-          <NavigationProperty Name="Note" Relationship="searchfoodModel.FK_Note_Utilisateur" FromRole="Utilisateur" ToRole="Note" />
-        </EntityType>
-        <EntityType Name="Historique">
-          <Key>
-            <PropertyRef Name="Id_Restaurant" />
-            <PropertyRef Name="Id_Utilisateur" />
-            <PropertyRef Name="Date" />
-          </Key>
-          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
-          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Historique_Restaurant" FromRole="Historique" ToRole="Restaurant" />
-          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Historique_Utilisateur" FromRole="Historique" ToRole="Utilisateur" />
+          <NavigationProperty Name="Note" Relationship="Self.FK_Note_Utilisateur" FromRole="Utilisateur" ToRole="Note" />
         </EntityType>
         <Association Name="FK_Restaurant_Categorie">
           <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
@@ -333,7 +318,7 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Commentaire_Restaurant">
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="0..1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
           <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Restaurant">
@@ -345,7 +330,7 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Commentaire_Utilisateur">
-          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Commentaire" Type="Self.Commentaire" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Utilisateur">
@@ -368,18 +353,6 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Restaurant_Type_Cuisine">
-          <End Role="Type_Cuisine" Type="Self.Type_Cuisine" Multiplicity="1" />
-          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type_Cuisine">
-              <PropertyRef Name="Id_Type_Cuisine" />
-            </Principal>
-            <Dependent Role="Restaurant">
-              <PropertyRef Name="Id_Type_Cuisine" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Historique_Utilisateur">
           <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
           <End Role="Historique" Type="Self.Historique" Multiplicity="*" />
@@ -392,13 +365,50 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Note_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Note" Type="Self.Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id_Restaurant" />
+            </Principal>
+            <Dependent Role="Note">
+              <PropertyRef Name="Id_Restaurant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Note_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Note" Type="Self.Note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Principal>
+            <Dependent Role="Note">
+              <PropertyRef Name="Id_Utilisateur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Type_Cuisine">
+          <End Role="Type_Cuisine" Type="Self.Type_Cuisine" Multiplicity="1" />
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_Cuisine">
+              <PropertyRef Name="Id_Type_Cuisine" />
+            </Principal>
+            <Dependent Role="Restaurant">
+              <PropertyRef Name="Id_Type_Cuisine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="searchfoodEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categorie" EntityType="Self.Categorie" />
           <EntitySet Name="Commentaire" EntityType="Self.Commentaire" />
+          <EntitySet Name="Historique" EntityType="Self.Historique" />
+          <EntitySet Name="Note" EntityType="Self.Note" />
           <EntitySet Name="Restaurant" EntityType="Self.Restaurant" />
           <EntitySet Name="Type_Cuisine" EntityType="Self.Type_Cuisine" />
           <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" />
-          <EntitySet Name="Historique" EntityType="Self.Historique" />
           <AssociationSet Name="FK_Restaurant_Categorie" Association="Self.FK_Restaurant_Categorie">
             <End Role="Categorie" EntitySet="Categorie" />
             <End Role="Restaurant" EntitySet="Restaurant" />
@@ -415,60 +425,23 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Historique" EntitySet="Historique" />
           </AssociationSet>
-          <AssociationSet Name="FK_Restaurant_Type_Cuisine" Association="Self.FK_Restaurant_Type_Cuisine">
-            <End Role="Type_Cuisine" EntitySet="Type_Cuisine" />
-            <End Role="Restaurant" EntitySet="Restaurant" />
-          </AssociationSet>
           <AssociationSet Name="FK_Historique_Utilisateur" Association="Self.FK_Historique_Utilisateur">
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Historique" EntitySet="Historique" />
           </AssociationSet>
-          <EntitySet Name="Note" EntityType="searchfoodModel.Note" />
-          <AssociationSet Name="FK_Note_Restaurant" Association="searchfoodModel.FK_Note_Restaurant">
+          <AssociationSet Name="FK_Note_Restaurant" Association="Self.FK_Note_Restaurant">
             <End Role="Restaurant" EntitySet="Restaurant" />
             <End Role="Note" EntitySet="Note" />
           </AssociationSet>
-          <AssociationSet Name="FK_Note_Utilisateur" Association="searchfoodModel.FK_Note_Utilisateur">
+          <AssociationSet Name="FK_Note_Utilisateur" Association="Self.FK_Note_Utilisateur">
             <End Role="Utilisateur" EntitySet="Utilisateur" />
             <End Role="Note" EntitySet="Note" />
           </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Type_Cuisine" Association="Self.FK_Restaurant_Type_Cuisine">
+            <End Role="Type_Cuisine" EntitySet="Type_Cuisine" />
+            <End Role="Restaurant" EntitySet="Restaurant" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Note">
-          <Key>
-            <PropertyRef Name="Id_Utilisateur" />
-            <PropertyRef Name="Id_Restaurant" />
-            <PropertyRef Name="Note1" />
-          </Key>
-          <Property Name="Id_Utilisateur" Type="Int32" Nullable="false" />
-          <Property Name="Id_Restaurant" Type="Int32" Nullable="false" />
-          <Property Name="Note1" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Restaurant" Relationship="searchfoodModel.FK_Note_Restaurant" FromRole="Note" ToRole="Restaurant" />
-          <NavigationProperty Name="Utilisateur" Relationship="searchfoodModel.FK_Note_Utilisateur" FromRole="Note" ToRole="Utilisateur" />
-        </EntityType>
-        <Association Name="FK_Note_Restaurant">
-          <End Type="searchfoodModel.Restaurant" Role="Restaurant" Multiplicity="1" />
-          <End Type="searchfoodModel.Note" Role="Note" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurant">
-              <PropertyRef Name="Id_Restaurant" />
-            </Principal>
-            <Dependent Role="Note">
-              <PropertyRef Name="Id_Restaurant" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Note_Utilisateur">
-          <End Type="searchfoodModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
-          <End Type="searchfoodModel.Note" Role="Note" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Utilisateur">
-              <PropertyRef Name="Id_Utilisateur" />
-            </Principal>
-            <Dependent Role="Note">
-              <PropertyRef Name="Id_Utilisateur" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -490,6 +463,26 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
                 <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
                 <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
                 <ScalarProperty Name="Commentaire1" ColumnName="Commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historique">
+            <EntityTypeMapping TypeName="searchfoodModel.Historique">
+              <MappingFragment StoreEntitySet="Historique">
+                <ScalarProperty Name="Id_Historique" ColumnName="Id_Historique" />
+                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
+                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Note">
+            <EntityTypeMapping TypeName="searchfoodModel.Note">
+              <MappingFragment StoreEntitySet="Note">
+                <ScalarProperty Name="Id_Note" ColumnName="Id_Note" />
+                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
+                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
+                <ScalarProperty Name="Note1" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -530,28 +523,6 @@ avertissement 6002: La table/vue 'searchfood.dbo.Note' n'a pas de clé primaire 
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Prenom" ColumnName="Prenom" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
-                <ScalarProperty Name="Code_Postal" ColumnName="Code_Postal" />
-                <ScalarProperty Name="Ville" ColumnName="Ville" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Historique">
-            <EntityTypeMapping TypeName="searchfoodModel.Historique">
-              <MappingFragment StoreEntitySet="Historique">
-                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
-                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Note">
-            <EntityTypeMapping TypeName="searchfoodModel.Note">
-              <MappingFragment StoreEntitySet="Note">
-                <ScalarProperty Name="Note1" ColumnName="Note" />
-                <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
-                <ScalarProperty Name="Id_Utilisateur" ColumnName="Id_Utilisateur" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

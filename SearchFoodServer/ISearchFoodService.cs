@@ -36,11 +36,13 @@ namespace SearchFoodServer
         [OperationContract]
         List<Historique> GetHistoriques();
         [OperationContract]
+        Historique GetHistorique(int id);
+        [OperationContract]
         List<Historique> GetHistoriqueByUser(int idUser);
         [OperationContract]
         void AddHistorique(Historique h);
         [OperationContract]
-        void DeleteHistorique(Historique h);
+        void DeleteHistorique(int id);
         [OperationContract]
         void UpdateHistorique(Historique h);
         #endregion
@@ -49,13 +51,15 @@ namespace SearchFoodServer
         [OperationContract]
         List<Note> GetNotes();
         [OperationContract]
+        Note GetNote(int id);
+        [OperationContract]
         List<Note> GetNoteByRestaurant(int idRestaurant);
         [OperationContract]
         List<Note> GetNoteByUser(int idUser);
         [OperationContract]
         void AddNotes(Note n);
         [OperationContract]
-        void DeleteNotes(Note n);
+        void DeleteNotes(int id);
         [OperationContract]
         void UpdateNotes(Note n);
         #endregion

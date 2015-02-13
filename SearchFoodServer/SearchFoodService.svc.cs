@@ -73,6 +73,11 @@ namespace SearchFoodServer
            return _historique.GetHistoriques();
         }
 
+        public Historique GetHistorique(int id)
+        {
+            return _historique.GetHistorique(id);
+        }
+
         public List<Historique> GetHistoriqueByUser(int idUser)
         {
             return _historique.GetHistoriqueByUser(idUser);
@@ -83,9 +88,9 @@ namespace SearchFoodServer
             _historique.AddHistorique(h);
         }
 
-        public void DeleteHistorique(Historique h)
+        public void DeleteHistorique(int id)
         {
-            _historique.DeleteHistorique(h);
+            _historique.DeleteHistorique(id);
         }
 
         public void UpdateHistorique(Historique h)
@@ -99,6 +104,11 @@ namespace SearchFoodServer
         public List<Note> GetNotes()
         {
             return _notes.GetNotes();
+        }
+
+        public Note GetNote(int id)
+        {
+            return _notes.GetNote(id);
         }
 
         public List<Note> GetNoteByRestaurant(int idRestaurant)
@@ -116,9 +126,9 @@ namespace SearchFoodServer
             _notes.AddNotes(n);
         }
 
-        public void DeleteNotes(Note n)
+        public void DeleteNotes(int id)
         {
-            _notes.DeleteNotes(n);
+            _notes.DeleteNotes(id);
         }
 
         public void UpdateNotes(Note n)

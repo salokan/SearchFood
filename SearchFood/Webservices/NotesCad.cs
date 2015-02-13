@@ -18,6 +18,11 @@ namespace SearchFood.Webservices
             return await _client.GetNotesAsync();           
         }
 
+        public async Task<Note> GetNote(int id)
+        {
+            return await _client.GetNoteAsync(id);
+        }
+
         public async Task<ObservableCollection<Note>> GetNoteByRestaurant(int idRestaurant)
         {
             return await _client.GetNoteByRestaurantAsync(idRestaurant);
@@ -33,9 +38,9 @@ namespace SearchFood.Webservices
             await _client.AddNotesAsync(n);
         }
 
-        public async void DeleteNotes(Note n)
+        public async void DeleteNotes(int id)
         {
-            await _client.DeleteNotesAsync(n);
+            await _client.DeleteNotesAsync(id);
         }
 
         public async void UpdateNotes(Note n)
