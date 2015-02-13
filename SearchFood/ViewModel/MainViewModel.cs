@@ -1,6 +1,5 @@
 using System;
-using System.Windows.Input;
-using Windows.UI.Popups;
+using System.Windows.Input; 
 using GalaSoft.MvvmLight;
 using SearchFood.Common;
 using SearchFood.Navigation;
@@ -94,5 +93,4 @@ namespace SearchFood.ViewModel
         }
         #endregion
     }
-
 }

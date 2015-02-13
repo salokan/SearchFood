@@ -30,10 +30,19 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public LogViewModel Log
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LogViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<LogViewModel>();
         }
     }
 }
