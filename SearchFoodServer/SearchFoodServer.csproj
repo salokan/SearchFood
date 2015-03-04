@@ -130,10 +130,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SearchFoodModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="SearchFoodModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SearchFoodModel.edmx</DependentUpon>

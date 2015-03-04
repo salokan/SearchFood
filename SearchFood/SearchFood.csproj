@@ -138,7 +138,7 @@
     <Compile Include="Webservices\HistoriqueCad.cs" />
     <Compile Include="Webservices\NotesCad.cs" />
     <Compile Include="Webservices\RestaurantsCad.cs" />
-    <Compile Include="Webservices\Services.cs" />
+    <Compile Include="Model\Services.cs" />
     <Compile Include="Webservices\TypesCuisineCad.cs" />
     <Compile Include="Webservices\UtilisateursCad.cs" />
   </ItemGroup>

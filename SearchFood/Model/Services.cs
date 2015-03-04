@@ -1,6 +1,7 @@
 ﻿using SearchFood.SearchFoodServiceReference;
+using SearchFood.Webservices;
 
-namespace SearchFood.Webservices
+namespace SearchFood.Model
 {
     public class Services
     {
