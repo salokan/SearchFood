@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer.CAD
 {
     public class CategoriesCad
     {
-        public List<Categorie> GetCategories()
+        public List<CompositeCategories> GetCategories()
         {
+            List<CompositeCategories> categoriesList = new List<CompositeCategories>();
+
             List<Categorie> categories;
             using (var bdd = new searchfoodEntities())
             {
@@ -15,11 +18,24 @@ namespace SearchFoodServer.CAD
 
                 categories = requete.ToList();
             }
-            return categories;
+
+            if (categories.Count > 0)
+            {
+                foreach (Categorie c in categories)
+                {
+                    CompositeCategories composite = new CompositeCategories();
+                    composite.IdCategorieValue = c.Id_Categorie;
+                    composite.NomCategorieValue = c.Nom_Categorie;
+                    categoriesList.Add(composite);
+                }
+            }
+
+            return categoriesList;
         }
 
-        public Categorie GetCategorie(int id)
+        public CompositeCategories GetCategorie(int id)
         {
+            CompositeCategories compositeCategorie = new CompositeCategories();
             Categorie categorie;
 
             using (var bdd = new searchfoodEntities())
@@ -30,7 +46,13 @@ namespace SearchFoodServer.CAD
                 categorie = requete.FirstOrDefault();
             }
 
-            return categorie;
+            if (categorie != null)
+            {
+                compositeCategorie.IdCategorieValue = categorie.Id_Categorie;
+                compositeCategorie.NomCategorieValue = categorie.Nom_Categorie;
+            }
+
+            return compositeCategorie;
         }
 
         public void AddCategories(Categorie c)

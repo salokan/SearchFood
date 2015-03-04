@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer.CAD
 {
     public class TypesCuisineCad
     {
-        public List<Type_Cuisine> GetTypesCuisine()
+        public List<CompositeTypesCuisine> GetTypesCuisine()
         {
+            List<CompositeTypesCuisine> typesCuisinesList = new List<CompositeTypesCuisine>();
+
             List<Type_Cuisine> typesCuisine;
             using (var bdd = new searchfoodEntities())
             {
@@ -15,11 +18,25 @@ namespace SearchFoodServer.CAD
 
                 typesCuisine = requete.ToList();
             }
-            return typesCuisine;
+
+
+            if (typesCuisine.Count > 0)
+            {
+                foreach (Type_Cuisine tc in typesCuisine)
+                {
+                    CompositeTypesCuisine composite = new CompositeTypesCuisine();
+                    composite.IdTypesCuisineValue = tc.Id_Type_Cuisine;
+                    composite.TypesCuisineValue = tc.Type_Cuisine1;
+                    typesCuisinesList.Add(composite);
+                }
+            }
+
+            return typesCuisinesList;
         }
 
-        public Type_Cuisine GetTypeCuisine(int id)
+        public CompositeTypesCuisine GetTypeCuisine(int id)
         {
+            CompositeTypesCuisine compositeTypesCuisine = new CompositeTypesCuisine();
             Type_Cuisine typesCuisine;
 
             using (var bdd = new searchfoodEntities())
@@ -31,7 +48,13 @@ namespace SearchFoodServer.CAD
                 typesCuisine = requete.FirstOrDefault();
             }
 
-            return typesCuisine;
+            if (typesCuisine != null)
+            {
+                compositeTypesCuisine.IdTypesCuisineValue = typesCuisine.Id_Type_Cuisine;
+                compositeTypesCuisine.TypesCuisineValue = typesCuisine.Type_Cuisine1;
+            }
+
+            return compositeTypesCuisine;
         }
 
         public void AddTypesCuisine(Type_Cuisine tc)

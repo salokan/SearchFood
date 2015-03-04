@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer.CAD
 {
     public class UtilisateursCad
     {
-        public List<Utilisateur> GetUtilisateurs()
+        public List<CompositeUtilisateurs> GetUtilisateurs()
         {
+            List<CompositeUtilisateurs> utilisateursList = new List<CompositeUtilisateurs>();
+
             List<Utilisateur> utilisateurs;
             using (var bdd = new searchfoodEntities())
             {
@@ -15,11 +18,28 @@ namespace SearchFoodServer.CAD
 
                 utilisateurs = requete.ToList();
             }
-            return utilisateurs;
+
+            if (utilisateurs.Count > 0)
+            {
+                foreach (Utilisateur u in utilisateurs)
+                {
+                    CompositeUtilisateurs composite = new CompositeUtilisateurs();
+                    composite.IdUtilisateurValue = u.Id_Utilisateur;
+                    composite.PseudoValue = u.Pseudonyme;
+                    composite.PasswordValue = u.Password;
+                    composite.MailValue = u.Mail;
+                    composite.PrenomValue = u.Prenom;
+                    composite.NomValue = u.Nom;
+                    utilisateursList.Add(composite);
+                }
+            }
+
+            return utilisateursList;
         }
 
-        public Utilisateur GetUtilisateur(int id)
+        public CompositeUtilisateurs GetUtilisateur(int id)
         {
+            CompositeUtilisateurs compositeUtilisateurs = new CompositeUtilisateurs();
             Utilisateur utilisateur;
 
             using (var bdd = new searchfoodEntities())
@@ -31,7 +51,17 @@ namespace SearchFoodServer.CAD
                 utilisateur = requete.FirstOrDefault();
             }
 
-            return utilisateur;
+            if (utilisateur != null)
+            {
+                compositeUtilisateurs.IdUtilisateurValue = utilisateur.Id_Utilisateur;
+                compositeUtilisateurs.PseudoValue = utilisateur.Pseudonyme;
+                compositeUtilisateurs.PasswordValue = utilisateur.Password;
+                compositeUtilisateurs.MailValue = utilisateur.Mail;
+                compositeUtilisateurs.PrenomValue = utilisateur.Prenom;
+                compositeUtilisateurs.NomValue = utilisateur.Nom;
+            }
+
+            return compositeUtilisateurs;
         }
 
         public void AddUtilisateurs(Utilisateur u)

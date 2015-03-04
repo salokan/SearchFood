@@ -1,25 +1,43 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer.CAD
 {
     public class NotesCad
     {
-        public List<Note> GetNotes()
+        public List<CompositeNotes> GetNotes()
         {
+            List<CompositeNotes> notesList = new List<CompositeNotes>();
+
             List<Note> notes;
             using (var bdd = new searchfoodEntities())
             {
-                var requete = from h in bdd.Note
-                              select h;
+                var requete = from n in bdd.Note
+                              select n;
 
                 notes = requete.ToList();
             }
-            return notes;
+
+            if (notes.Count > 0)
+            {
+                foreach (Note n in notes)
+                {
+                    CompositeNotes composite = new CompositeNotes();
+                    composite.IdNotesValue = n.Id_Note;
+                    composite.IdRestaurantsValue = n.Id_Restaurant;
+                    composite.IdUtilisateursValue = n.Id_Utilisateur;
+                    composite.NotesValue = n.Note1;
+                    notesList.Add(composite);
+                }
+            }
+
+            return notesList;
         }
 
-        public Note GetNote(int id)
+        public CompositeNotes GetNote(int id)
         {
+            CompositeNotes compositeNotes = new CompositeNotes();
             Note note;
 
             using (var bdd = new searchfoodEntities())
@@ -31,37 +49,77 @@ namespace SearchFoodServer.CAD
                 note = requete.FirstOrDefault();
             }
 
-            return note;
+            if (note != null)
+            {
+                compositeNotes.IdNotesValue = note.Id_Note;
+                compositeNotes.IdRestaurantsValue = note.Id_Restaurant;
+                compositeNotes.IdUtilisateursValue = note.Id_Utilisateur;
+                compositeNotes.NotesValue = note.Note1;
+            }
+
+            return compositeNotes;
         }
 
-        public List<Note> GetNoteByRestaurant(int idRestaurant)
+        public List<CompositeNotes> GetNoteByRestaurant(int idRestaurant)
         {
+            List<CompositeNotes> notesList = new List<CompositeNotes>();
+
             List<Note> notes;
 
             using (var bdd = new searchfoodEntities())
             {
-                var requete = from h in bdd.Note
-                              where h.Id_Utilisateur == idRestaurant
-                              select h;
+                var requete = from n in bdd.Note
+                              where n.Id_Utilisateur == idRestaurant
+                              select n;
 
                 notes = requete.ToList();
             }
-            return notes;
+
+            if (notes.Count > 0)
+            {
+                foreach (Note n in notes)
+                {
+                    CompositeNotes composite = new CompositeNotes();
+                    composite.IdNotesValue = n.Id_Note;
+                    composite.IdRestaurantsValue = n.Id_Restaurant;
+                    composite.IdUtilisateursValue = n.Id_Utilisateur;
+                    composite.NotesValue = n.Note1;
+                    notesList.Add(composite);
+                }
+            }
+
+            return notesList;
         }
 
-        public List<Note> GetNoteByUser(int idUser)
+        public List<CompositeNotes> GetNoteByUser(int idUser)
         {
+            List<CompositeNotes> notesList = new List<CompositeNotes>();
+
             List<Note> notes;
 
             using (var bdd = new searchfoodEntities())
             {
-                var requete = from h in bdd.Note
-                              where h.Id_Utilisateur == idUser
-                              select h;
+                var requete = from n in bdd.Note
+                              where n.Id_Utilisateur == idUser
+                              select n;
 
                 notes = requete.ToList();
             }
-            return notes;
+
+            if (notes.Count > 0)
+            {
+                foreach (Note n in notes)
+                {
+                    CompositeNotes composite = new CompositeNotes();
+                    composite.IdNotesValue = n.Id_Note;
+                    composite.IdRestaurantsValue = n.Id_Restaurant;
+                    composite.IdUtilisateursValue = n.Id_Utilisateur;
+                    composite.NotesValue = n.Note1;
+                    notesList.Add(composite);
+                }
+            }
+
+            return notesList;
         }
 
         public void AddNotes(Note n)

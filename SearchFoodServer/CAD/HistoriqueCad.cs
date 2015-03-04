@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer.CAD
 {
     public class HistoriqueCad
     {
-        public List<Historique> GetHistoriques()
+        public List<CompositeHistorique> GetHistoriques()
         {
+            List<CompositeHistorique> historiqueList = new List<CompositeHistorique>();
+
             List<Historique> historiques;
             using (var bdd = new searchfoodEntities())
             {
@@ -15,11 +18,26 @@ namespace SearchFoodServer.CAD
 
                 historiques = requete.ToList();
             }
-            return historiques;
+
+            if (historiques.Count > 0)
+            {
+                foreach (Historique h in historiques)
+                {
+                    CompositeHistorique composite = new CompositeHistorique();
+                    composite.IdHistoriqueValue = h.Id_Historique;
+                    composite.IdRestaurantsValue = h.Id_Restaurant;
+                    composite.IdUtilisateursValue = h.Id_Utilisateur;
+                    composite.DateValue = h.Date;
+                    historiqueList.Add(composite);
+                }
+            }
+
+            return historiqueList;
         }
 
-        public Historique GetHistorique(int id)
+        public CompositeHistorique GetHistorique(int id)
         {
+            CompositeHistorique compositeHistorique = new CompositeHistorique();
             Historique historique;
 
             using (var bdd = new searchfoodEntities())
@@ -31,11 +49,20 @@ namespace SearchFoodServer.CAD
                 historique = requete.FirstOrDefault();
             }
 
-            return historique;
+            if (historique != null)
+            {
+                compositeHistorique.IdHistoriqueValue = historique.Id_Historique;
+                compositeHistorique.IdRestaurantsValue = historique.Id_Restaurant;
+                compositeHistorique.IdUtilisateursValue = historique.Id_Utilisateur;
+                compositeHistorique.DateValue = historique.Date;
+            }
+
+            return compositeHistorique;
         }
 
-        public List<Historique> GetHistoriqueByUser(int idUser)
+        public List<CompositeHistorique> GetHistoriqueByUser(int idUser)
         {
+            List<CompositeHistorique> historiqueList = new List<CompositeHistorique>();
             List<Historique> historiques;
 
             using (var bdd = new searchfoodEntities())
@@ -46,7 +73,21 @@ namespace SearchFoodServer.CAD
 
                 historiques = requete.ToList();
             }
-            return historiques;
+
+            if (historiques.Count > 0)
+            {
+                foreach (Historique h in historiques)
+                {
+                    CompositeHistorique composite = new CompositeHistorique();
+                    composite.IdHistoriqueValue = h.Id_Historique;
+                    composite.IdRestaurantsValue = h.Id_Restaurant;
+                    composite.IdUtilisateursValue = h.Id_Utilisateur;
+                    composite.DateValue = h.Date;
+                    historiqueList.Add(composite);
+                }
+            }
+
+            return historiqueList;
         }
 
         public void AddHistorique(Historique h)

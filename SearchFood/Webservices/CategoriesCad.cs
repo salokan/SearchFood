@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SearchFood.SearchFoodServiceReference;
 
@@ -13,14 +14,35 @@ namespace SearchFood.Webservices
             _client = client;
         }
 
-        public async Task<ObservableCollection<Categorie>> GetCategories()
+        public async Task<List<Categorie>> GetCategories()
         {
-            return await _client.GetCategoriesAsync();           
+            ObservableCollection<CompositeCategories> categoriesList;
+            List<Categorie> categories = new List<Categorie>();
+
+            categoriesList = await _client.GetCategoriesAsync();
+
+            foreach (CompositeCategories c in categoriesList)
+            {
+                Categorie categorie = new Categorie();
+                categorie.Id_Categorie = c.IdCategorieValue;
+                categorie.Nom_Categorie = c.NomCategorieValue;
+
+                categories.Add(categorie);
+            }
+
+            return categories;
         }
 
         public async Task<Categorie> GetCategorie(int id)
         {
-            return await _client.GetCategorieAsync(id);    
+            Categorie categorie = new Categorie();
+
+            CompositeCategories categorieComposite = await _client.GetCategorieAsync(id);
+
+            categorie.Id_Categorie = categorieComposite.IdCategorieValue;
+            categorie.Nom_Categorie = categorieComposite.NomCategorieValue;
+
+            return categorie;
         }
 
         public async void AddCategories(Categorie c)

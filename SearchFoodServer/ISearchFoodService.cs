@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer
 {
@@ -8,9 +9,9 @@ namespace SearchFoodServer
     {
         #region Categories
         [OperationContract]
-        List<Categorie> GetCategories();
+        List<CompositeCategories> GetCategories();
         [OperationContract]
-        Categorie GetCategorie(int id);
+        CompositeCategories GetCategorie(int id);
         [OperationContract]
         void AddCategories(Categorie c);
         [OperationContract]
@@ -21,9 +22,9 @@ namespace SearchFoodServer
 
         #region Commentaires
         [OperationContract]
-        List<Commentaire> GetCommentaires();
+        List<CompositeCommentaires> GetCommentaires();
         [OperationContract]
-        Commentaire GetCommentaire(int id);
+        CompositeCommentaires GetCommentaire(int id);
         [OperationContract]
         void AddCommentaires(Commentaire c);
         [OperationContract]
@@ -34,11 +35,11 @@ namespace SearchFoodServer
 
         #region Historique
         [OperationContract]
-        List<Historique> GetHistoriques();
+        List<CompositeHistorique> GetHistoriques();
         [OperationContract]
-        Historique GetHistorique(int id);
+        CompositeHistorique GetHistorique(int id);
         [OperationContract]
-        List<Historique> GetHistoriqueByUser(int idUser);
+        List<CompositeHistorique> GetHistoriqueByUser(int idUser);
         [OperationContract]
         void AddHistorique(Historique h);
         [OperationContract]
@@ -49,13 +50,13 @@ namespace SearchFoodServer
 
         #region Notes
         [OperationContract]
-        List<Note> GetNotes();
+        List<CompositeNotes> GetNotes();
         [OperationContract]
-        Note GetNote(int id);
+        CompositeNotes GetNote(int id);
         [OperationContract]
-        List<Note> GetNoteByRestaurant(int idRestaurant);
+        List<CompositeNotes> GetNoteByRestaurant(int idRestaurant);
         [OperationContract]
-        List<Note> GetNoteByUser(int idUser);
+        List<CompositeNotes> GetNoteByUser(int idUser);
         [OperationContract]
         void AddNotes(Note n);
         [OperationContract]
@@ -66,9 +67,9 @@ namespace SearchFoodServer
 
         #region Restaurants
         [OperationContract]
-        List<Restaurant> GetRestaurants();
+        List<CompositeRestaurants> GetRestaurants();
         [OperationContract]
-        Restaurant GetRestaurant(int id);
+        CompositeRestaurants GetRestaurant(int id);
         [OperationContract]
         void AddRestaurants(Restaurant r);
         [OperationContract]
@@ -79,9 +80,9 @@ namespace SearchFoodServer
 
         #region TypesCuisine
         [OperationContract]
-        List<Type_Cuisine> GetTypesCuisine();
+        List<CompositeTypesCuisine> GetTypesCuisine();
         [OperationContract]
-        Type_Cuisine GetTypeCuisine(int id);
+        CompositeTypesCuisine GetTypeCuisine(int id);
         [OperationContract]
         void AddTypesCuisine(Type_Cuisine tc);
         [OperationContract]
@@ -92,9 +93,9 @@ namespace SearchFoodServer
 
         #region Utilisateurs
         [OperationContract]
-        List<Utilisateur> GetUtilisateurs();
+        List<CompositeUtilisateurs> GetUtilisateurs();
         [OperationContract]
-        Utilisateur GetUtilisateur(int id);
+        CompositeUtilisateurs GetUtilisateur(int id);
         [OperationContract]
         void AddUtilisateurs(Utilisateur u);
         [OperationContract]

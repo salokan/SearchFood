@@ -149,25 +149,25 @@
     <None Include="packages.config" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
     <None Include="SearchFood_TemporaryKey.pfx" />
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Categorie.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeCategories.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Commentaire.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeCommentaires.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Historique.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeHistorique.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Note.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeNotes.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Restaurant.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeRestaurants.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Type_Cuisine.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeTypesCuisine.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.Utilisateur.datasource">
+    <None Include="Service References\SearchFoodServiceReference\SearchFood.SearchFoodServiceReference.CompositeUtilisateurs.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\SearchFoodServiceReference\SearchFoodService.wsdl" />
@@ -178,6 +178,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\SearchFoodServiceReference\SearchFoodService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SearchFoodServiceReference\SearchFoodService3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

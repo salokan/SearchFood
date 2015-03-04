@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SearchFoodServer.CAD;
+using SearchFoodServer.CompositeClass;
 
 namespace SearchFoodServer
 {
@@ -14,12 +15,12 @@ namespace SearchFoodServer
         private readonly UtilisateursCad _utilisateurs = new UtilisateursCad();
 
         #region Categories
-        public List<Categorie> GetCategories()
+        public List<CompositeCategories> GetCategories()
         {
             return _categories.GetCategories();
         }
 
-        public Categorie GetCategorie(int id)
+        public CompositeCategories GetCategorie(int id)
         {
             return _categories.GetCategorie(id);
         }
@@ -41,12 +42,12 @@ namespace SearchFoodServer
         #endregion
 
         #region Commentaires
-        public List<Commentaire> GetCommentaires()
+        public List<CompositeCommentaires> GetCommentaires()
         {
             return _commentaires.GetCommentaires();
         }
 
-        public Commentaire GetCommentaire(int id)
+        public CompositeCommentaires GetCommentaire(int id)
         {
            return  _commentaires.GetCommentaire(id);
         }
@@ -68,17 +69,17 @@ namespace SearchFoodServer
         #endregion
 
         #region Historique
-        public List<Historique> GetHistoriques()
+        public List<CompositeHistorique> GetHistoriques()
         {
            return _historique.GetHistoriques();
         }
 
-        public Historique GetHistorique(int id)
+        public CompositeHistorique GetHistorique(int id)
         {
             return _historique.GetHistorique(id);
         }
 
-        public List<Historique> GetHistoriqueByUser(int idUser)
+        public List<CompositeHistorique> GetHistoriqueByUser(int idUser)
         {
             return _historique.GetHistoriqueByUser(idUser);
         }
@@ -101,22 +102,22 @@ namespace SearchFoodServer
         #endregion
 
         #region Notes
-        public List<Note> GetNotes()
+        public List<CompositeNotes> GetNotes()
         {
             return _notes.GetNotes();
         }
 
-        public Note GetNote(int id)
+        public CompositeNotes GetNote(int id)
         {
             return _notes.GetNote(id);
         }
 
-        public List<Note> GetNoteByRestaurant(int idRestaurant)
+        public List<CompositeNotes> GetNoteByRestaurant(int idRestaurant)
         {
             return _notes.GetNoteByRestaurant(idRestaurant);
         }
 
-        public List<Note> GetNoteByUser(int idUser)
+        public List<CompositeNotes> GetNoteByUser(int idUser)
         {
             return _notes.GetNoteByUser(idUser);
         }
@@ -138,12 +139,12 @@ namespace SearchFoodServer
         #endregion
 
         #region Restaurants
-        public List<Restaurant> GetRestaurants()
+        public List<CompositeRestaurants> GetRestaurants()
         {
             return _restaurants.GetRestaurants();
         }
 
-        public Restaurant GetRestaurant(int id)
+        public CompositeRestaurants GetRestaurant(int id)
         {
             return _restaurants.GetRestaurant(id);
         }
@@ -165,12 +166,12 @@ namespace SearchFoodServer
         #endregion
 
         #region Types Cuisine
-        public List<Type_Cuisine> GetTypesCuisine()
+        public List<CompositeTypesCuisine> GetTypesCuisine()
         {
             return _typesCuisine.GetTypesCuisine();
         }
 
-        public Type_Cuisine GetTypeCuisine(int id)
+        public CompositeTypesCuisine GetTypeCuisine(int id)
         {
             return _typesCuisine.GetTypeCuisine(id);
         }
@@ -192,12 +193,12 @@ namespace SearchFoodServer
         #endregion
 
         #region Utilisateurs
-        public List<Utilisateur> GetUtilisateurs()
+        public List<CompositeUtilisateurs> GetUtilisateurs()
         {
             return _utilisateurs.GetUtilisateurs();
         }
 
-        public Utilisateur GetUtilisateur(int id)
+        public CompositeUtilisateurs GetUtilisateur(int id)
         {
             return _utilisateurs.GetUtilisateur(id);
         }

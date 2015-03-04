@@ -24,9 +24,10 @@
     <MetadataSource Address="http://localhost:24048/SearchFoodService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="SearchFoodService.wsdl" MetadataType="Wsdl" ID="75c8e28d-594e-405f-a1b4-b13b1d89ec32" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?wsdl" />
     <MetadataFile FileName="SearchFoodService.xsd" MetadataType="Schema" ID="c2c894ec-d8f6-4d48-8548-5e6db7dfe867" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd1" />
     <MetadataFile FileName="SearchFoodService1.xsd" MetadataType="Schema" ID="d74b0242-68e6-4fc8-a700-7b877e468770" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SearchFoodService.wsdl" MetadataType="Wsdl" ID="75c8e28d-594e-405f-a1b4-b13b1d89ec32" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?wsdl" />
+    <MetadataFile FileName="SearchFoodService3.xsd" MetadataType="Schema" ID="43223c25-bb79-4e86-ab51-f0f2e6f23c91" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd3" />
     <MetadataFile FileName="SearchFoodService2.xsd" MetadataType="Schema" ID="a10ebc9e-4bca-44f2-9e37-9eb2806e2550" SourceId="1" SourceUrl="http://localhost:24048/SearchFoodService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>

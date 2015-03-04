@@ -17,6 +17,51 @@ namespace SearchFood.SearchFoodServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeCategories", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeCategories : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int IdCategorieValueField;
+        
+        private string NomCategorieValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCategorieValue {
+            get {
+                return this.IdCategorieValueField;
+            }
+            set {
+                if ((this.IdCategorieValueField.Equals(value) != true)) {
+                    this.IdCategorieValueField = value;
+                    this.RaisePropertyChanged("IdCategorieValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NomCategorieValue {
+            get {
+                return this.NomCategorieValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomCategorieValueField, value) != true)) {
+                    this.NomCategorieValueField = value;
+                    this.RaisePropertyChanged("NomCategorieValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Categorie", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer")]
     public partial class Categorie : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -900,15 +945,615 @@ namespace SearchFood.SearchFoodServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeCommentaires", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeCommentaires : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string CommentairesValueField;
+        
+        private int IdCommentairesValueField;
+        
+        private int IdRestaurantsValueField;
+        
+        private int IdUtilisateursValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CommentairesValue {
+            get {
+                return this.CommentairesValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentairesValueField, value) != true)) {
+                    this.CommentairesValueField = value;
+                    this.RaisePropertyChanged("CommentairesValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCommentairesValue {
+            get {
+                return this.IdCommentairesValueField;
+            }
+            set {
+                if ((this.IdCommentairesValueField.Equals(value) != true)) {
+                    this.IdCommentairesValueField = value;
+                    this.RaisePropertyChanged("IdCommentairesValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRestaurantsValue {
+            get {
+                return this.IdRestaurantsValueField;
+            }
+            set {
+                if ((this.IdRestaurantsValueField.Equals(value) != true)) {
+                    this.IdRestaurantsValueField = value;
+                    this.RaisePropertyChanged("IdRestaurantsValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUtilisateursValue {
+            get {
+                return this.IdUtilisateursValueField;
+            }
+            set {
+                if ((this.IdUtilisateursValueField.Equals(value) != true)) {
+                    this.IdUtilisateursValueField = value;
+                    this.RaisePropertyChanged("IdUtilisateursValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeHistorique", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeHistorique : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.DateTime DateValueField;
+        
+        private int IdHistoriqueValueField;
+        
+        private int IdRestaurantsValueField;
+        
+        private int IdUtilisateursValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateValue {
+            get {
+                return this.DateValueField;
+            }
+            set {
+                if ((this.DateValueField.Equals(value) != true)) {
+                    this.DateValueField = value;
+                    this.RaisePropertyChanged("DateValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdHistoriqueValue {
+            get {
+                return this.IdHistoriqueValueField;
+            }
+            set {
+                if ((this.IdHistoriqueValueField.Equals(value) != true)) {
+                    this.IdHistoriqueValueField = value;
+                    this.RaisePropertyChanged("IdHistoriqueValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRestaurantsValue {
+            get {
+                return this.IdRestaurantsValueField;
+            }
+            set {
+                if ((this.IdRestaurantsValueField.Equals(value) != true)) {
+                    this.IdRestaurantsValueField = value;
+                    this.RaisePropertyChanged("IdRestaurantsValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUtilisateursValue {
+            get {
+                return this.IdUtilisateursValueField;
+            }
+            set {
+                if ((this.IdUtilisateursValueField.Equals(value) != true)) {
+                    this.IdUtilisateursValueField = value;
+                    this.RaisePropertyChanged("IdUtilisateursValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeNotes", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeNotes : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int IdNotesValueField;
+        
+        private int IdRestaurantsValueField;
+        
+        private int IdUtilisateursValueField;
+        
+        private double NotesValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdNotesValue {
+            get {
+                return this.IdNotesValueField;
+            }
+            set {
+                if ((this.IdNotesValueField.Equals(value) != true)) {
+                    this.IdNotesValueField = value;
+                    this.RaisePropertyChanged("IdNotesValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRestaurantsValue {
+            get {
+                return this.IdRestaurantsValueField;
+            }
+            set {
+                if ((this.IdRestaurantsValueField.Equals(value) != true)) {
+                    this.IdRestaurantsValueField = value;
+                    this.RaisePropertyChanged("IdRestaurantsValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUtilisateursValue {
+            get {
+                return this.IdUtilisateursValueField;
+            }
+            set {
+                if ((this.IdUtilisateursValueField.Equals(value) != true)) {
+                    this.IdUtilisateursValueField = value;
+                    this.RaisePropertyChanged("IdUtilisateursValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double NotesValue {
+            get {
+                return this.NotesValueField;
+            }
+            set {
+                if ((this.NotesValueField.Equals(value) != true)) {
+                    this.NotesValueField = value;
+                    this.RaisePropertyChanged("NotesValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeRestaurants", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeRestaurants : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string AdresseValueField;
+        
+        private string CodePostalValueField;
+        
+        private System.Nullable<int> DureeRepasValueField;
+        
+        private int IdCategoriesValueField;
+        
+        private int IdRestaurantsValueField;
+        
+        private int IdTypesCuisineValueField;
+        
+        private string LatitudeValueField;
+        
+        private string LongitudeValueField;
+        
+        private string MailValueField;
+        
+        private string NomRestaurantsValueField;
+        
+        private System.Nullable<double> PrixValueField;
+        
+        private string SitesWebValueField;
+        
+        private string TelephoneValueField;
+        
+        private string VilleValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AdresseValue {
+            get {
+                return this.AdresseValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AdresseValueField, value) != true)) {
+                    this.AdresseValueField = value;
+                    this.RaisePropertyChanged("AdresseValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CodePostalValue {
+            get {
+                return this.CodePostalValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodePostalValueField, value) != true)) {
+                    this.CodePostalValueField = value;
+                    this.RaisePropertyChanged("CodePostalValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> DureeRepasValue {
+            get {
+                return this.DureeRepasValueField;
+            }
+            set {
+                if ((this.DureeRepasValueField.Equals(value) != true)) {
+                    this.DureeRepasValueField = value;
+                    this.RaisePropertyChanged("DureeRepasValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCategoriesValue {
+            get {
+                return this.IdCategoriesValueField;
+            }
+            set {
+                if ((this.IdCategoriesValueField.Equals(value) != true)) {
+                    this.IdCategoriesValueField = value;
+                    this.RaisePropertyChanged("IdCategoriesValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRestaurantsValue {
+            get {
+                return this.IdRestaurantsValueField;
+            }
+            set {
+                if ((this.IdRestaurantsValueField.Equals(value) != true)) {
+                    this.IdRestaurantsValueField = value;
+                    this.RaisePropertyChanged("IdRestaurantsValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTypesCuisineValue {
+            get {
+                return this.IdTypesCuisineValueField;
+            }
+            set {
+                if ((this.IdTypesCuisineValueField.Equals(value) != true)) {
+                    this.IdTypesCuisineValueField = value;
+                    this.RaisePropertyChanged("IdTypesCuisineValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LatitudeValue {
+            get {
+                return this.LatitudeValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LatitudeValueField, value) != true)) {
+                    this.LatitudeValueField = value;
+                    this.RaisePropertyChanged("LatitudeValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LongitudeValue {
+            get {
+                return this.LongitudeValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LongitudeValueField, value) != true)) {
+                    this.LongitudeValueField = value;
+                    this.RaisePropertyChanged("LongitudeValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MailValue {
+            get {
+                return this.MailValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MailValueField, value) != true)) {
+                    this.MailValueField = value;
+                    this.RaisePropertyChanged("MailValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NomRestaurantsValue {
+            get {
+                return this.NomRestaurantsValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomRestaurantsValueField, value) != true)) {
+                    this.NomRestaurantsValueField = value;
+                    this.RaisePropertyChanged("NomRestaurantsValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> PrixValue {
+            get {
+                return this.PrixValueField;
+            }
+            set {
+                if ((this.PrixValueField.Equals(value) != true)) {
+                    this.PrixValueField = value;
+                    this.RaisePropertyChanged("PrixValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SitesWebValue {
+            get {
+                return this.SitesWebValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SitesWebValueField, value) != true)) {
+                    this.SitesWebValueField = value;
+                    this.RaisePropertyChanged("SitesWebValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TelephoneValue {
+            get {
+                return this.TelephoneValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelephoneValueField, value) != true)) {
+                    this.TelephoneValueField = value;
+                    this.RaisePropertyChanged("TelephoneValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string VilleValue {
+            get {
+                return this.VilleValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VilleValueField, value) != true)) {
+                    this.VilleValueField = value;
+                    this.RaisePropertyChanged("VilleValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeTypesCuisine", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeTypesCuisine : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int IdTypesCuisineValueField;
+        
+        private string TypesCuisineValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTypesCuisineValue {
+            get {
+                return this.IdTypesCuisineValueField;
+            }
+            set {
+                if ((this.IdTypesCuisineValueField.Equals(value) != true)) {
+                    this.IdTypesCuisineValueField = value;
+                    this.RaisePropertyChanged("IdTypesCuisineValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TypesCuisineValue {
+            get {
+                return this.TypesCuisineValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypesCuisineValueField, value) != true)) {
+                    this.TypesCuisineValueField = value;
+                    this.RaisePropertyChanged("TypesCuisineValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeUtilisateurs", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass")]
+    public partial class CompositeUtilisateurs : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private int IdUtilisateurValueField;
+        
+        private string MailValueField;
+        
+        private string NomValueField;
+        
+        private string PasswordValueField;
+        
+        private string PrenomValueField;
+        
+        private string PseudoValueField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdUtilisateurValue {
+            get {
+                return this.IdUtilisateurValueField;
+            }
+            set {
+                if ((this.IdUtilisateurValueField.Equals(value) != true)) {
+                    this.IdUtilisateurValueField = value;
+                    this.RaisePropertyChanged("IdUtilisateurValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string MailValue {
+            get {
+                return this.MailValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MailValueField, value) != true)) {
+                    this.MailValueField = value;
+                    this.RaisePropertyChanged("MailValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NomValue {
+            get {
+                return this.NomValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomValueField, value) != true)) {
+                    this.NomValueField = value;
+                    this.RaisePropertyChanged("NomValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PasswordValue {
+            get {
+                return this.PasswordValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordValueField, value) != true)) {
+                    this.PasswordValueField = value;
+                    this.RaisePropertyChanged("PasswordValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PrenomValue {
+            get {
+                return this.PrenomValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrenomValueField, value) != true)) {
+                    this.PrenomValueField = value;
+                    this.RaisePropertyChanged("PrenomValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PseudoValue {
+            get {
+                return this.PseudoValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PseudoValueField, value) != true)) {
+                    this.PseudoValueField = value;
+                    this.RaisePropertyChanged("PseudoValue");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SearchFoodServiceReference.ISearchFoodService")]
     public interface ISearchFoodService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCategories", ReplyAction="http://tempuri.org/ISearchFoodService/GetCategoriesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Categorie>> GetCategoriesAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCategories>> GetCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCategorie", ReplyAction="http://tempuri.org/ISearchFoodService/GetCategorieResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Categorie> GetCategorieAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCategories> GetCategorieAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddCategories", ReplyAction="http://tempuri.org/ISearchFoodService/AddCategoriesResponse")]
         System.Threading.Tasks.Task AddCategoriesAsync(SearchFood.SearchFoodServiceReference.Categorie c);
@@ -920,10 +1565,10 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task UpdateCategoriesAsync(SearchFood.SearchFoodServiceReference.Categorie c);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCommentaires", ReplyAction="http://tempuri.org/ISearchFoodService/GetCommentairesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Commentaire>> GetCommentairesAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCommentaires>> GetCommentairesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCommentaire", ReplyAction="http://tempuri.org/ISearchFoodService/GetCommentaireResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Commentaire> GetCommentaireAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCommentaires> GetCommentaireAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddCommentaires", ReplyAction="http://tempuri.org/ISearchFoodService/AddCommentairesResponse")]
         System.Threading.Tasks.Task AddCommentairesAsync(SearchFood.SearchFoodServiceReference.Commentaire c);
@@ -935,13 +1580,13 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task UpdateCommentairesAsync(SearchFood.SearchFoodServiceReference.Commentaire c);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetHistoriques", ReplyAction="http://tempuri.org/ISearchFoodService/GetHistoriquesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriquesAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeHistorique>> GetHistoriquesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetHistorique", ReplyAction="http://tempuri.org/ISearchFoodService/GetHistoriqueResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Historique> GetHistoriqueAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeHistorique> GetHistoriqueAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetHistoriqueByUser", ReplyAction="http://tempuri.org/ISearchFoodService/GetHistoriqueByUserResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriqueByUserAsync(int idUser);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeHistorique>> GetHistoriqueByUserAsync(int idUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddHistorique", ReplyAction="http://tempuri.org/ISearchFoodService/AddHistoriqueResponse")]
         System.Threading.Tasks.Task AddHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h);
@@ -953,16 +1598,16 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task UpdateHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNotes", ReplyAction="http://tempuri.org/ISearchFoodService/GetNotesResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNotesAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNotesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNote", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Note> GetNoteAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeNotes> GetNoteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNoteByRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteByRestaurantResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNoteByRestaurantAsync(int idRestaurant);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByRestaurantAsync(int idRestaurant);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNoteByUser", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteByUserResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNoteByUserAsync(int idUser);
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByUserAsync(int idUser);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddNotes", ReplyAction="http://tempuri.org/ISearchFoodService/AddNotesResponse")]
         System.Threading.Tasks.Task AddNotesAsync(SearchFood.SearchFoodServiceReference.Note n);
@@ -974,10 +1619,10 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task UpdateNotesAsync(SearchFood.SearchFoodServiceReference.Note n);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetRestaurants", ReplyAction="http://tempuri.org/ISearchFoodService/GetRestaurantsResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Restaurant>> GetRestaurantsAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeRestaurants>> GetRestaurantsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetRestaurantResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Restaurant> GetRestaurantAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeRestaurants> GetRestaurantAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddRestaurants", ReplyAction="http://tempuri.org/ISearchFoodService/AddRestaurantsResponse")]
         System.Threading.Tasks.Task AddRestaurantsAsync(SearchFood.SearchFoodServiceReference.Restaurant r);
@@ -989,10 +1634,10 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task UpdateRestaurantsAsync(SearchFood.SearchFoodServiceReference.Restaurant r);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetTypesCuisine", ReplyAction="http://tempuri.org/ISearchFoodService/GetTypesCuisineResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Type_Cuisine>> GetTypesCuisineAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeTypesCuisine>> GetTypesCuisineAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetTypeCuisine", ReplyAction="http://tempuri.org/ISearchFoodService/GetTypeCuisineResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Type_Cuisine> GetTypeCuisineAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeTypesCuisine> GetTypeCuisineAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddTypesCuisine", ReplyAction="http://tempuri.org/ISearchFoodService/AddTypesCuisineResponse")]
         System.Threading.Tasks.Task AddTypesCuisineAsync(SearchFood.SearchFoodServiceReference.Type_Cuisine tc);
@@ -1004,10 +1649,10 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task UpdateTypesCuisineAsync(SearchFood.SearchFoodServiceReference.Type_Cuisine tc);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetUtilisateurs", ReplyAction="http://tempuri.org/ISearchFoodService/GetUtilisateursResponse")]
-        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Utilisateur>> GetUtilisateursAsync();
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs>> GetUtilisateursAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetUtilisateur", ReplyAction="http://tempuri.org/ISearchFoodService/GetUtilisateurResponse")]
-        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Utilisateur> GetUtilisateurAsync(int id);
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs> GetUtilisateurAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddUtilisateurs", ReplyAction="http://tempuri.org/ISearchFoodService/AddUtilisateursResponse")]
         System.Threading.Tasks.Task AddUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u);
@@ -1062,11 +1707,11 @@ namespace SearchFood.SearchFoodServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Categorie>> GetCategoriesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCategories>> GetCategoriesAsync() {
             return base.Channel.GetCategoriesAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Categorie> GetCategorieAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCategories> GetCategorieAsync(int id) {
             return base.Channel.GetCategorieAsync(id);
         }
         
@@ -1082,11 +1727,11 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.UpdateCategoriesAsync(c);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Commentaire>> GetCommentairesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCommentaires>> GetCommentairesAsync() {
             return base.Channel.GetCommentairesAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Commentaire> GetCommentaireAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCommentaires> GetCommentaireAsync(int id) {
             return base.Channel.GetCommentaireAsync(id);
         }
         
@@ -1102,15 +1747,15 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.UpdateCommentairesAsync(c);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriquesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeHistorique>> GetHistoriquesAsync() {
             return base.Channel.GetHistoriquesAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Historique> GetHistoriqueAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeHistorique> GetHistoriqueAsync(int id) {
             return base.Channel.GetHistoriqueAsync(id);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriqueByUserAsync(int idUser) {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeHistorique>> GetHistoriqueByUserAsync(int idUser) {
             return base.Channel.GetHistoriqueByUserAsync(idUser);
         }
         
@@ -1126,19 +1771,19 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.UpdateHistoriqueAsync(h);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNotesAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNotesAsync() {
             return base.Channel.GetNotesAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Note> GetNoteAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeNotes> GetNoteAsync(int id) {
             return base.Channel.GetNoteAsync(id);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNoteByRestaurantAsync(int idRestaurant) {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByRestaurantAsync(int idRestaurant) {
             return base.Channel.GetNoteByRestaurantAsync(idRestaurant);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNoteByUserAsync(int idUser) {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByUserAsync(int idUser) {
             return base.Channel.GetNoteByUserAsync(idUser);
         }
         
@@ -1154,11 +1799,11 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.UpdateNotesAsync(n);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Restaurant>> GetRestaurantsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeRestaurants>> GetRestaurantsAsync() {
             return base.Channel.GetRestaurantsAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Restaurant> GetRestaurantAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeRestaurants> GetRestaurantAsync(int id) {
             return base.Channel.GetRestaurantAsync(id);
         }
         
@@ -1174,11 +1819,11 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.UpdateRestaurantsAsync(r);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Type_Cuisine>> GetTypesCuisineAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeTypesCuisine>> GetTypesCuisineAsync() {
             return base.Channel.GetTypesCuisineAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Type_Cuisine> GetTypeCuisineAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeTypesCuisine> GetTypeCuisineAsync(int id) {
             return base.Channel.GetTypeCuisineAsync(id);
         }
         
@@ -1194,11 +1839,11 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.UpdateTypesCuisineAsync(tc);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Utilisateur>> GetUtilisateursAsync() {
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs>> GetUtilisateursAsync() {
             return base.Channel.GetUtilisateursAsync();
         }
         
-        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Utilisateur> GetUtilisateurAsync(int id) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs> GetUtilisateurAsync(int id) {
             return base.Channel.GetUtilisateurAsync(id);
         }
         

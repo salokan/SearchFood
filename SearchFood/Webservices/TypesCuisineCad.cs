@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SearchFood.SearchFoodServiceReference;
 
@@ -13,14 +14,35 @@ namespace SearchFood.Webservices
             _client = client;
         }
 
-        public async Task<ObservableCollection<Type_Cuisine>> GetTypesCuisines()
+        public async Task<List<Type_Cuisine>> GetTypesCuisines()
         {
-            return await _client.GetTypesCuisineAsync();           
+            ObservableCollection<CompositeTypesCuisine> typesCuisineList;
+            List<Type_Cuisine> typesCuisines = new List<Type_Cuisine>();
+
+            typesCuisineList = await _client.GetTypesCuisineAsync();
+
+            foreach (CompositeTypesCuisine tc in typesCuisineList)
+            {
+                Type_Cuisine typeCuisine = new Type_Cuisine();
+                typeCuisine.Id_Type_Cuisine = tc.IdTypesCuisineValue;
+                typeCuisine.Type_Cuisine1 = tc.TypesCuisineValue;
+
+                typesCuisines.Add(typeCuisine);
+            }
+
+            return typesCuisines;   
         }
 
         public async Task<Type_Cuisine> GetTypeCuisine(int id)
         {
-            return await _client.GetTypeCuisineAsync(id);    
+            Type_Cuisine typeCuisine = new Type_Cuisine();
+
+            CompositeTypesCuisine typeCuisineComposite = await _client.GetTypeCuisineAsync(id);
+
+            typeCuisine.Id_Type_Cuisine = typeCuisineComposite.IdTypesCuisineValue;
+            typeCuisine.Type_Cuisine1 = typeCuisineComposite.TypesCuisineValue;
+
+            return typeCuisine;
         }
 
         public async void AddTypesCuisine(Type_Cuisine tc)

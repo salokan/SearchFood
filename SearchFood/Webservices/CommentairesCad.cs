@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SearchFood.SearchFoodServiceReference;
 
@@ -13,14 +14,38 @@ namespace SearchFood.Webservices
             _client = client;
         }
 
-        public async Task<ObservableCollection<Commentaire>> GetCommentaires()
+        public async Task<List<Commentaire>> GetCommentaires()
         {
-            return await _client.GetCommentairesAsync();           
+            List<Commentaire> commentaires = new List<Commentaire>();
+
+            ObservableCollection<CompositeCommentaires> commentairesList = await _client.GetCommentairesAsync();
+
+            foreach (CompositeCommentaires c in commentairesList)
+            {
+                Commentaire commentaire = new Commentaire();
+                commentaire.Id_Commentaire = c.IdCommentairesValue;
+                commentaire.Id_Restaurant = c.IdRestaurantsValue;
+                commentaire.Id_Utilisateur = c.IdUtilisateursValue;
+                commentaire.Commentaire1 = c.CommentairesValue;
+
+                commentaires.Add(commentaire);
+            }
+
+            return commentaires;           
         }
 
         public async Task<Commentaire> GetCommentaires(int id)
         {
-            return await _client.GetCommentaireAsync(id);    
+            Commentaire commentaire = new Commentaire();
+
+            CompositeCommentaires commentaireComposite = await _client.GetCommentaireAsync(id);
+
+            commentaire.Id_Commentaire = commentaireComposite.IdCommentairesValue;
+            commentaire.Id_Restaurant = commentaireComposite.IdRestaurantsValue;
+            commentaire.Id_Utilisateur = commentaireComposite.IdUtilisateursValue;
+            commentaire.Commentaire1 = commentaireComposite.CommentairesValue;
+
+            return commentaire;
         }
 
         public async void AddCommentaires(Commentaire c)

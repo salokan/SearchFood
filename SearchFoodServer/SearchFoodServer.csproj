@@ -90,6 +90,13 @@
     <Compile Include="Commentaire.cs">
       <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CompositeClass\CompositeCategories.cs" />
+    <Compile Include="CompositeClass\CompositeCommentaires.cs" />
+    <Compile Include="CompositeClass\CompositeHistorique.cs" />
+    <Compile Include="CompositeClass\CompositeNotes.cs" />
+    <Compile Include="CompositeClass\CompositeRestaurants.cs" />
+    <Compile Include="CompositeClass\CompositeTypesCuisine.cs" />
+    <Compile Include="CompositeClass\CompositeUtilisateurs.cs" />
     <Compile Include="Historique.cs">
       <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +117,11 @@
       <DependentUpon>SearchFoodModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SearchFoodModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchFoodModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFoodModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchFoodModel.edmx</DependentUpon>
@@ -144,6 +156,10 @@
       <LastGenOutput>SearchFoodModel.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
+    <EntityDeploy Include="SearchFoodModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SearchFoodModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -9,11 +9,11 @@ namespace SearchFood.Model
 
         public CategoriesCad _categories { get; set; }
         public CommentairesCad _commentaires { get; set; }
-        public CommentairesCad _historique { get; set; }
-        public CommentairesCad _notes { get; set; }
-        public CommentairesCad _restaurants { get; set; }
-        public CommentairesCad _typesCuisines { get; set; }
-        public CommentairesCad _utilisateurs { get; set; }
+        public HistoriqueCad _historique { get; set; }
+        public NotesCad _notes { get; set; }
+        public RestaurantsCad _restaurants { get; set; }
+        public TypesCuisineCad _typesCuisines { get; set; }
+        public UtilisateursCad _utilisateurs { get; set; }
 
         public Services()
         {     
@@ -28,15 +28,15 @@ namespace SearchFood.Model
 
             _commentaires = new CommentairesCad(_client);
 
-            _historique = new CommentairesCad(_client);
+            _historique = new HistoriqueCad(_client);
 
-            _notes = new CommentairesCad(_client);
+            _notes = new NotesCad(_client);
 
-            _restaurants = new CommentairesCad(_client);
+            _restaurants = new RestaurantsCad(_client);
 
-            _typesCuisines = new CommentairesCad(_client);
+            _typesCuisines = new TypesCuisineCad(_client);
 
-            _utilisateurs = new CommentairesCad(_client);
+            _utilisateurs = new UtilisateursCad(_client);
         }
     }
 }

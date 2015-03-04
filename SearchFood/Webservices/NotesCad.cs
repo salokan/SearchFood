@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SearchFood.SearchFoodServiceReference;
 
@@ -13,24 +14,81 @@ namespace SearchFood.Webservices
             _client = client;
         }
 
-        public async Task<ObservableCollection<Note>> GetNotes()
+        public async Task<List<Note>> GetNotes()
         {
-            return await _client.GetNotesAsync();           
+            ObservableCollection<CompositeNotes> notesList;
+            List<Note> notes = new List<Note>();
+
+            notesList = await _client.GetNotesAsync();
+
+            foreach (CompositeNotes n in notesList)
+            {
+                Note note = new Note();
+                note.Id_Note = n.IdNotesValue;
+                note.Id_Restaurant = n.IdRestaurantsValue;
+                note.Id_Utilisateur = n.IdUtilisateursValue;
+                note.Note1 = n.NotesValue;
+
+                notes.Add(note);
+            }
+
+            return notes;   
         }
 
         public async Task<Note> GetNote(int id)
         {
-            return await _client.GetNoteAsync(id);
+            Note note = new Note();
+
+            CompositeNotes noteComposite = await _client.GetNoteAsync(id);
+
+            note.Id_Note = noteComposite.IdNotesValue;
+            note.Id_Restaurant = noteComposite.IdRestaurantsValue;
+            note.Id_Utilisateur = noteComposite.IdUtilisateursValue;
+            note.Note1 = noteComposite.NotesValue;
+
+            return note;
         }
 
-        public async Task<ObservableCollection<Note>> GetNoteByRestaurant(int idRestaurant)
+        public async Task<List<Note>> GetNoteByRestaurant(int idRestaurant)
         {
-            return await _client.GetNoteByRestaurantAsync(idRestaurant);
+            ObservableCollection<CompositeNotes> notesList;
+            List<Note> notes = new List<Note>();
+
+            notesList = await _client.GetNoteByRestaurantAsync(idRestaurant);
+
+            foreach (CompositeNotes n in notesList)
+            {
+                Note note = new Note();
+                note.Id_Note = n.IdNotesValue;
+                note.Id_Restaurant = n.IdRestaurantsValue;
+                note.Id_Utilisateur = n.IdUtilisateursValue;
+                note.Note1 = n.NotesValue;
+
+                notes.Add(note);
+            }
+
+            return notes;
         }
 
-        public async Task<ObservableCollection<Note>> GetNotesByUser(int idUser)
+        public async Task<List<Note>> GetNotesByUser(int idUser)
         {
-            return await _client.GetNoteByUserAsync(idUser);    
+            ObservableCollection<CompositeNotes> notesList;
+            List<Note> notes = new List<Note>();
+
+            notesList = await _client.GetNoteByUserAsync(idUser);
+
+            foreach (CompositeNotes n in notesList)
+            {
+                Note note = new Note();
+                note.Id_Note = n.IdNotesValue;
+                note.Id_Restaurant = n.IdRestaurantsValue;
+                note.Id_Utilisateur = n.IdUtilisateursValue;
+                note.Note1 = n.NotesValue;
+
+                notes.Add(note);
+            }
+
+            return notes;
         }
 
         public async void AddNotes(Note n)
