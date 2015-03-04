@@ -1,0 +1,5 @@
+﻿################################################################################
+# Ce fichier .gitignore a été créé automatiquement par Microsoft(R) Visual Studio.
+################################################################################
+
+/packages/MvvmLight.5.1.0.2/Content/ViewModel/MainViewModel.cs.pp
