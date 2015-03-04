@@ -18,6 +18,11 @@ namespace SearchFood.Webservices
             return await _client.GetHistoriquesAsync();           
         }
 
+        public async Task<Historique> GetHistorique(int id)
+        {
+            return await _client.GetHistoriqueAsync(id);
+        }
+
         public async Task<ObservableCollection<Historique>> GetHistoriqueByUser(int idUser)
         {
             return await _client.GetHistoriqueByUserAsync(idUser);    
@@ -28,9 +33,9 @@ namespace SearchFood.Webservices
             await _client.AddHistoriqueAsync(h);
         }
 
-        public async void DeleteHistorique(Historique h)
+        public async void DeleteHistorique(int id)
         {
-            await _client.DeleteHistoriqueAsync(h);
+            await _client.DeleteHistoriqueAsync(id);
         }
 
         public async void UpdateHistorique(Historique h)

@@ -18,6 +18,22 @@ namespace SearchFoodServer.CAD
             return historiques;
         }
 
+        public Historique GetHistorique(int id)
+        {
+            Historique historique;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from h in bdd.Historique
+                              where h.Id_Historique == id
+                              select h;
+
+                historique = requete.FirstOrDefault();
+            }
+
+            return historique;
+        }
+
         public List<Historique> GetHistoriqueByUser(int idUser)
         {
             List<Historique> historiques;
@@ -42,13 +58,19 @@ namespace SearchFoodServer.CAD
             }
         }
 
-        public void DeleteHistorique(Historique h)
+        public void DeleteHistorique(int id)
         {
             using (var bdd = new searchfoodEntities())
             {
-                if (h != null)
+                var requete = from h in bdd.Historique
+                              where h.Id_Historique == id
+                              select h;
+
+                Historique historique = requete.FirstOrDefault();
+
+                if (historique != null)
                 {
-                    bdd.Historique.Remove(h);
+                    bdd.Historique.Remove(historique);
                     bdd.SaveChanges();
                 }
             }
@@ -58,11 +80,7 @@ namespace SearchFoodServer.CAD
         {
             using (var bdd = new searchfoodEntities())
             {
-                var requete = from h2 in bdd.Historique
-                              where h2.Id_Restaurant == h.Id_Restaurant && h2.Id_Utilisateur == h.Id_Utilisateur
-                              select h2;
-
-                Historique historique = requete.FirstOrDefault();
+                Historique historique = bdd.Historique.Find(h.Id_Historique);
 
                 if (historique != null)
                 {

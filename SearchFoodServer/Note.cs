@@ -14,6 +14,7 @@ namespace SearchFoodServer
     
     public partial class Note
     {
+        public int Id_Note { get; set; }
         public int Id_Utilisateur { get; set; }
         public int Id_Restaurant { get; set; }
         public double Note1 { get; set; }

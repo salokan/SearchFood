@@ -73,6 +73,12 @@
   <wsdl:message name="ISearchFoodService_GetHistoriques_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHistoriquesResponse" />
   </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetHistorique_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistorique" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetHistorique_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistoriqueResponse" />
+  </wsdl:message>
   <wsdl:message name="ISearchFoodService_GetHistoriqueByUser_InputMessage">
     <wsdl:part name="parameters" element="tns:GetHistoriqueByUser" />
   </wsdl:message>
@@ -102,6 +108,12 @@
   </wsdl:message>
   <wsdl:message name="ISearchFoodService_GetNotes_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNote" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoteResponse" />
   </wsdl:message>
   <wsdl:message name="ISearchFoodService_GetNoteByRestaurant_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNoteByRestaurant" />
@@ -268,6 +280,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistoriques" message="tns:ISearchFoodService_GetHistoriques_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistoriquesResponse" message="tns:ISearchFoodService_GetHistoriques_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetHistorique">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistorique" message="tns:ISearchFoodService_GetHistorique_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistoriqueResponse" message="tns:ISearchFoodService_GetHistorique_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetHistoriqueByUser">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistoriqueByUser" message="tns:ISearchFoodService_GetHistoriqueByUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetHistoriqueByUserResponse" message="tns:ISearchFoodService_GetHistoriqueByUser_OutputMessage" />
@@ -287,6 +303,10 @@
     <wsdl:operation name="GetNotes">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNotes" message="tns:ISearchFoodService_GetNotes_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetNotesResponse" message="tns:ISearchFoodService_GetNotes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNote">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNote" message="tns:ISearchFoodService_GetNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteResponse" message="tns:ISearchFoodService_GetNote_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetNoteByRestaurant">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteByRestaurant" message="tns:ISearchFoodService_GetNoteByRestaurant_InputMessage" />
@@ -470,6 +490,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetHistorique">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetHistorique" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetHistoriqueByUser">
       <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetHistoriqueByUser" style="document" />
       <wsdl:input>
@@ -508,6 +537,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetNotes">
       <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNote">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetNote" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

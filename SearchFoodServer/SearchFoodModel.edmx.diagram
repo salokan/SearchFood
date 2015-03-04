@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b706cbe3032f4e9bb8c0367147f75946" Name="Diagram1">
+        <EntityTypeShape EntityType="searchfoodModel.Categorie" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="searchfoodModel.Commentaire" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="searchfoodModel.Historique" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="searchfoodModel.Note" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="searchfoodModel.Restaurant" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="searchfoodModel.Type_Cuisine" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="searchfoodModel.Utilisateur" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="searchfoodModel.FK_Restaurant_Categorie" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Commentaire_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Commentaire_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Historique_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Historique_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Note_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Note_Utilisateur" ManuallyRouted="false" />
+        <AssociationConnector Association="searchfoodModel.FK_Restaurant_Type_Cuisine" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

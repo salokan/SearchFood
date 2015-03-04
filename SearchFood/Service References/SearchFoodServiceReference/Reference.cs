@@ -444,9 +444,9 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private int Id_CommentaireField;
         
-        private System.Nullable<int> Id_RestaurantField;
+        private int Id_RestaurantField;
         
-        private System.Nullable<int> Id_UtilisateurField;
+        private int Id_UtilisateurField;
         
         private SearchFood.SearchFoodServiceReference.Restaurant RestaurantField;
         
@@ -479,7 +479,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Id_Restaurant {
+        public int Id_Restaurant {
             get {
                 return this.Id_RestaurantField;
             }
@@ -492,7 +492,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Id_Utilisateur {
+        public int Id_Utilisateur {
             get {
                 return this.Id_UtilisateurField;
             }
@@ -547,6 +547,8 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private System.DateTime DateField;
         
+        private int Id_HistoriqueField;
+        
         private int Id_RestaurantField;
         
         private int Id_UtilisateurField;
@@ -564,6 +566,19 @@ namespace SearchFood.SearchFoodServiceReference {
                 if ((this.DateField.Equals(value) != true)) {
                     this.DateField = value;
                     this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id_Historique {
+            get {
+                return this.Id_HistoriqueField;
+            }
+            set {
+                if ((this.Id_HistoriqueField.Equals(value) != true)) {
+                    this.Id_HistoriqueField = value;
+                    this.RaisePropertyChanged("Id_Historique");
                 }
             }
         }
@@ -635,6 +650,8 @@ namespace SearchFood.SearchFoodServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="Note", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer")]
     public partial class Note : object, System.ComponentModel.INotifyPropertyChanged {
         
+        private int Id_NoteField;
+        
         private int Id_RestaurantField;
         
         private int Id_UtilisateurField;
@@ -644,6 +661,19 @@ namespace SearchFood.SearchFoodServiceReference {
         private SearchFood.SearchFoodServiceReference.Restaurant RestaurantField;
         
         private SearchFood.SearchFoodServiceReference.Utilisateur UtilisateurField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id_Note {
+            get {
+                return this.Id_NoteField;
+            }
+            set {
+                if ((this.Id_NoteField.Equals(value) != true)) {
+                    this.Id_NoteField = value;
+                    this.RaisePropertyChanged("Id_Note");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int Id_Restaurant {
@@ -725,10 +755,6 @@ namespace SearchFood.SearchFoodServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="Utilisateur", Namespace="http://schemas.datacontract.org/2004/07/SearchFoodServer")]
     public partial class Utilisateur : object, System.ComponentModel.INotifyPropertyChanged {
         
-        private string AdresseField;
-        
-        private string Code_PostalField;
-        
         private System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Commentaire> CommentaireField;
         
         private System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique> HistoriqueField;
@@ -746,36 +772,6 @@ namespace SearchFood.SearchFoodServiceReference {
         private string PrenomField;
         
         private string PseudonymeField;
-        
-        private string TelephoneField;
-        
-        private string VilleField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Adresse {
-            get {
-                return this.AdresseField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AdresseField, value) != true)) {
-                    this.AdresseField = value;
-                    this.RaisePropertyChanged("Adresse");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code_Postal {
-            get {
-                return this.Code_PostalField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Code_PostalField, value) != true)) {
-                    this.Code_PostalField = value;
-                    this.RaisePropertyChanged("Code_Postal");
-                }
-            }
-        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Commentaire> Commentaire {
@@ -894,32 +890,6 @@ namespace SearchFood.SearchFoodServiceReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Telephone {
-            get {
-                return this.TelephoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TelephoneField, value) != true)) {
-                    this.TelephoneField = value;
-                    this.RaisePropertyChanged("Telephone");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Ville {
-            get {
-                return this.VilleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.VilleField, value) != true)) {
-                    this.VilleField = value;
-                    this.RaisePropertyChanged("Ville");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -967,6 +937,9 @@ namespace SearchFood.SearchFoodServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetHistoriques", ReplyAction="http://tempuri.org/ISearchFoodService/GetHistoriquesResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriquesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetHistorique", ReplyAction="http://tempuri.org/ISearchFoodService/GetHistoriqueResponse")]
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Historique> GetHistoriqueAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetHistoriqueByUser", ReplyAction="http://tempuri.org/ISearchFoodService/GetHistoriqueByUserResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriqueByUserAsync(int idUser);
         
@@ -974,13 +947,16 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task AddHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/DeleteHistorique", ReplyAction="http://tempuri.org/ISearchFoodService/DeleteHistoriqueResponse")]
-        System.Threading.Tasks.Task DeleteHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h);
+        System.Threading.Tasks.Task DeleteHistoriqueAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/UpdateHistorique", ReplyAction="http://tempuri.org/ISearchFoodService/UpdateHistoriqueResponse")]
         System.Threading.Tasks.Task UpdateHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNotes", ReplyAction="http://tempuri.org/ISearchFoodService/GetNotesResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNotesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNote", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteResponse")]
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Note> GetNoteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNoteByRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteByRestaurantResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNoteByRestaurantAsync(int idRestaurant);
@@ -992,7 +968,7 @@ namespace SearchFood.SearchFoodServiceReference {
         System.Threading.Tasks.Task AddNotesAsync(SearchFood.SearchFoodServiceReference.Note n);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/DeleteNotes", ReplyAction="http://tempuri.org/ISearchFoodService/DeleteNotesResponse")]
-        System.Threading.Tasks.Task DeleteNotesAsync(SearchFood.SearchFoodServiceReference.Note n);
+        System.Threading.Tasks.Task DeleteNotesAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/UpdateNotes", ReplyAction="http://tempuri.org/ISearchFoodService/UpdateNotesResponse")]
         System.Threading.Tasks.Task UpdateNotesAsync(SearchFood.SearchFoodServiceReference.Note n);
@@ -1130,6 +1106,10 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.GetHistoriquesAsync();
         }
         
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Historique> GetHistoriqueAsync(int id) {
+            return base.Channel.GetHistoriqueAsync(id);
+        }
+        
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Historique>> GetHistoriqueByUserAsync(int idUser) {
             return base.Channel.GetHistoriqueByUserAsync(idUser);
         }
@@ -1138,8 +1118,8 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.AddHistoriqueAsync(h);
         }
         
-        public System.Threading.Tasks.Task DeleteHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h) {
-            return base.Channel.DeleteHistoriqueAsync(h);
+        public System.Threading.Tasks.Task DeleteHistoriqueAsync(int id) {
+            return base.Channel.DeleteHistoriqueAsync(id);
         }
         
         public System.Threading.Tasks.Task UpdateHistoriqueAsync(SearchFood.SearchFoodServiceReference.Historique h) {
@@ -1148,6 +1128,10 @@ namespace SearchFood.SearchFoodServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNotesAsync() {
             return base.Channel.GetNotesAsync();
+        }
+        
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.Note> GetNoteAsync(int id) {
+            return base.Channel.GetNoteAsync(id);
         }
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note>> GetNoteByRestaurantAsync(int idRestaurant) {
@@ -1162,8 +1146,8 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.AddNotesAsync(n);
         }
         
-        public System.Threading.Tasks.Task DeleteNotesAsync(SearchFood.SearchFoodServiceReference.Note n) {
-            return base.Channel.DeleteNotesAsync(n);
+        public System.Threading.Tasks.Task DeleteNotesAsync(int id) {
+            return base.Channel.DeleteNotesAsync(id);
         }
         
         public System.Threading.Tasks.Task UpdateNotesAsync(SearchFood.SearchFoodServiceReference.Note n) {
