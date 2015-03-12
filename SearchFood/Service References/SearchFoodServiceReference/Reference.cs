@@ -1654,14 +1654,23 @@ namespace SearchFood.SearchFoodServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetUtilisateur", ReplyAction="http://tempuri.org/ISearchFoodService/GetUtilisateurResponse")]
         System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs> GetUtilisateurAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AuthentificationUtilisateur", ReplyAction="http://tempuri.org/ISearchFoodService/AuthentificationUtilisateurResponse")]
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs> AuthentificationUtilisateurAsync(string pseudo, string password);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddUtilisateurs", ReplyAction="http://tempuri.org/ISearchFoodService/AddUtilisateursResponse")]
-        System.Threading.Tasks.Task AddUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u);
+        System.Threading.Tasks.Task<string> AddUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/DeleteUtilisateurs", ReplyAction="http://tempuri.org/ISearchFoodService/DeleteUtilisateursResponse")]
         System.Threading.Tasks.Task DeleteUtilisateursAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/UpdateUtilisateurs", ReplyAction="http://tempuri.org/ISearchFoodService/UpdateUtilisateursResponse")]
         System.Threading.Tasks.Task UpdateUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/ExistePseudo", ReplyAction="http://tempuri.org/ISearchFoodService/ExistePseudoResponse")]
+        System.Threading.Tasks.Task<bool> ExistePseudoAsync(string pseudo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/ExisteMail", ReplyAction="http://tempuri.org/ISearchFoodService/ExisteMailResponse")]
+        System.Threading.Tasks.Task<bool> ExisteMailAsync(string mail);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1847,7 +1856,11 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.GetUtilisateurAsync(id);
         }
         
-        public System.Threading.Tasks.Task AddUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u) {
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeUtilisateurs> AuthentificationUtilisateurAsync(string pseudo, string password) {
+            return base.Channel.AuthentificationUtilisateurAsync(pseudo, password);
+        }
+        
+        public System.Threading.Tasks.Task<string> AddUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u) {
             return base.Channel.AddUtilisateursAsync(u);
         }
         
@@ -1857,6 +1870,14 @@ namespace SearchFood.SearchFoodServiceReference {
         
         public System.Threading.Tasks.Task UpdateUtilisateursAsync(SearchFood.SearchFoodServiceReference.Utilisateur u) {
             return base.Channel.UpdateUtilisateursAsync(u);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExistePseudoAsync(string pseudo) {
+            return base.Channel.ExistePseudoAsync(pseudo);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExisteMailAsync(string mail) {
+            return base.Channel.ExisteMailAsync(mail);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync() {

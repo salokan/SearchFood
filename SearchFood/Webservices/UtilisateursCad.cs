@@ -53,9 +53,25 @@ namespace SearchFood.Webservices
             return utilisateur;
         }
 
-        public async void AddUtilisateurs(Utilisateur u)
+        public async Task<Utilisateur> AuthentificationUtilisateur(string pseudo, string password)
         {
-            await _client.AddUtilisateursAsync(u);
+            Utilisateur utilisateur = new Utilisateur();
+
+            CompositeUtilisateurs utilisateurComposite = await _client.AuthentificationUtilisateurAsync(pseudo,password);
+
+            utilisateur.Id_Utilisateur = utilisateurComposite.IdUtilisateurValue;
+            utilisateur.Pseudonyme = utilisateurComposite.PseudoValue;
+            utilisateur.Password = utilisateurComposite.PasswordValue;
+            utilisateur.Mail = utilisateurComposite.MailValue;
+            utilisateur.Prenom = utilisateurComposite.PrenomValue;
+            utilisateur.Nom = utilisateurComposite.NomValue;
+
+            return utilisateur;
+        }
+
+        public async Task<string> AddUtilisateurs(Utilisateur u)
+        {
+            return await _client.AddUtilisateursAsync(u);
         }
 
         public async void DeleteUtilisateurs(int id)
@@ -66,6 +82,16 @@ namespace SearchFood.Webservices
         public async void UpdateUtilisateurs(Utilisateur u)
         {
             await _client.UpdateUtilisateursAsync(u);
+        }
+
+        public async Task<bool> ExistePseudo(string pseudo)
+        {
+            return await _client.ExistePseudoAsync(pseudo);
+        }
+
+        public async Task<bool> ExisteMail(string mail)
+        {
+            return await _client.ExisteMailAsync(mail);
         }
     }
 }

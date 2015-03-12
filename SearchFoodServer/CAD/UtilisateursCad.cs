@@ -64,6 +64,33 @@ namespace SearchFoodServer.CAD
             return compositeUtilisateurs;
         }
 
+        public CompositeUtilisateurs AuthentificationUtilisateur(string pseudo, string password)
+        {
+            CompositeUtilisateurs compositeUtilisateurs = new CompositeUtilisateurs();
+            Utilisateur utilisateur;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from u in bdd.Utilisateur
+                              where u.Pseudonyme == pseudo && u.Password == password
+                              select u;
+
+                utilisateur = requete.FirstOrDefault();
+            }
+
+            if (utilisateur != null)
+            {
+                compositeUtilisateurs.IdUtilisateurValue = utilisateur.Id_Utilisateur;
+                compositeUtilisateurs.PseudoValue = utilisateur.Pseudonyme;
+                compositeUtilisateurs.PasswordValue = utilisateur.Password;
+                compositeUtilisateurs.MailValue = utilisateur.Mail;
+                compositeUtilisateurs.PrenomValue = utilisateur.Prenom;
+                compositeUtilisateurs.NomValue = utilisateur.Nom;
+            }
+
+            return compositeUtilisateurs;
+        }
+
         public void AddUtilisateurs(Utilisateur u)
         {
             using (var bdd = new searchfoodEntities())
@@ -103,6 +130,52 @@ namespace SearchFoodServer.CAD
                     bdd.SaveChanges();
                 }
             }
+        }
+
+        public bool ExistePseudo(string pseudo)
+        {
+            bool existe = false;
+
+            List<Utilisateur> utilisateurs;
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from u in bdd.Utilisateur
+                              select u;
+
+                utilisateurs = requete.ToList();
+
+
+                foreach (Utilisateur utilisateursListe in utilisateurs)
+                {
+                    if (utilisateursListe.Pseudonyme.Equals(pseudo))
+                        existe = true;
+                }
+            }
+
+            return existe;
+        }
+
+        public bool ExisteMail(string mail)
+        {
+            bool existe = false;
+
+            List<Utilisateur> utilisateurs;
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from u in bdd.Utilisateur
+                              select u;
+
+                utilisateurs = requete.ToList();
+
+
+                foreach (Utilisateur utilisateursListe in utilisateurs)
+                {
+                    if (utilisateursListe.Mail.Equals(mail))
+                        existe = true;
+                }
+            }
+
+            return existe;
         }
     }
 }

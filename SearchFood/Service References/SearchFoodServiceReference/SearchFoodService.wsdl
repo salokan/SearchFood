@@ -218,6 +218,12 @@
   <wsdl:message name="ISearchFoodService_GetUtilisateur_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUtilisateurResponse" />
   </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AuthentificationUtilisateur_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthentificationUtilisateur" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_AuthentificationUtilisateur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthentificationUtilisateurResponse" />
+  </wsdl:message>
   <wsdl:message name="ISearchFoodService_AddUtilisateurs_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUtilisateurs" />
   </wsdl:message>
@@ -235,6 +241,18 @@
   </wsdl:message>
   <wsdl:message name="ISearchFoodService_UpdateUtilisateurs_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateUtilisateursResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_ExistePseudo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistePseudo" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_ExistePseudo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistePseudoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_ExisteMail_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteMail" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_ExisteMail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExisteMailResponse" />
   </wsdl:message>
   <wsdl:portType name="ISearchFoodService">
     <wsdl:operation name="GetCategories">
@@ -377,6 +395,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetUtilisateur" message="tns:ISearchFoodService_GetUtilisateur_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetUtilisateurResponse" message="tns:ISearchFoodService_GetUtilisateur_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AuthentificationUtilisateur">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AuthentificationUtilisateur" message="tns:ISearchFoodService_AuthentificationUtilisateur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AuthentificationUtilisateurResponse" message="tns:ISearchFoodService_AuthentificationUtilisateur_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddUtilisateurs">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddUtilisateurs" message="tns:ISearchFoodService_AddUtilisateurs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddUtilisateursResponse" message="tns:ISearchFoodService_AddUtilisateurs_OutputMessage" />
@@ -388,6 +410,14 @@
     <wsdl:operation name="UpdateUtilisateurs">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateUtilisateurs" message="tns:ISearchFoodService_UpdateUtilisateurs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/UpdateUtilisateursResponse" message="tns:ISearchFoodService_UpdateUtilisateurs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistePseudo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/ExistePseudo" message="tns:ISearchFoodService_ExistePseudo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/ExistePseudoResponse" message="tns:ISearchFoodService_ExistePseudo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExisteMail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/ExisteMail" message="tns:ISearchFoodService_ExisteMail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/ExisteMailResponse" message="tns:ISearchFoodService_ExisteMail_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISearchFoodService" type="tns:ISearchFoodService">
@@ -707,6 +737,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AuthentificationUtilisateur">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AuthentificationUtilisateur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddUtilisateurs">
       <soap:operation soapAction="http://tempuri.org/ISearchFoodService/AddUtilisateurs" style="document" />
       <wsdl:input>
@@ -727,6 +766,24 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateUtilisateurs">
       <soap:operation soapAction="http://tempuri.org/ISearchFoodService/UpdateUtilisateurs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistePseudo">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/ExistePseudo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExisteMail">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/ExisteMail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

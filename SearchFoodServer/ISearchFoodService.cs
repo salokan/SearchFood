@@ -97,11 +97,17 @@ namespace SearchFoodServer
         [OperationContract]
         CompositeUtilisateurs GetUtilisateur(int id);
         [OperationContract]
-        void AddUtilisateurs(Utilisateur u);
+        CompositeUtilisateurs AuthentificationUtilisateur(string pseudo, string password);
+        [OperationContract]
+        string AddUtilisateurs(Utilisateur u);
         [OperationContract]
         void DeleteUtilisateurs(int id);
         [OperationContract]
         void UpdateUtilisateurs(Utilisateur u);
+        [OperationContract]
+        bool ExistePseudo(string pseudo);
+        [OperationContract]
+        bool ExisteMail(string mail);
         #endregion
     }
 }

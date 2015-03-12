@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SearchFoodServer.CAD;
 using SearchFoodServer.CompositeClass;
 
@@ -203,9 +204,22 @@ namespace SearchFoodServer
             return _utilisateurs.GetUtilisateur(id);
         }
 
-        public void AddUtilisateurs(Utilisateur u)
+        public CompositeUtilisateurs AuthentificationUtilisateur(string pseudo, string password)
         {
-            _utilisateurs.AddUtilisateurs(u);
+            return _utilisateurs.AuthentificationUtilisateur(pseudo,password);
+        }
+
+        public string AddUtilisateurs(Utilisateur u)
+        {
+            try
+            {
+                _utilisateurs.AddUtilisateurs(u);
+                return "success";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            } 
         }
 
         public void DeleteUtilisateurs(int id)
@@ -217,6 +231,17 @@ namespace SearchFoodServer
         {
             _utilisateurs.UpdateUtilisateurs(u);
         }
+
+        public bool ExistePseudo(string pseudo)
+        {
+            return _utilisateurs.ExistePseudo(pseudo);
+        }
+
+        public bool ExisteMail(string mail)
+        {
+            return _utilisateurs.ExisteMail(mail);
+        }
+
         #endregion
     }
 }

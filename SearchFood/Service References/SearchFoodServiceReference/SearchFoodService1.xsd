@@ -442,16 +442,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AuthentificationUtilisateur">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pseudo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthentificationUtilisateurResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="AuthentificationUtilisateurResult" nillable="true" type="q30:CompositeUtilisateurs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddUtilisateurs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q30:Utilisateur" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q31:Utilisateur" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddUtilisateursResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddUtilisateursResult" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteUtilisateurs">
@@ -469,13 +486,41 @@
   <xs:element name="UpdateUtilisateurs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q31:Utilisateur" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q32:Utilisateur" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateUtilisateursResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistePseudo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pseudo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistePseudoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExistePseudoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExisteMail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mail" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExisteMailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExisteMailResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>
