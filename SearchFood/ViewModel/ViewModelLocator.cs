@@ -38,11 +38,11 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public SearchModelView Search
+        public SearchViewModel Search
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<SearchModelView>();
+                return ServiceLocator.Current.GetInstance<SearchViewModel>();
             }
         }
 
@@ -50,7 +50,7 @@ namespace SearchFood.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<SearchModelView>();
+            SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<LogViewModel>();
         }
     }

@@ -112,7 +112,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />
-    <Compile Include="ViewModel\SearchModelView.cs" />
+    <Compile Include="ViewModel\SearchViewModel.cs" />
     <Compile Include="View\Create_Connexion.xaml.cs">
       <DependentUpon>Create_Connexion.xaml</DependentUpon>
     </Compile>
