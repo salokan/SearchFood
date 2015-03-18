@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using SearchFood.Common;
 using SearchFood.Navigation;
 using SearchFood.Webservices;
 using Windows.UI.Popups;
@@ -9,6 +10,7 @@ using SearchFood.SearchFoodServiceReference;
 using SearchFood.View;
 using SearchFood.Model;
 using System.Text.RegularExpressions;
+using RelayCommand = GalaSoft.MvvmLight.Command.RelayCommand;
 
 namespace SearchFood.ViewModel
 {
