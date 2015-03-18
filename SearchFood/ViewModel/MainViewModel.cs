@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using SearchFood.Common;
 using SearchFood.Navigation;
 using SearchFood.View;
+using SearchFood.SearchFoodServiceReference;
 
 namespace SearchFood.ViewModel
 {
@@ -13,22 +14,29 @@ namespace SearchFood.ViewModel
         private const String Visible = "Visible";
         private String _visibility;
         private String _inverseVisibility;
+        private String _loginConnected;
         private Boolean _popupOpen;
         private Boolean _log; 
         private readonly INavigationService _navigationService;
+        private Utilisateur _userConnected;
 
         public MainViewModel(INavigationService navigation)
         {
+            _userConnected = ((App)(App.Current)).UserConnected;
             _log = false;
             _popupOpen = false;
-            _visibility = Visible;
-            _inverseVisibility = Hidden;
+            _visibility = Hidden;
+            _inverseVisibility = Visible;
             _navigationService = navigation;
             LoginCommand = new RelayCommand(Login);
             LogoutCommand = new RelayCommand(Logout);
             SearchCommand = new RelayCommand(Search);
             PopupOpenCommande = new RelayCommand(ClickProfil);
             CreateAccountCommand = new RelayCommand(CreateAccount);
+            if (_userConnected != null)
+            {
+                _loginConnected = _userConnected.Pseudonyme;
+            }
         }
 
         # region Getter / Setter Button
@@ -97,6 +105,11 @@ namespace SearchFood.ViewModel
                 return _inverseVisibility;
             }
             set { _inverseVisibility = value; RaisePropertyChanged(); }
+        }
+        public String LoginConnected
+        {
+            get { return _loginConnected; }
+            set { _loginConnected = value; RaisePropertyChanged(); }
         }
         #endregion
     }

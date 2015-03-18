@@ -3,6 +3,12 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SearchFood.Navigation;
+using SearchFood.Webservices;
+using Windows.UI.Popups;
+using SearchFood.SearchFoodServiceReference;
+using SearchFood.View;
+using SearchFood.Model;
+using System.Text.RegularExpressions;
 
 namespace SearchFood.ViewModel
 {
@@ -16,10 +22,14 @@ namespace SearchFood.ViewModel
         private String _passwordInscription;
         private String _pseudoLogin;
         private String _passwordLogin;
+        private Services _userService;
+        private bool invalid = false;
+
 
         public LogViewModel(INavigationService navigation)
         {
             _navigationService = navigation;
+            _userService = new Services();
             LoginCommand = new RelayCommand(Login);
             RegisterCommand = new RelayCommand(Inscription);
             GooglePlusCommand = new RelayCommand(GooglePlus);
@@ -93,14 +103,85 @@ namespace SearchFood.ViewModel
         #endregion
 
         #region Command Methode
-        public void Login()
+        public async void Login()
         {
+            if (_pseudoLogin != null && !_pseudoLogin.Equals("") && _passwordLogin != null && !_passwordLogin.Equals(""))
+            {
+                Utilisateur userconnected = new Utilisateur();
+                userconnected = await _userService._utilisateurs.AuthentificationUtilisateur(_pseudoLogin, _passwordLogin);
 
+                if (userconnected != null)
+                {
+                    ((App)(App.Current)).UserConnected = userconnected;
+                    _navigationService.Navigate(typeof(MainPage));
+                }
+                else
+                {
+                    MessageDialog msgDialog = new MessageDialog("Echec de l'authentification", "Echec");
+                    await msgDialog.ShowAsync();
+                }
+            }
+            else
+            {
+                MessageDialog msgDialog = new MessageDialog("Veuillez entrer un Login et un Mot de Passe", "Echec");
+                await msgDialog.ShowAsync();
+            }
         }
 
-        public void Inscription()
+        public async void Inscription()
         {
+            if (_emailInscription != null && !_emailInscription.Equals("") && _nomInscription != null && !_nomInscription.Equals("") && _prenomInscription != null && !_prenomInscription.Equals("") && _passwordInscription != null && !_passwordInscription.Equals("") && _pseudoInscription != null && !_pseudoInscription.Equals(""))
+            {
+                if (IsValidEmail(_emailInscription))
+                {
 
+                    bool pseudoexist = await _userService._utilisateurs.ExistePseudo(_pseudoInscription);
+                    if (pseudoexist)
+                    {
+                        bool mailexist = await _userService._utilisateurs.ExisteMail(_emailInscription);
+                        if (mailexist)
+                        {
+                            Utilisateur user = new Utilisateur();
+                            user.Mail = _emailInscription;
+                            user.Nom = _nomInscription;
+                            user.Prenom = _prenomInscription;
+                            user.Password = _passwordInscription;
+                            user.Pseudonyme = _pseudoInscription;
+                            String inscription = await _userService._utilisateurs.AddUtilisateurs(user);
+                            if (inscription.Equals("success"))
+                            {
+                                MessageDialog msgDialog = new MessageDialog("Inscription réussie", "Bravo");
+                                await msgDialog.ShowAsync();
+                            }
+                            else
+                            {
+                                MessageDialog msgDialog = new MessageDialog("Echec de l'incription, veuillez recommencer", "Echec");
+                                await msgDialog.ShowAsync();
+                            }
+                        }
+                        else
+                        {
+                            MessageDialog msgDialog = new MessageDialog("Cet email est déjà utilisé", "Echec");
+                            await msgDialog.ShowAsync();
+                        }
+                    }
+                    else
+                    {
+                        MessageDialog msgDialog = new MessageDialog("Ce login est déjà utilisé", "Echec");
+                        await msgDialog.ShowAsync();
+                    }
+                }
+                else
+                {
+                    MessageDialog msgDialog = new MessageDialog("Veuillez entrer un email correct", "Echec");
+                    await msgDialog.ShowAsync();
+                }
+            }
+            else
+            {
+                MessageDialog msgDialog = new MessageDialog("Veuillez remplir le formulaire", "Echec");
+                await msgDialog.ShowAsync();
+            }
         }
 
         public void GooglePlus()
@@ -112,7 +193,23 @@ namespace SearchFood.ViewModel
         { 
 
         }
+        public bool IsValidEmail(string strIn)
+        {
+            invalid = false;
+            if (String.IsNullOrEmpty(strIn))
+                return false;
+            try
+            {
+                return Regex.IsMatch(strIn,
+                      @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                      @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                      RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                return false;
+            }
+        }
         #endregion
-
     }
 }
