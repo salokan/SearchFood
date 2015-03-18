@@ -23,7 +23,7 @@
             <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <StackPanel Orientation="Vertical">
                     <Button  Command="{Binding Path=PopupOpenCommande}" Height="100" Width="100" VerticalAlignment="Center" BorderThickness="0" BorderBrush="Teal" Padding="0">
-                        <Image Source="/Image/Sasuke.jpeg" Stretch="Fill" Height="100" Width="100"/>
+                        <TextBlock FontSize="40" Text="{Binding LoginConnected}" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
                     </Button>
                     <Popup IsOpen="{Binding PopupOpen}">
                         <Grid Background="Teal" Width="120" Height="75">
@@ -34,7 +34,6 @@
                         </Grid>
                     </Popup>
                 </StackPanel>
-                <TextBlock FontSize="40" Text="Visibility" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding InverseVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <Button  Command="{Binding Path=LoginCommand}" Content="Connexion" VerticalAlignment="Center" Margin="0,0,10,0"/>

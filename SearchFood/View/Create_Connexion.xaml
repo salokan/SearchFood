@@ -56,14 +56,14 @@
                     <TextBlock   Grid.Column="0" Grid.Row="2" Margin="8" FontSize="24" Text="Pseudo"  />
                     <TextBlock   Grid.Column="0" Grid.Row="3" Margin="8" FontSize="24" Text="Email"  />
                     <TextBlock   Grid.Column="0" Grid.Row="4" Margin="8" FontSize="24" Text="Mot de passe"  />
-                    <TextBox     Grid.Column="1" Grid.Row="0" Margin="8" Text="{Binding NomInscription}"/>
-                    <TextBox     Grid.Column="1" Grid.Row="1" Margin="8" Text="{Binding PrenomInscription}"/>
-                    <TextBox     Grid.Column="1" Grid.Row="2" Margin="8" Text="{Binding PseudoInscription}"/>
-                    <TextBox     Grid.Column="1" Grid.Row="3" Margin="8" Text="{Binding EmailInscription}"/>
-                    <PasswordBox Grid.Column="1" Grid.Row="4" Margin="8" Password="{Binding PasswordInscription}"/>
+                    <TextBox     Grid.Column="1" Grid.Row="0" Margin="8" Text="{Binding NomInscription, Mode=TwoWay}"/>
+                    <TextBox     Grid.Column="1" Grid.Row="1" Margin="8" Text="{Binding PrenomInscription, Mode=TwoWay}"/>
+                    <TextBox     Grid.Column="1" Grid.Row="2" Margin="8" Text="{Binding PseudoInscription, Mode=TwoWay}"/>
+                    <TextBox     Grid.Column="1" Grid.Row="3" Margin="8" Text="{Binding EmailInscription, Mode=TwoWay}"/>
+                    <PasswordBox Grid.Column="1" Grid.Row="4" Margin="8" Password="{Binding PasswordInscription, Mode=TwoWay}"/>
                     <Button      Grid.Column="0" Grid.Row="5" Background="Blue" Content="Facebook" Command="{Binding FacebookCommand}"/> 
                     <Button      Grid.Column="1" Grid.Row="5" Background="Red" Content="Google+" Command="{Binding GooglePlusCommand}"/>
-                    <Button      Grid.Column="1" Grid.Row="6" Content="Crée Compte" Command="{Binding RegisterCommand}"/>
+                    <Button      Grid.Column="1" Grid.Row="6" Content="Créer le Compte" Command="{Binding RegisterCommand}"/>
                 </Grid> 
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Vertical">
@@ -80,9 +80,9 @@
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions> 
                     <TextBlock   Grid.Column="0" Grid.Row="0" Margin="8" FontSize="24" Text="Pseudo"  /> 
-                    <TextBlock   Grid.Column="0" Grid.Row="1" Margin="8" FontSize="24" Text="Mot de passe"  /> 
-                    <TextBox     Grid.Column="1" Grid.Row="0" Margin="8" Text="{Binding PseudoLogin}"/>
-                    <PasswordBox Grid.Column="1" Grid.Row="1" Margin="8" Password="{Binding PasswordLogin}"/>
+                    <TextBlock   Grid.Column="0" Grid.Row="1" Margin="8" FontSize="24" Text="Mot de passe"  />
+                    <TextBox     Grid.Column="1" Grid.Row="0" Margin="8" Text="{Binding PseudoLogin, Mode=TwoWay}"/>
+                    <PasswordBox Grid.Column="1" Grid.Row="1" Margin="8" Password="{Binding PasswordLogin, Mode=TwoWay}"/>
                     <Button      Grid.Column="0" Grid.Row="2" Background="Blue" Content="Facebook"  Command="{Binding FacebookCommand}"/>
                     <Button      Grid.Column="1" Grid.Row="2" Background="Red" Content="Google+"  Command="{Binding GooglePlusCommand}"/>
                     <Button      Grid.Column="1" Grid.Row="3" Content="Connexion" Command="{Binding LoginCommand}"/>

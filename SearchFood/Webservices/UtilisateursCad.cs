@@ -14,6 +14,11 @@ namespace SearchFood.Webservices
             _client = client;
         }
 
+        public UtilisateursCad()
+        {
+            // TODO: Complete member initialization
+        }
+
         public async Task<List<Utilisateur>> GetUtilisateurs()
         {
             ObservableCollection<CompositeUtilisateurs> utilisateursList;

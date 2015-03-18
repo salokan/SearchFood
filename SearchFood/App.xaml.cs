@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Navigation;
 
 // Pour plus d'informations sur le modèle Application vide, consultez la page http://go.microsoft.com/fwlink/?LinkId=234227
 using SearchFood.View;
+using SearchFood.SearchFoodServiceReference;
 
 namespace SearchFood
 {
@@ -24,6 +25,8 @@ namespace SearchFood
             InitializeComponent();
             Suspending += OnSuspending;
         }
+
+        public Utilisateur UserConnected { set; get; }
 
         /// <summary>
         /// Invoqué lorsque l'application est lancée normalement par l'utilisateur final.  D'autres points d'entrée
