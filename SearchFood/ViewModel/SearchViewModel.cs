@@ -134,11 +134,28 @@ namespace SearchFood.ViewModel
 
         #region Combobox
 
-        public ObservableCollection<string> TypeDeCuisine { get; set; }
+        public ObservableCollection<string> TypeDeCuisine
+        {
+            get { return _typeDeCuisine1; }
+            set { _typeDeCuisine1 = value; RaisePropertyChanged(); }
+        }
+
         private ObservableCollection<string> _typeDeCuisine = new ObservableCollection<string>();
-        public ObservableCollection<int> MinNotation { get; set; }
+
+        public ObservableCollection<int> MinNotation
+        {
+            get { return _minNotation1; }
+            set { _minNotation1 = value; RaisePropertyChanged(); }
+        }
+
         private ObservableCollection<int> _minNotation = new ObservableCollection<int>();
-        public ObservableCollection<int> MaxNotation { get; set; }
+
+        public ObservableCollection<int> MaxNotation
+        {
+            get { return _maxNotation1; }
+            set { _maxNotation1 = value; RaisePropertyChanged(); }
+        }
+
         private ObservableCollection<int> _maxNotation = new ObservableCollection<int>();
 
         private string _typeCuisineChoisie;
@@ -200,6 +217,9 @@ namespace SearchFood.ViewModel
         #region Checkbox
 
         private bool _aEmporter;
+        private ObservableCollection<string> _typeDeCuisine1;
+        private ObservableCollection<int> _minNotation1;
+        private ObservableCollection<int> _maxNotation1;
 
         public bool AEmporter
         {
@@ -220,12 +240,12 @@ namespace SearchFood.ViewModel
 
         private async void InitComponents()
         {
-            //List<Type_Cuisine> typeCuisinelist = await _service._typesCuisines.GetTypesCuisines();
+            List<Type_Cuisine> typeCuisinelist = await _service._typesCuisines.GetTypesCuisines();
 
-            //foreach (Type_Cuisine tc in typeCuisinelist)
-            //{
-            //    _typeDeCuisine.Add(tc.Type_Cuisine1);
-            //}
+            foreach (Type_Cuisine tc in typeCuisinelist)
+            {
+                _typeDeCuisine.Add(tc.Type_Cuisine1);
+            }
 
             for (int i = 0; i < 5; i++)
             {
