@@ -41,10 +41,39 @@
             </StackPanel>
         </Grid>
         <Grid Margin="0,140,0,0" DataContext="{Binding Search, Source={StaticResource Locator}}">
-            <StackPanel Orientation="Horizontal" Height="80" VerticalAlignment="Top">
-                <TextBlock Text="Recherche" FontSize="32" VerticalAlignment="Center" Margin="20,0,0,0"/>
-                <TextBox VerticalAlignment="Center" Width="300" Margin="20,0,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,24,0,0" TextWrapping="Wrap" Text="Prix : " VerticalAlignment="Top" FontWeight="Bold"/>
+            <StackPanel Height="54" Margin="341,10,165,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <RadioButton Content="Petit Budget"  FontSize="32"/>
+                <RadioButton Content="Moyen Budget"  FontSize="32"/>
+                <RadioButton Content="Gros Budget"  FontSize="32"/>
+                <RadioButton Content="Peu importe" FontSize="32" IsChecked="True"/>
             </StackPanel>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,83,0,0" TextWrapping="Wrap" Text="Distance : " VerticalAlignment="Top"  FontWeight="Bold"/>
+            <Slider HorizontalAlignment="Left" Value="10" Margin="341,84,0,0" VerticalAlignment="Top" Width="544" Height="37"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="915,83,0,0" TextWrapping="Wrap" Text="50 KM" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,139,0,0" TextWrapping="Wrap" Text="Délai : " VerticalAlignment="Top" FontWeight="Bold"/>
+            <StackPanel Height="51" Margin="340,136,483,0" VerticalAlignment="Top" Orientation="Horizontal" RenderTransformOrigin="0.491,-0.766">
+                <RadioButton Content="Court" FontSize="32"/>
+                <RadioButton Content="Moyen" FontSize="32"/>
+                <RadioButton Content="Long" FontSize="32"/>
+                <RadioButton Content="Peu importe" FontSize="32" IsChecked="True"/>
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,196,0,0" TextWrapping="Wrap" Text="Type de cuisine : " VerticalAlignment="Top" FontWeight="Bold"/>
+            <ComboBox HorizontalAlignment="Left" Margin="340,203,0,0" VerticalAlignment="Top" Width="715"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,262,0,0" TextWrapping="Wrap" Text="Autre : " VerticalAlignment="Top" FontWeight="Bold"/>
+            <StackPanel Height="52" Margin="340,258,471,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <RadioButton Content="Restaurant" FontSize="32"/>
+                <RadioButton Content="Fast-Food" FontSize="32"/>
+                <RadioButton Content="Peu importe" FontSize="32" IsChecked="True"/>
+            </StackPanel>
+            <CheckBox Content="A emporter" HorizontalAlignment="Left" Margin="946,272,0,0" VerticalAlignment="Top" FontSize="32"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,328,0,0" TextWrapping="Wrap" Text="Notation : " VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="340,328,0,0" TextWrapping="Wrap" Text="Min : " VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="460,335,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="684,335,0,0" TextWrapping="Wrap" Text="Max : " VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="814,335,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Rechercher" HorizontalAlignment="Left" Margin="498,465,0,0" VerticalAlignment="Top" Width="245" FontSize="32" Command="{Binding Path=RechercherBouton}"/>
         </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="-209,478,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
     </Grid>
 </Page>

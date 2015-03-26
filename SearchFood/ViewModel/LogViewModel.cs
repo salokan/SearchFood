@@ -138,10 +138,10 @@ namespace SearchFood.ViewModel
                 {
 
                     bool pseudoexist = await _userService._utilisateurs.ExistePseudo(_pseudoInscription);
-                    if (pseudoexist)
+                    if (!pseudoexist)
                     {
                         bool mailexist = await _userService._utilisateurs.ExisteMail(_emailInscription);
-                        if (mailexist)
+                        if (!mailexist)
                         {
                             Utilisateur user = new Utilisateur();
                             user.Mail = _emailInscription;

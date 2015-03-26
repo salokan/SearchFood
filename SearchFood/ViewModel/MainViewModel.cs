@@ -31,6 +31,7 @@ namespace SearchFood.ViewModel
             LoginCommand = new RelayCommand(Login);
             LogoutCommand = new RelayCommand(Logout);
             SearchCommand = new RelayCommand(Search);
+            RestauCommand = new RelayCommand(Restau);
             PopupOpenCommande = new RelayCommand(ClickProfil);
             CreateAccountCommand = new RelayCommand(CreateAccount);
             if (_userConnected != null)
@@ -43,6 +44,8 @@ namespace SearchFood.ViewModel
         public ICommand LoginCommand { get; set; }
 
         public ICommand SearchCommand { get; set; }
+
+        public ICommand RestauCommand { get; set; }
 
         public ICommand CreateAccountCommand { get; set; }
 
@@ -60,6 +63,11 @@ namespace SearchFood.ViewModel
         public void Search()
         {
             _navigationService.Navigate(typeof(Search));
+        }
+
+        public void Restau()
+        {
+            _navigationService.Navigate(typeof(Restau));
         }
 
         public void ClickProfil()
