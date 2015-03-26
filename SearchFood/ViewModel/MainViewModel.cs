@@ -5,15 +5,15 @@ using SearchFood.Common;
 using SearchFood.Navigation;
 using SearchFood.View;
 using SearchFood.SearchFoodServiceReference;
+using Windows.UI.Xaml;
+using System.ComponentModel;
 
 namespace SearchFood.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private const String Hidden = "Collapsed";
-        private const String Visible = "Visible";
-        private String _visibility;
-        private String _inverseVisibility;
+        private Visibility _connectedHeader;
+        private Visibility _deconnectedHeader;
         private String _loginConnected;
         private Boolean _popupOpen;
         private Boolean _log; 
@@ -25,17 +25,22 @@ namespace SearchFood.ViewModel
             _userConnected = ((App)(App.Current)).UserConnected;
             _log = false;
             _popupOpen = false;
-            _visibility = Hidden;
-            _inverseVisibility = Visible;
             _navigationService = navigation;
             LoginCommand = new RelayCommand(Login);
             LogoutCommand = new RelayCommand(Logout);
             SearchCommand = new RelayCommand(Search);
             PopupOpenCommande = new RelayCommand(ClickProfil);
-            CreateAccountCommand = new RelayCommand(CreateAccount);
             if (_userConnected != null)
             {
+                ConnectedHeader = Visibility.Visible;
+                DeconnectedHeader = Visibility.Collapsed;
                 _loginConnected = _userConnected.Pseudonyme;
+            }
+            else
+            {
+                ConnectedHeader = Visibility.Collapsed;
+                DeconnectedHeader = Visibility.Visible;
+
             }
         }
 
@@ -43,8 +48,6 @@ namespace SearchFood.ViewModel
         public ICommand LoginCommand { get; set; }
 
         public ICommand SearchCommand { get; set; }
-
-        public ICommand CreateAccountCommand { get; set; }
 
         public ICommand LogoutCommand { get; set; }
 
@@ -54,8 +57,7 @@ namespace SearchFood.ViewModel
         #region Command Methode
         public void Login()
         {
-            Visibility = Visibility == Visible ? Hidden : Visible;
-            InverseVisibility = _visibility == Visible ? Hidden : Visible;
+            _navigationService.Navigate(typeof(Create_Connexion));
         }
         public void Search()
         {
@@ -67,15 +69,10 @@ namespace SearchFood.ViewModel
             PopupOpen = !_popupOpen;
         }
 
-        public void CreateAccount()
-        {
-            _navigationService.Navigate(typeof(Create_Connexion));
-        }
-
         public void Logout()
         {
-            Visibility = Hidden;
-            InverseVisibility = Visible;
+            ConnectedHeader = Visibility.Collapsed;
+            DeconnectedHeader = Visibility.Visible;
             Log = false;
         }
         #endregion
@@ -93,18 +90,18 @@ namespace SearchFood.ViewModel
             set { _log = value; RaisePropertyChanged(); }
         }
 
-        public String Visibility
+        public Visibility ConnectedHeader
         {
-            get { return _visibility; }
-            set { _visibility = value; RaisePropertyChanged(); }
+            get { return _connectedHeader; }
+            set { _connectedHeader = value; RaisePropertyChanged(); }
         }
 
-        public String InverseVisibility
+        public Visibility DeconnectedHeader
         {
             get {
-                return _inverseVisibility;
+                return _deconnectedHeader;
             }
-            set { _inverseVisibility = value; RaisePropertyChanged(); }
+            set { _deconnectedHeader = value; RaisePropertyChanged(); }
         }
         public String LoginConnected
         {
