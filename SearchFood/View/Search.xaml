@@ -70,7 +70,22 @@
             <ComboBox HorizontalAlignment="Left" Margin="460,335,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Path=MinNotation}" SelectedItem="{Binding Path=MinNotationChoisie, Mode=TwoWay}"/>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="684,335,0,0" TextWrapping="Wrap" Text="Max : " VerticalAlignment="Top"/>
             <ComboBox HorizontalAlignment="Left" Margin="814,335,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Path=MaxNotation}" SelectedItem="{Binding Path=MaxNotationChoisie, Mode=TwoWay}" />
-            <Button Content="Rechercher" HorizontalAlignment="Left" Margin="498,465,0,0" VerticalAlignment="Top" Width="245" FontSize="32" Command="{Binding Path=RechercherBouton}"/>
+            <Button Content="Rechercher" HorizontalAlignment="Left" Margin="40,473,0,0" VerticalAlignment="Top" Width="245" FontSize="32" Command="{Binding Path=RechercherBouton}" Click="RechercherClick"/>
+            <Border x:Name="borderResultat" BorderBrush="#FFF9F4F4" BorderThickness="1" HorizontalAlignment="Left" Height="205" Margin="341,413,0,0" VerticalAlignment="Top" Width="674" Background="Black" Visibility="Collapsed">
+                <Grid Margin="0,0,0,-21">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="109*"/>
+                        <ColumnDefinition Width="115*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,10,0,0" TextWrapping="Wrap" Text="{Binding Path=NomResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,45,0,0" TextWrapping="Wrap" Text="{Binding Path=DureeResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,80,0,0" TextWrapping="Wrap" Text="{Binding Path=PrixResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,115,0,0" TextWrapping="Wrap" Text="{Binding Path=CategorieResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,150,0,0" TextWrapping="Wrap" Text="{Binding Path=TypeCuisineResultat}" VerticalAlignment="Top" Width="591" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Border>
+            <Button x:Name="boutonChoisir" Content="Choisir" HorizontalAlignment="Left" Margin="1149,438,0,0" VerticalAlignment="Top" FontSize="32" Command="{Binding Path=ChoisirBouton}" Visibility="Collapsed"/>
+            <Button x:Name="boutonSuivant" Content="Suivant" HorizontalAlignment="Left" Margin="1149,514,0,0" VerticalAlignment="Top" FontSize="32" Command="{Binding Path=SuivantBouton}" Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </Page>
