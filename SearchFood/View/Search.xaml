@@ -40,8 +40,8 @@
         </Grid>
         <Grid Margin="0,140,0,0" DataContext="{Binding Search, Source={StaticResource Locator}}">
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,24,0,0" TextWrapping="Wrap" Text="Prix : " VerticalAlignment="Top" FontWeight="Bold"/>
-            <StackPanel Height="54" Margin="341,10,0,0" VerticalAlignment="Top" Orientation="Horizontal">
-                <RadioButton Content="Petit Budget"  FontSize="32" IsChecked="{Binding Path=PetitBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="284"/>
+            <StackPanel Height="54" Margin="341,10,0,0" VerticalAlignment="Top" Orientation="Horizontal" >
+                <RadioButton Content="Petit Budget"  FontSize="32" IsChecked="{Binding Path=PetitBudget, Mode=TwoWay}" Width="284" />
                 <RadioButton Content="Moyen Budget"  FontSize="32" IsChecked="{Binding Path=MoyenBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="295"/>
                 <RadioButton Content="Gros Budget"  FontSize="32" IsChecked="{Binding Path=GrosBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="235"/>
                 <RadioButton Content="Peu importe" FontSize="32" IsChecked="{Binding Path=PeuImporteBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="277"/>

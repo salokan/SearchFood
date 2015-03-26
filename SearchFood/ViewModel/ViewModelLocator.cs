@@ -46,12 +46,21 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public AccountViewModel Account
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AccountViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<LogViewModel>();
+            SimpleIoc.Default.Register<AccountViewModel>();
         }
     }
 }
