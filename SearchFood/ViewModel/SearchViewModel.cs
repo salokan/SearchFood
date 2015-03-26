@@ -14,9 +14,22 @@ namespace SearchFood.ViewModel
     public class SearchViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        public ICommand RechercherBouton { get; set; }
+        
+        private List<Restaurant> restaurantsListe = new List<Restaurant>();
+        private int idResultat = 0;
+        private int idRestaurant = 0;
 
         private Services _service = new Services();
+
+        #region Boutons
+
+        public ICommand RechercherBouton { get; set; }
+
+        public ICommand ChoisirBouton { get; set; }
+
+        public ICommand SuivantBouton { get; set; }
+
+        #endregion
 
         #region Slider
 
@@ -229,11 +242,108 @@ namespace SearchFood.ViewModel
 
         #endregion
 
+        #region Résultat
+
+        private string _nomResultat;
+        public string NomResultat
+        {
+            get
+            {
+                return _nomResultat;
+            }
+
+            set
+            {
+                if (_nomResultat != value)
+                {
+                    _nomResultat = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _dureeResultat;
+        public string DureeResultat
+        {
+            get
+            {
+                return _dureeResultat;
+            }
+
+            set
+            {
+                if (_dureeResultat != value)
+                {
+                    _dureeResultat = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _prixResultat;
+        public string PrixResultat
+        {
+            get
+            {
+                return _prixResultat;
+            }
+
+            set
+            {
+                if (_prixResultat != value)
+                {
+                    _prixResultat = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _categorieResultat;
+        public string CategorieResultat
+        {
+            get
+            {
+                return _categorieResultat;
+            }
+
+            set
+            {
+                if (_categorieResultat != value)
+                {
+                    _categorieResultat = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _typeCuisineResultat;
+        public string TypeCuisineResultat
+        {
+            get
+            {
+                return _typeCuisineResultat;
+            }
+
+            set
+            {
+                if (_typeCuisineResultat != value)
+                {
+                    _typeCuisineResultat = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        
+        #endregion
+
+
         public SearchViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
 
             RechercherBouton = new RelayCommand(Rechercher);
+            ChoisirBouton = new RelayCommand(Choisir);
+            SuivantBouton = new RelayCommand(Suivant);
             
             InitComponents();
         }
@@ -306,6 +416,49 @@ namespace SearchFood.ViewModel
 
             MessageDialog msgDialog = new MessageDialog("Prix : " + prix + " ; Distance : " + distance + " ; Délai : " + delai + " ; Type de cuisine : " + typeDeCuisine + " ; Autre : " + autre + " ; A emporter : " + aEmporter + " ; Note minimal : " + minNote + " ; Note maximale : " + maxNote, "Félicitation");
             await msgDialog.ShowAsync();
+
+            restaurantsListe = await _service._restaurants.GetRestaurants();
+
+            if (restaurantsListe.Count != 0)
+            {
+                idResultat = 0;
+                idRestaurant = restaurantsListe[idResultat].Id_Restaurant;
+                NomResultat = "Nom : " + restaurantsListe[idResultat].Nom;
+                Categorie categorie = await _service._categories.GetCategorie(restaurantsListe[idResultat].Id_Categorie);
+                CategorieResultat = "Catégorie : " + categorie.Nom_Categorie;
+                PrixResultat = "Prix : " + restaurantsListe[idResultat].Prix + "€";
+                DureeResultat = "Durée : " + restaurantsListe[idResultat].Duree_repas + "mn";
+                Type_Cuisine typeCuisine = await _service._typesCuisines.GetTypeCuisine(restaurantsListe[idResultat].Id_Type_Cuisine);
+                TypeCuisineResultat = "Type de cuisine : " + typeCuisine.Type_Cuisine1;
+            }
+            else
+            {
+                MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
+                await msgDialog2.ShowAsync();
+            }
+        }
+
+        private async void Choisir()
+        {
+            MessageDialog msgDialog2 = new MessageDialog("On navigue vers détails restaurant de id : " + idRestaurant, "Attention");
+            await msgDialog2.ShowAsync();
+        }
+
+        private async void Suivant()
+        {
+            if (idResultat == restaurantsListe.Count-1)
+                idResultat = 0;
+            else
+                idResultat++;
+
+            idRestaurant = restaurantsListe[idResultat].Id_Restaurant;
+            NomResultat = "Nom : " + restaurantsListe[idResultat].Nom;
+            Categorie categorie = await _service._categories.GetCategorie(restaurantsListe[idResultat].Id_Categorie);
+            CategorieResultat = "Catégorie : " + categorie.Nom_Categorie;
+            PrixResultat = "Prix : " + restaurantsListe[idResultat].Prix + "€";
+            DureeResultat = "Durée : " + restaurantsListe[idResultat].Duree_repas + "mn";
+            Type_Cuisine typeCuisine = await _service._typesCuisines.GetTypeCuisine(restaurantsListe[idResultat].Id_Type_Cuisine);
+            TypeCuisineResultat = "Type de cuisine : " + typeCuisine.Type_Cuisine1;
         }
     }
 }
