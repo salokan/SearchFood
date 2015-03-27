@@ -20,7 +20,7 @@ namespace SearchFoodServer.CompositeClass
         string _latitude;
         string _longitude;
         Nullable<int> _dureeRepas;
-        Nullable<double> _prix;
+        Nullable<int> _prix;
         int _idCategories;
         int _idTypesCuisine;
 
@@ -103,7 +103,7 @@ namespace SearchFoodServer.CompositeClass
         }
 
         [DataMember]
-        public Nullable<double> PrixValue
+        public Nullable<int> PrixValue
         {
             get { return _prix; }
             set { _prix = value; }

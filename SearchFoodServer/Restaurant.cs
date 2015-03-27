@@ -32,7 +32,7 @@ namespace SearchFoodServer
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public Nullable<int> Duree_repas { get; set; }
-        public Nullable<double> Prix { get; set; }
+        public Nullable<int> Prix { get; set; }
         public int Id_Categorie { get; set; }
         public int Id_Type_Cuisine { get; set; }
     
