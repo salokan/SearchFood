@@ -54,7 +54,7 @@
           <Property Name="Latitude" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Longitude" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Duree_repas" Type="int" />
-          <Property Name="Prix" Type="float" />
+          <Property Name="Prix" Type="int" />
           <Property Name="Id_Categorie" Type="int" Nullable="false" />
           <Property Name="Id_Type_Cuisine" Type="int" Nullable="false" />
         </EntityType>
@@ -273,7 +273,7 @@
           <Property Name="Latitude" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Longitude" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Duree_repas" Type="Int32" />
-          <Property Name="Prix" Type="Double" />
+          <Property Name="Prix" Type="Int32" />
           <Property Name="Id_Categorie" Type="Int32" Nullable="false" />
           <Property Name="Id_Type_Cuisine" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categorie" Relationship="Self.FK_Restaurant_Categorie" FromRole="Restaurant" ToRole="Categorie" />
