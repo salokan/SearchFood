@@ -46,6 +46,14 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public AccountViewModel Account
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AccountViewModel>();
+            }
+        }
+
         public RestauViewModel Restau
         {
             get
@@ -61,6 +69,7 @@ namespace SearchFood.ViewModel
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<LogViewModel>();
             SimpleIoc.Default.Register<RestauViewModel>();
+            SimpleIoc.Default.Register<AccountViewModel>();
         }
     }
 }

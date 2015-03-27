@@ -4,13 +4,13 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SearchFood.Common;
 using SearchFood.Navigation;
-using SearchFood.Webservices;
 using Windows.UI.Popups;
 using SearchFood.SearchFoodServiceReference;
 using SearchFood.View;
 using SearchFood.Model;
 using System.Text.RegularExpressions;
-using RelayCommand = GalaSoft.MvvmLight.Command.RelayCommand;
+using Windows.UI.Xaml;
+using RelayCommand = SearchFood.Common.RelayCommand;
 
 namespace SearchFood.ViewModel
 {
@@ -25,7 +25,6 @@ namespace SearchFood.ViewModel
         private String _pseudoLogin;
         private String _passwordLogin;
         private Services _userService;
-        private bool invalid = false;
 
 
         public LogViewModel(INavigationService navigation)
@@ -109,12 +108,11 @@ namespace SearchFood.ViewModel
         {
             if (_pseudoLogin != null && !_pseudoLogin.Equals("") && _passwordLogin != null && !_passwordLogin.Equals(""))
             {
-                Utilisateur userconnected = new Utilisateur();
-                userconnected = await _userService._utilisateurs.AuthentificationUtilisateur(_pseudoLogin, _passwordLogin);
+                var userconnected = await _userService._utilisateurs.AuthentificationUtilisateur(_pseudoLogin, _passwordLogin);
 
                 if (userconnected != null)
                 {
-                    ((App)(App.Current)).UserConnected = userconnected;
+                    ((App)(Application.Current)).UserConnected = userconnected;
                     _navigationService.Navigate(typeof(MainPage));
                 }
                 else
@@ -197,7 +195,6 @@ namespace SearchFood.ViewModel
         }
         public bool IsValidEmail(string strIn)
         {
-            invalid = false;
             if (String.IsNullOrEmpty(strIn))
                 return false;
             try

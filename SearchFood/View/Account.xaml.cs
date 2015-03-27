@@ -1,12 +1,17 @@
-﻿using SearchFood.Common; 
-using Windows.UI.Xaml.Controls; 
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
- 
-namespace SearchFood.View
-{ 
-    public sealed partial class Create_Connexion : Page
-    {
+using SearchFood.Common;
 
+// Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace SearchFood.View
+{
+    /// <summary>
+    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
+    /// </summary>
+    public sealed partial class Account : Page
+    {
+        
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
          
@@ -20,7 +25,7 @@ namespace SearchFood.View
             get { return navigationHelper; }
         }
 
-        public Create_Connexion()
+        public Account()
         {
             InitializeComponent();
             navigationHelper = new NavigationHelper(this);
@@ -49,5 +54,5 @@ namespace SearchFood.View
         }
 
         #endregion
-    }
+    } 
 }

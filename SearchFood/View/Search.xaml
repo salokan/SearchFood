@@ -19,10 +19,10 @@
                         AutomationProperties.AutomationId="BackButton" AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center"/>
-            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding ConnectedtHeader}">
                 <StackPanel Orientation="Vertical">
-                    <Button  Command="{Binding Path=PopupOpenCommande}" Height="100" Width="100" VerticalAlignment="Center" BorderThickness="0" BorderBrush="Teal" Padding="0">
-                        <Image Source="/Image/Sasuke.jpeg" Stretch="Fill" Height="100" Width="100"/>
+                    <Button  Command="{Binding Path=PopupOpenCommande}" VerticalAlignment="Center" BorderThickness="0" BorderBrush="Teal" Padding="0">
+                        <TextBlock FontSize="40" Text="{Binding LoginConnected}" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
                     </Button>
                     <Popup IsOpen="{Binding PopupOpen}">
                         <Grid Background="Teal" Width="120" Height="75">
@@ -33,47 +33,59 @@
                         </Grid>
                     </Popup>
                 </StackPanel>
-                <TextBlock FontSize="40" Text="Visibility" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding InverseVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding DeconnectedtHeader}">
                 <Button  Command="{Binding Path=LoginCommand}" Content="Connexion" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <Button  Command="{Binding Path=CreateAccountCommand}" Content="Créer un Compte" VerticalAlignment="Center" Margin="0,0,10,0"/>
             </StackPanel>
         </Grid>
         <Grid Margin="0,140,0,0" DataContext="{Binding Search, Source={StaticResource Locator}}">
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,24,0,0" TextWrapping="Wrap" Text="Prix : " VerticalAlignment="Top" FontWeight="Bold"/>
-            <StackPanel Height="54" Margin="341,10,165,0" VerticalAlignment="Top" Orientation="Horizontal">
-                <RadioButton Content="Petit Budget"  FontSize="32"/>
-                <RadioButton Content="Moyen Budget"  FontSize="32"/>
-                <RadioButton Content="Gros Budget"  FontSize="32"/>
-                <RadioButton Content="Peu importe" FontSize="32" IsChecked="True"/>
+            <StackPanel Height="54" Margin="341,10,0,0" VerticalAlignment="Top" Orientation="Horizontal" >
+                <RadioButton Content="Petit Budget"  FontSize="32" IsChecked="{Binding Path=PetitBudget, Mode=TwoWay}" Width="284" />
+                <RadioButton Content="Moyen Budget"  FontSize="32" IsChecked="{Binding Path=MoyenBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="295"/>
+                <RadioButton Content="Gros Budget"  FontSize="32" IsChecked="{Binding Path=GrosBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="235"/>
+                <RadioButton Content="Peu importe" FontSize="32" IsChecked="{Binding Path=PeuImporteBudget, Mode=TwoWay}" Margin="0,4,0,3" Width="277"/>
             </StackPanel>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,83,0,0" TextWrapping="Wrap" Text="Distance : " VerticalAlignment="Top"  FontWeight="Bold"/>
-            <Slider HorizontalAlignment="Left" Value="10" Margin="341,84,0,0" VerticalAlignment="Top" Width="544" Height="37"/>
-            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="915,83,0,0" TextWrapping="Wrap" Text="50 KM" VerticalAlignment="Top"/>
+            <Slider HorizontalAlignment="Left" Margin="341,84,0,0" VerticalAlignment="Top" Width="544" Height="37" Value="{Binding Path=Distance, Mode=TwoWay}"/>
+            <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="915,83,0,0" TextWrapping="Wrap" Text="{Binding Path=Distance, Mode=TwoWay}" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,139,0,0" TextWrapping="Wrap" Text="Délai : " VerticalAlignment="Top" FontWeight="Bold"/>
-            <StackPanel Height="51" Margin="340,136,483,0" VerticalAlignment="Top" Orientation="Horizontal" RenderTransformOrigin="0.491,-0.766">
-                <RadioButton Content="Court" FontSize="32"/>
-                <RadioButton Content="Moyen" FontSize="32"/>
-                <RadioButton Content="Long" FontSize="32"/>
-                <RadioButton Content="Peu importe" FontSize="32" IsChecked="True"/>
+            <StackPanel Height="51" Margin="340,136,217,0" VerticalAlignment="Top" Orientation="Horizontal" RenderTransformOrigin="0.491,-0.766">
+                <RadioButton Content="Court" FontSize="32" IsChecked="{Binding Path=CourtDelai, Mode=TwoWay}" Margin="0,2" Width="175"/>
+                <RadioButton Content="Moyen" FontSize="32" IsChecked="{Binding Path=MoyenDelai, Mode=TwoWay}" Margin="0,2" Width="212"/>
+                <RadioButton Content="Long" FontSize="32" IsChecked="{Binding Path=LongDelai, Mode=TwoWay}" Margin="0,2" Width="155"/>
+                <RadioButton Content="Peu importe" FontSize="32" IsChecked="{Binding Path=PeuImporteDelai, Mode=TwoWay}" Margin="0,2" Width="280"/>
             </StackPanel>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,196,0,0" TextWrapping="Wrap" Text="Type de cuisine : " VerticalAlignment="Top" FontWeight="Bold"/>
-            <ComboBox HorizontalAlignment="Left" Margin="340,203,0,0" VerticalAlignment="Top" Width="715"/>
+            <ComboBox HorizontalAlignment="Left" Margin="340,203,0,0" VerticalAlignment="Top" Width="715" ItemsSource="{Binding Path=TypeDeCuisine}" SelectedItem="{Binding Path=TypeCuisineChoisie, Mode=TwoWay}"/>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,262,0,0" TextWrapping="Wrap" Text="Autre : " VerticalAlignment="Top" FontWeight="Bold"/>
-            <StackPanel Height="52" Margin="340,258,471,0" VerticalAlignment="Top" Orientation="Horizontal">
-                <RadioButton Content="Restaurant" FontSize="32"/>
-                <RadioButton Content="Fast-Food" FontSize="32"/>
-                <RadioButton Content="Peu importe" FontSize="32" IsChecked="True"/>
+            <StackPanel Height="52" Margin="340,258,351,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <RadioButton Content="Restaurant" FontSize="32" IsChecked="{Binding Path=RestaurantAutre, Mode=TwoWay}" Margin="0,3,0,2" Width="238"/>
+                <RadioButton Content="Fast-Food" FontSize="32" IsChecked="{Binding Path=FastFoodAutre, Mode=TwoWay}" Margin="0,3,0,2" Width="224"/>
+                <RadioButton Content="Peu importe" FontSize="32" IsChecked="{Binding Path=PeuImporteAutre, Mode=TwoWay}" Margin="0,3,0,2" Width="257"/>
             </StackPanel>
-            <CheckBox Content="A emporter" HorizontalAlignment="Left" Margin="946,272,0,0" VerticalAlignment="Top" FontSize="32"/>
+            <CheckBox Content="A emporter" HorizontalAlignment="Left" Margin="1089,259,0,0" VerticalAlignment="Top" FontSize="32" IsChecked="{Binding Path=AEmporter, Mode=TwoWay}"/>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="43,328,0,0" TextWrapping="Wrap" Text="Notation : " VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="340,328,0,0" TextWrapping="Wrap" Text="Min : " VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="460,335,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox HorizontalAlignment="Left" Margin="460,335,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Path=MinNotation}" SelectedItem="{Binding Path=MinNotationChoisie, Mode=TwoWay}"/>
             <TextBlock HorizontalAlignment="Left" FontSize="32" Margin="684,335,0,0" TextWrapping="Wrap" Text="Max : " VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="814,335,0,0" VerticalAlignment="Top" Width="120"/>
-            <Button Content="Rechercher" HorizontalAlignment="Left" Margin="498,465,0,0" VerticalAlignment="Top" Width="245" FontSize="32" Command="{Binding Path=RechercherBouton}"/>
+            <ComboBox HorizontalAlignment="Left" Margin="814,335,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Path=MaxNotation}" SelectedItem="{Binding Path=MaxNotationChoisie, Mode=TwoWay}" />
+            <Button Content="Rechercher" HorizontalAlignment="Left" Margin="40,473,0,0" VerticalAlignment="Top" Width="245" FontSize="32" Command="{Binding Path=RechercherBouton}" Click="RechercherClick"/>
+            <Border x:Name="borderResultat" BorderBrush="#FFF9F4F4" BorderThickness="1" HorizontalAlignment="Left" Height="205" Margin="341,413,0,0" VerticalAlignment="Top" Width="674" Background="Black" Visibility="Collapsed">
+                <Grid Margin="0,0,0,-21">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="109*"/>
+                        <ColumnDefinition Width="115*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,10,0,0" TextWrapping="Wrap" Text="{Binding Path=NomResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,45,0,0" TextWrapping="Wrap" Text="{Binding Path=DureeResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,80,0,0" TextWrapping="Wrap" Text="{Binding Path=PrixResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,115,0,0" TextWrapping="Wrap" Text="{Binding Path=CategorieResultat}" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="591"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="25" Margin="25,150,0,0" TextWrapping="Wrap" Text="{Binding Path=TypeCuisineResultat}" VerticalAlignment="Top" Width="591" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Border>
+            <Button x:Name="boutonChoisir" Content="Choisir" HorizontalAlignment="Left" Margin="1149,438,0,0" VerticalAlignment="Top" FontSize="32" Command="{Binding Path=ChoisirBouton}" Visibility="Collapsed"/>
+            <Button x:Name="boutonSuivant" Content="Suivant" HorizontalAlignment="Left" Margin="1149,514,0,0" VerticalAlignment="Top" FontSize="32" Command="{Binding Path=SuivantBouton}" Visibility="Collapsed"/>
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="-209,478,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
     </Grid>
 </Page>

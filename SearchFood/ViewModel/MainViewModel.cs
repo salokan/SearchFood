@@ -1,43 +1,29 @@
-using System;
 using System.Windows.Input; 
 using GalaSoft.MvvmLight;
 using SearchFood.Common;
 using SearchFood.Navigation;
 using SearchFood.View;
-using SearchFood.SearchFoodServiceReference;
+using Windows.UI.Xaml; 
 
 namespace SearchFood.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private const String Hidden = "Collapsed";
-        private const String Visible = "Visible";
-        private String _visibility;
-        private String _inverseVisibility;
-        private String _loginConnected;
-        private Boolean _popupOpen;
-        private Boolean _log; 
+        private Visibility _connectedHeader;
+        private Visibility _deconnectedHeader;  
         private readonly INavigationService _navigationService;
-        private Utilisateur _userConnected;
 
         public MainViewModel(INavigationService navigation)
         {
-            _userConnected = ((App)(App.Current)).UserConnected;
-            _log = false;
-            _popupOpen = false;
-            _visibility = Hidden;
-            _inverseVisibility = Visible;
             _navigationService = navigation;
             LoginCommand = new RelayCommand(Login);
             LogoutCommand = new RelayCommand(Logout);
             SearchCommand = new RelayCommand(Search);
+            AccountCommande = new RelayCommand(Account);
             RestauCommand = new RelayCommand(Restau);
-            PopupOpenCommande = new RelayCommand(ClickProfil);
-            CreateAccountCommand = new RelayCommand(CreateAccount);
-            if (_userConnected != null)
-            {
-                _loginConnected = _userConnected.Pseudonyme;
-            }
+            //if (((App)(Application.Current)).UserConnected != null)
+            
+            
         }
 
         # region Getter / Setter Button
@@ -51,14 +37,13 @@ namespace SearchFood.ViewModel
 
         public ICommand LogoutCommand { get; set; }
 
-        public ICommand PopupOpenCommande { get; set; }
+        public ICommand AccountCommande { get; set; }
         #endregion
 
         #region Command Methode
         public void Login()
         {
-            Visibility = Visibility == Visible ? Hidden : Visible;
-            InverseVisibility = _visibility == Visible ? Hidden : Visible;
+            _navigationService.Navigate(typeof(Create_Connexion));
         }
         public void Search()
         {
@@ -70,54 +55,31 @@ namespace SearchFood.ViewModel
             _navigationService.Navigate(typeof(Restau));
         }
 
-        public void ClickProfil()
-        {
-            PopupOpen = !_popupOpen;
-        }
-
-        public void CreateAccount()
-        {
-            _navigationService.Navigate(typeof(Create_Connexion));
-        }
-
+        
         public void Logout()
         {
-            Visibility = Hidden;
-            InverseVisibility = Visible;
-            Log = false;
+            ConnectedHeader = Visibility.Collapsed;
+            DeconnectedHeader = Visibility.Visible; 
+        }
+        public void Account()
+        {
+            _navigationService.Navigate(typeof(Account));
         }
         #endregion
 
         #region Getter / Setter MVVM
-        public Boolean PopupOpen
+        public Visibility ConnectedHeader
         {
-            get { return _popupOpen; }
-            set { _popupOpen = value; RaisePropertyChanged(); }
+            get { return _connectedHeader; }
+            set { _connectedHeader = value; RaisePropertyChanged(); }
         }
 
-        public Boolean Log
-        {
-            get { return _log; }
-            set { _log = value; RaisePropertyChanged(); }
-        }
-
-        public String Visibility
-        {
-            get { return _visibility; }
-            set { _visibility = value; RaisePropertyChanged(); }
-        }
-
-        public String InverseVisibility
+        public Visibility DeconnectedHeader
         {
             get {
-                return _inverseVisibility;
-            }
-            set { _inverseVisibility = value; RaisePropertyChanged(); }
+                return _deconnectedHeader;
         }
-        public String LoginConnected
-        {
-            get { return _loginConnected; }
-            set { _loginConnected = value; RaisePropertyChanged(); }
+            set { _deconnectedHeader = value; RaisePropertyChanged(); }
         }
         #endregion
     }

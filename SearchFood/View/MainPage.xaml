@@ -1,4 +1,5 @@
-﻿<Page
+﻿<Page 
+    x:Name="Main"
     x:Class="SearchFood.View.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
@@ -20,24 +21,12 @@
             </Grid.ColumnDefinitions> 
             <TextBlock Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center"/>
-            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <StackPanel Orientation="Vertical">
-                    <Button  Command="{Binding Path=PopupOpenCommande}" Height="100" Width="100" VerticalAlignment="Center" BorderThickness="0" BorderBrush="Teal" Padding="0">
-                        <TextBlock FontSize="40" Text="{Binding LoginConnected}" TextAlignment="Center" VerticalAlignment="Center" Margin="0,0,30,0"/>
-                    </Button>
-                    <Popup IsOpen="{Binding PopupOpen}">
-                        <Grid Background="Teal" Width="120" Height="75">
-                            <StackPanel Orientation="Vertical">
-                                <Button Content="Mon Profil"  Width="120"/>
-                                <Button Content="Deconnexion" Width="120" Command="{Binding LogoutCommand}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Popup>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding InverseVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding ConnectedHeader}">
+                <Button Content="Mon Profil"  Width="120" Command="{Binding AccountCommande}"/>
+                <Button Content="Deconnexion" Width="120" Command="{Binding LogoutCommand}"/>  
+            </StackPanel> 
+            <StackPanel HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" Visibility="{Binding DeconnectedHeader}">
                 <Button  Command="{Binding Path=LoginCommand}" Content="Connexion" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <Button  Command="{Binding Path=CreateAccountCommand}" Content="Créer un Compte" VerticalAlignment="Center" Margin="0,0,10,0"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" >

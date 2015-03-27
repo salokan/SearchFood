@@ -129,7 +129,7 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private SearchFood.SearchFoodServiceReference.Categorie CategorieField;
         
-        private string Code_PostalField;
+        private int Code_PostalField;
         
         private System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Commentaire> CommentaireField;
         
@@ -157,7 +157,7 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string Site_WebField;
         
-        private string TelephoneField;
+        private int TelephoneField;
         
         private SearchFood.SearchFoodServiceReference.Type_Cuisine Type_CuisineField;
         
@@ -190,7 +190,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code_Postal {
+        public int Code_Postal {
             get {
                 return this.Code_PostalField;
             }
@@ -372,7 +372,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Telephone {
+        public int Telephone {
             get {
                 return this.TelephoneField;
             }
@@ -1177,7 +1177,7 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string AdresseValueField;
         
-        private string CodePostalValueField;
+        private int CodePostalValueField;
         
         private System.Nullable<int> DureeRepasValueField;
         
@@ -1199,7 +1199,7 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string SitesWebValueField;
         
-        private string TelephoneValueField;
+        private int TelephoneValueField;
         
         private string VilleValueField;
         
@@ -1217,7 +1217,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CodePostalValue {
+        public int CodePostalValue {
             get {
                 return this.CodePostalValueField;
             }
@@ -1360,7 +1360,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TelephoneValue {
+        public int TelephoneValue {
             get {
                 return this.TelephoneValueField;
             }
