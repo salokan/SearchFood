@@ -39,6 +39,7 @@ namespace SearchFoodServer.CAD
                     composite.PrixValue = r.Prix;
                     composite.IdCategoriesValue = r.Id_Categorie;
                     composite.IdTypesCuisineValue = r.Id_Type_Cuisine;
+                    if (r.Livraison != null) composite.TypeLivraison = (int) r.Livraison;
                     restaurantsList.Add(composite);
                 }
             }
@@ -76,6 +77,7 @@ namespace SearchFoodServer.CAD
                 compositeRestaurants.PrixValue = restaurant.Prix;
                 compositeRestaurants.IdCategoriesValue = restaurant.Id_Categorie;
                 compositeRestaurants.IdTypesCuisineValue = restaurant.Id_Type_Cuisine;
+                if (restaurant.Livraison != null) compositeRestaurants.TypeLivraison = (int) restaurant.Livraison;
             }
 
             return compositeRestaurants;

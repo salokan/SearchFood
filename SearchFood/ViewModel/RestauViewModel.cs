@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
-using SearchFood.View;
-using SearchFood.Webservices;
-using RelayCommand = GalaSoft.MvvmLight.Command.RelayCommand;
 
 namespace SearchFood.ViewModel
 {
@@ -22,11 +14,11 @@ namespace SearchFood.ViewModel
         private string _nomRestaurant;
         private int _dureeRepas;
         private String _adresseRestaurant;
-        private int _codePostal;
+        private string _codePostal;
         private String _ville;
         private int _prixRestaurant;
         private string _siteWeb;
-        private int _telephone;
+        private string _telephone;
         private string _mail;
         private string _latitude;
         private string _longitude;
@@ -34,8 +26,8 @@ namespace SearchFood.ViewModel
         private Services _restauServices;
         
 
-        #region
-        public string NomRestaurant //Mot à ajouter
+        #region Champs Restaurant
+        public string NomRestaurant 
         {
             get
             {
@@ -52,7 +44,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int DureeRepas //Mot à ajouter
+        public int DureeRepas 
         {
             get
             {
@@ -69,7 +61,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string AdresseRestaurant //Mot à ajouter
+        public string AdresseRestaurant 
         {
             get
             {
@@ -86,7 +78,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int CodePostal //Mot à ajouter
+        public string CodePostal 
         {
             get
             {
@@ -103,7 +95,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Ville //Mot à ajouter
+        public string Ville 
         {
             get
             {
@@ -120,7 +112,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int PrixRestaurant //Mot à ajouter
+        public int PrixRestaurant 
         {
             get
             {
@@ -137,7 +129,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string SiteWeb //Mot à ajouter
+        public string SiteWeb 
         {
             get
             {
@@ -154,7 +146,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int Telephone //Mot à ajouter
+        public string Telephone 
         {
             get
             {
@@ -171,7 +163,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public String Mail //Mot à ajouter
+        public String Mail 
         {
             get
             {
@@ -188,7 +180,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Latitude //Mot à ajouter
+        public string Latitude 
         {
             get
             {
@@ -205,7 +197,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Longitude //Mot à ajouter
+        public string Longitude 
         {
             get
             {
@@ -239,11 +231,11 @@ namespace SearchFood.ViewModel
         {
             restaurant = await _restauServices._restaurants.GetRestaurants(idrestau);
             NomRestaurant = restaurant.Nom;
-            DureeRepas = (int) restaurant.Duree_repas;
+            if (restaurant.Duree_repas != null) DureeRepas = (int) restaurant.Duree_repas;
             AdresseRestaurant = AdresseRestaurant = restaurant.Adresse;
             CodePostal = restaurant.Code_Postal;
             Ville = restaurant.Ville;
-            PrixRestaurant = (int) restaurant.Prix;
+            if (restaurant.Prix != null) PrixRestaurant = (int) restaurant.Prix;
             SiteWeb = restaurant.Site_Web;
             Telephone = restaurant.Telephone;
             Mail = restaurant.Mail;
