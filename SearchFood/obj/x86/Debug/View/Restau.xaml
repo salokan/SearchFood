@@ -62,16 +62,18 @@
                     <TextBlock Grid.Column="0" Grid.Row="6" Text="Mail" FontSize="20"/>
                     <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Mail}" FontSize="20"/>
                 </Grid>
-                <ListView Height="408" ItemsSource="{Binding Path=Commentaireslist}">
+                <ListView Height="281" ItemsSource="{Binding Path=Commentaireslist}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Height="60" Width="468">
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Utilisateur}" Width="376"/>
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Path=Commentaire}" Width="376"/>
                             </StackPanel>
-                        </DataTemplate>    
+                        </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <TextBox TextWrapping="Wrap" Text="{Binding Path=NewCommentaire, Mode=TwoWay}" Height="97"/>
+                <Button Content="Ajouter Commentaire" HorizontalAlignment="Stretch" Command="{Binding Path=AjouterCommentaireButton}" VerticalAlignment="Stretch"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="5">
                 <TextBlock Text="Carte" FontSize="28" HorizontalAlignment="Center"/>

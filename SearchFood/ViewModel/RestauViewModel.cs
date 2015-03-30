@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
+using SearchFood.Common;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
@@ -31,6 +33,8 @@ namespace SearchFood.ViewModel
 
         private string _pseudo;
         private string _commentaire;
+
+        private string _newCommentaire;
 
         private Services _restauServices;
         
@@ -242,16 +246,38 @@ namespace SearchFood.ViewModel
 
         private ObservableCollection<CommentairesModel> _commentairesList = new ObservableCollection<CommentairesModel>();
 
+        public string NewCommentaire
+        {
+            get
+            {
+                return _newCommentaire;
+            }
+
+            set
+            {
+                if (_newCommentaire != value)
+                {
+                    _newCommentaire = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+
+
 
         public RestauViewModel(INavigationService navigation)
         {
             _navigationService = navigation;
             _restauServices = new Services();
             //GetRestau = new RelayCommand(Restau);
+            AjouterCommentaireButton = new RelayCommand(AjouterCommentaire);
             
         }
 
         public ICommand GetRestau { get; set; }
+
+        public ICommand AjouterCommentaireButton { get; set; }
 
         public async void Restau()
         {
@@ -289,6 +315,25 @@ namespace SearchFood.ViewModel
 
 
             Commentaireslist = _commentairesList;
+        }
+
+        public async void AjouterCommentaire()
+        {
+            if(((App)(Application.Current)).UserConnected != null)
+            {
+                Commentaire commentaire = new Commentaire { Commentaire1 = NewCommentaire, Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur };
+
+                _restauServices._commentaires.AddCommentaires(commentaire);
+
+                MessageDialog msgDialog = new MessageDialog("Commentaire ajouté avec succès", "Félicitation");
+                await msgDialog.ShowAsync();
+            }
+            else
+            {
+                MessageDialog msgDialog2 = new MessageDialog("Vous n'êtes pas connecté", "Attention");
+                await msgDialog2.ShowAsync();
+            }
+           
         }
         
         //Récupère le paramètre contenant la définition à modifier
