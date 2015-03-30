@@ -14,6 +14,7 @@ namespace SearchFood.ViewModel
         public AccountViewModel(INavigationService navigation)
         {
             _navigationService = navigation; 
+            Historiques = new List<Historique>();
         }
 
         #region Getter / Setter MVVM 
