@@ -50,6 +50,12 @@
   <wsdl:message name="ISearchFoodService_GetCommentaire_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCommentaireResponse" />
   </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCommentairesByRestaurant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentairesByRestaurant" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetCommentairesByRestaurant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentairesByRestaurantResponse" />
+  </wsdl:message>
   <wsdl:message name="ISearchFoodService_AddCommentaires_InputMessage">
     <wsdl:part name="parameters" element="tns:AddCommentaires" />
   </wsdl:message>
@@ -283,6 +289,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentaire" message="tns:ISearchFoodService_GetCommentaire_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentaireResponse" message="tns:ISearchFoodService_GetCommentaire_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetCommentairesByRestaurant">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurant" message="tns:ISearchFoodService_GetCommentairesByRestaurant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurantResponse" message="tns:ISearchFoodService_GetCommentairesByRestaurant_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AddCommentaires">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/AddCommentaires" message="tns:ISearchFoodService_AddCommentaires_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/AddCommentairesResponse" message="tns:ISearchFoodService_AddCommentaires_OutputMessage" />
@@ -478,6 +488,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetCommentaire">
       <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetCommentaire" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentairesByRestaurant">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurant" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

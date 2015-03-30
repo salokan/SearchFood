@@ -48,6 +48,26 @@ namespace SearchFood.Webservices
             return commentaire;
         }
 
+        public async Task<List<Commentaire>> GetCommentairesByRestaurant(int idRestaurant)
+        {
+            List<Commentaire> commentaires = new List<Commentaire>();
+
+            ObservableCollection<CompositeCommentaires> commentairesList = await _client.GetCommentairesByRestaurantAsync(idRestaurant);
+
+            foreach (CompositeCommentaires c in commentairesList)
+            {
+                Commentaire commentaire = new Commentaire();
+                commentaire.Id_Commentaire = c.IdCommentairesValue;
+                commentaire.Id_Restaurant = c.IdRestaurantsValue;
+                commentaire.Id_Utilisateur = c.IdUtilisateursValue;
+                commentaire.Commentaire1 = c.CommentairesValue;
+
+                commentaires.Add(commentaire);
+            }
+
+            return commentaires;
+        }
+
         public async void AddCommentaires(Commentaire c)
         {
             await _client.AddCommentairesAsync(c);

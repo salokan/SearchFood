@@ -60,6 +60,35 @@ namespace SearchFoodServer.CAD
             return compositeCommentaires;
         }
 
+        public List<CompositeCommentaires> GetCommentaireByRestaurant(int idRestaurant)
+        {
+            List<CompositeCommentaires> commentairesList = new List<CompositeCommentaires>();
+
+            List<Commentaire> commentaires;
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from c in bdd.Commentaire where c.Id_Restaurant == idRestaurant
+                              select c;
+
+                commentaires = requete.ToList();
+            }
+
+            if (commentaires.Count > 0)
+            {
+                foreach (Commentaire c in commentaires)
+                {
+                    CompositeCommentaires composite = new CompositeCommentaires();
+                    composite.IdCommentairesValue = c.Id_Commentaire;
+                    composite.IdRestaurantsValue = c.Id_Restaurant;
+                    composite.IdUtilisateursValue = c.Id_Utilisateur;
+                    composite.CommentairesValue = c.Commentaire1;
+                    commentairesList.Add(composite);
+                }
+            }
+
+            return commentairesList;     
+        }
+
         public void AddCommentaires(Commentaire c)
         {
             using (var bdd = new searchfoodEntities())
