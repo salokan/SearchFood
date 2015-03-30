@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
@@ -10,9 +12,10 @@ namespace SearchFood.ViewModel
 {
     public class RestauViewModel : ViewModelBase, IViewModel
     {
-        //private List<Commentaire> commentsListe = new List<Commentaire>();
+        private List<Commentaire> commentsListe = new List<Commentaire>();
         private INavigationService _navigationService;
         private Restaurant restaurant = new Restaurant();
+        private int idResultat;
         private int _idrestau;
         private string _nomRestaurant;
         private int _dureeRepas;
@@ -25,6 +28,9 @@ namespace SearchFood.ViewModel
         private string _mail;
         private string _latitude;
         private string _longitude;
+
+        private string _pseudo;
+        private string _commentaire;
 
         private Services _restauServices;
         
@@ -219,13 +225,30 @@ namespace SearchFood.ViewModel
 
         #endregion
 
+        public ObservableCollection<CommentairesModel> Commentaireslist
+        {
+            get { return _commentairesList; }
+
+            set
+            {
+                if (_commentairesList != value)
+                {
+                    _commentairesList = value;
+                    RaisePropertyChanged();
+                }
+            }
+
+        }
+
+        private ObservableCollection<CommentairesModel> _commentairesList = new ObservableCollection<CommentairesModel>();
+
+
         public RestauViewModel(INavigationService navigation)
         {
             _navigationService = navigation;
             _restauServices = new Services();
             //GetRestau = new RelayCommand(Restau);
-           
-
+            
         }
 
         public ICommand GetRestau { get; set; }
@@ -246,17 +269,26 @@ namespace SearchFood.ViewModel
             Longitude = restaurant.Longitude;
 
 
-            //commentsListe = await _restauServices._commentaires.GetCommentaires();
+        }
 
-            //if (commentsListe.Count != 0)
-            //{
-                
-            //}
-            //else
-            //{
-            //    MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
-            //    await msgDialog2.ShowAsync();
-            //}
+        public async void InitCommentaireList()
+        {
+            commentsListe = await _restauServices._commentaires.GetCommentairesByRestaurant(_idrestau);
+            
+
+            Utilisateur utilisateur = new Utilisateur();
+
+            foreach (Commentaire c in commentsListe)
+            {
+                CommentairesModel commentairesModel = new CommentairesModel();
+                commentairesModel.Commentaire = c.Commentaire1;
+                utilisateur = await _restauServices._utilisateurs.GetUtilisateur(c.Id_Utilisateur);
+                commentairesModel.Utilisateur = utilisateur.Pseudonyme;
+                _commentairesList.Add(commentairesModel);
+            }
+
+
+            Commentaireslist = _commentairesList;
         }
         
         //Récupère le paramètre contenant la définition à modifier
@@ -264,6 +296,7 @@ namespace SearchFood.ViewModel
         {
             _idrestau = (int) parameter;
             Restau();
+            InitCommentaireList();
         }
 
         //Permet de réinitialiser la liste à chaque fois que l'on navigue sur cette page

@@ -441,13 +441,13 @@ namespace SearchFood.ViewModel
             maxNote = _maxNotationChoisie;
 
             restaurantsListe = await _service._restaurants.GetRestaurants();
-            restaurantsListe = restaurantsListe.FindAll(s =>
-                (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
-                (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
-                (s.Id_Type_Cuisine == idTypeDeCuisine) &&
-                (s.Id_Categorie == idCategorieCuisine) &&
-                (s.Livraison == livraison)
-                );
+            //restaurantsListe = restaurantsListe.FindAll(s =>
+            //    (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
+            //    (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
+            //    (s.Id_Type_Cuisine == idTypeDeCuisine) &&
+            //    (s.Id_Categorie == idCategorieCuisine) &&
+            //    (s.Livraison == livraison)
+            //    );
 
 
 
@@ -494,8 +494,6 @@ namespace SearchFood.ViewModel
 
         private async void Choisir()
         {
-            MessageDialog msgDialog2 = new MessageDialog("On navigue vers détails restaurant de id : " + idRestaurant, "Attention");
-            await msgDialog2.ShowAsync();
             _navigationService.Navigate(typeof(Restau), idRestaurant);
         }
 
