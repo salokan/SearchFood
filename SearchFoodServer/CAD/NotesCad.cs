@@ -91,6 +91,21 @@ namespace SearchFoodServer.CAD
             return notesList;
         }
 
+        public float GetMoyenneNoteRestaurant(int idRestaurant)
+        {
+            float moyenne;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = (from n in bdd.Note where n.Id_Restaurant == idRestaurant
+                              select n.Note1).Average();
+
+                moyenne = (float)requete;
+            }
+
+            return moyenne;
+        }
+
         public List<CompositeNotes> GetNoteByUser(int idUser)
         {
             List<CompositeNotes> notesList = new List<CompositeNotes>();

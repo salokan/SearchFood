@@ -270,6 +270,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMoyenneNoteRestaurant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRestaurant" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMoyenneNoteRestaurantResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMoyenneNoteRestaurantResult" type="xs:float" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddNotes">
     <xs:complexType>
       <xs:sequence>

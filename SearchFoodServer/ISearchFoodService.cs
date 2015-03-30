@@ -61,6 +61,8 @@ namespace SearchFoodServer
         [OperationContract]
         List<CompositeNotes> GetNoteByUser(int idUser);
         [OperationContract]
+        float GetMoyenneNoteRestaurant(int idRestaurant);
+        [OperationContract]
         void AddNotes(Note n);
         [OperationContract]
         void DeleteNotes(int id);
