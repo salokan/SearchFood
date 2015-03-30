@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SearchFood.Model;
@@ -17,6 +18,7 @@ namespace SearchFood.ViewModel
 {
     public class RestauViewModel : ViewModelBase
     {
+        private List<Commentaire> commentsListe = new List<Commentaire>();
         private INavigationService _navigationService;
         private Restaurant restaurant = new Restaurant();
         private string _nomRestaurant;
@@ -249,6 +251,19 @@ namespace SearchFood.ViewModel
             Mail = restaurant.Mail;
             Latitude = restaurant.Latitude;
             Longitude = restaurant.Longitude;
+
+
+            commentsListe = await _restauServices._commentaires.GetCommentaires();
+
+            if (commentsListe.Count != 0)
+            {
+                
+            }
+            else
+            {
+                MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
+                await msgDialog2.ShowAsync();
+            }
         }
     }
 }
