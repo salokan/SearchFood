@@ -7,7 +7,7 @@ using Windows.UI.Xaml;
 
 namespace SearchFood.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IViewModel
     {
         private Visibility _connectedHeader;
         private Visibility _deconnectedHeader;  
@@ -24,11 +24,15 @@ namespace SearchFood.ViewModel
 
             ConnectedHeader = Visibility.Collapsed;
             DeconnectedHeader = Visibility.Visible; 
+        }
 
+        public void InitMain()
+        {
             if (((App)(Application.Current)).UserConnected != null)
-             {
+            {
                 ConnectedHeader = Visibility.Visible;
-                DeconnectedHeader = Visibility.Collapsed;             }
+                DeconnectedHeader = Visibility.Collapsed;
+            }
         }
 
         # region Getter / Setter Button
@@ -87,5 +91,17 @@ namespace SearchFood.ViewModel
             set { _deconnectedHeader = value; RaisePropertyChanged(); }
         }
         #endregion
+
+        //Récupère le paramètre contenant la définition à modifier
+        public void GetParameter(object parameter)
+        {
+
+        }
+
+        //Permet de réinitialiser la liste à chaque fois que l'on navigue sur cette page
+        public void OnNavigatedTo()
+        {
+            InitMain();
+        }
     }
 }
