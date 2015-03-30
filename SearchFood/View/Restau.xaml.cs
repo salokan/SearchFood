@@ -29,15 +29,19 @@ namespace SearchFood.View
             this.InitializeComponent();
         }
 
-
         public IViewModel ViewModel
         {
-            get { return DataContext as IViewModel; }
+            get { return this.DataContext as IViewModel; }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.OnNavigatedTo();
-        }     
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter != null)
+            {
+                ViewModel.GetParameter(e.Parameter);
+            }
+        }      
     }
 }

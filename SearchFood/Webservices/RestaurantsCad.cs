@@ -38,6 +38,7 @@ namespace SearchFood.Webservices
                 restaurant.Prix = r.PrixValue;
                 restaurant.Id_Categorie = r.IdCategoriesValue;
                 restaurant.Id_Type_Cuisine = r.IdTypesCuisineValue;
+                restaurant.Livraison = r.TypeLivraison;
 
                 restaurants.Add(restaurant);
             }
@@ -65,6 +66,7 @@ namespace SearchFood.Webservices
             restaurant.Prix = restaurantsComposite.PrixValue;
             restaurant.Id_Categorie = restaurantsComposite.IdCategoriesValue;
             restaurant.Id_Type_Cuisine = restaurantsComposite.IdTypesCuisineValue;
+            restaurant.Livraison = restaurantsComposite.TypeLivraison;
 
             return restaurant;   
         }

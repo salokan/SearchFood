@@ -45,18 +45,19 @@
           </Key>
           <Property Name="Id_Restaurant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Site_Web" Type="varchar" MaxLength="50" />
+          <Property Name="Site_Web" Type="varchar" MaxLength="255" />
           <Property Name="Mail" Type="varchar" MaxLength="50" />
           <Property Name="Adresse" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Code_Postal" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Ville" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telephone" Type="varchar" MaxLength="20" />
-          <Property Name="Latitude" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Longitude" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="10" />
+          <Property Name="Latitude" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Longitude" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Duree_repas" Type="int" />
           <Property Name="Prix" Type="int" />
           <Property Name="Id_Categorie" Type="int" Nullable="false" />
           <Property Name="Id_Type_Cuisine" Type="int" Nullable="false" />
+          <Property Name="Livraison" Type="int" />
         </EntityType>
         <EntityType Name="Type_Cuisine">
           <Key>
@@ -264,14 +265,14 @@
           </Key>
           <Property Name="Id_Restaurant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Site_Web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Site_Web" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Code_Postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Latitude" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Longitude" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Duree_repas" Type="Int32" />
           <Property Name="Prix" Type="Int32" />
           <Property Name="Id_Categorie" Type="Int32" Nullable="false" />
@@ -281,6 +282,7 @@
           <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Restaurant" FromRole="Restaurant" ToRole="Historique" />
           <NavigationProperty Name="Note" Relationship="Self.FK_Note_Restaurant" FromRole="Restaurant" ToRole="Note" />
           <NavigationProperty Name="Type_Cuisine" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Restaurant" ToRole="Type_Cuisine" />
+          <Property Name="Livraison" Type="Int32" />
         </EntityType>
         <EntityType Name="Type_Cuisine">
           <Key>
@@ -488,6 +490,7 @@
           <EntitySetMapping Name="Restaurant">
             <EntityTypeMapping TypeName="searchfoodModel.Restaurant">
               <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="Livraison" ColumnName="Livraison" />
                 <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Site_Web" ColumnName="Site_Web" />

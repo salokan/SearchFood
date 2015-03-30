@@ -26,6 +26,7 @@
       <xs:element minOccurs="0" name="Id_Restaurant" type="xs:int" />
       <xs:element minOccurs="0" name="Id_Type_Cuisine" type="xs:int" />
       <xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Livraison" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />

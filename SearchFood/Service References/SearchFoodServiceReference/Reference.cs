@@ -145,6 +145,8 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string LatitudeField;
         
+        private System.Nullable<int> LivraisonField;
+        
         private string LongitudeField;
         
         private string MailField;
@@ -289,6 +291,19 @@ namespace SearchFood.SearchFoodServiceReference {
                 if ((object.ReferenceEquals(this.LatitudeField, value) != true)) {
                     this.LatitudeField = value;
                     this.RaisePropertyChanged("Latitude");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Livraison {
+            get {
+                return this.LivraisonField;
+            }
+            set {
+                if ((this.LivraisonField.Equals(value) != true)) {
+                    this.LivraisonField = value;
+                    this.RaisePropertyChanged("Livraison");
                 }
             }
         }
@@ -1201,6 +1216,8 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string TelephoneValueField;
         
+        private int TypeLivraisonField;
+        
         private string VilleValueField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -1368,6 +1385,19 @@ namespace SearchFood.SearchFoodServiceReference {
                 if ((object.ReferenceEquals(this.TelephoneValueField, value) != true)) {
                     this.TelephoneValueField = value;
                     this.RaisePropertyChanged("TelephoneValue");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TypeLivraison {
+            get {
+                return this.TypeLivraisonField;
+            }
+            set {
+                if ((this.TypeLivraisonField.Equals(value) != true)) {
+                    this.TypeLivraisonField = value;
+                    this.RaisePropertyChanged("TypeLivraison");
                 }
             }
         }

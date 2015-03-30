@@ -1,35 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
-using SearchFood.View;
-using SearchFood.Webservices;
-using RelayCommand = GalaSoft.MvvmLight.Command.RelayCommand;
 
 namespace SearchFood.ViewModel
 {
     public class RestauViewModel : ViewModelBase, IViewModel
     {
-        private List<Commentaire> commentsListe = new List<Commentaire>();
+        //private List<Commentaire> commentsListe = new List<Commentaire>();
         private INavigationService _navigationService;
         private Restaurant restaurant = new Restaurant();
         private int _idrestau;
         private string _nomRestaurant;
         private int _dureeRepas;
         private String _adresseRestaurant;
-        private int _codePostal;
+        private string _codePostal;
         private String _ville;
         private int _prixRestaurant;
         private string _siteWeb;
-        private int _telephone;
+        private string _telephone;
         private string _mail;
         private string _latitude;
         private string _longitude;
@@ -37,8 +29,8 @@ namespace SearchFood.ViewModel
         private Services _restauServices;
         
 
-        #region
-        public string NomRestaurant //Mot à ajouter
+        #region Champs Restaurant
+        public string NomRestaurant 
         {
             get
             {
@@ -55,7 +47,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int DureeRepas //Mot à ajouter
+        public int DureeRepas 
         {
             get
             {
@@ -72,7 +64,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string AdresseRestaurant //Mot à ajouter
+        public string AdresseRestaurant 
         {
             get
             {
@@ -89,7 +81,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int CodePostal //Mot à ajouter
+        public string CodePostal 
         {
             get
             {
@@ -106,7 +98,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Ville //Mot à ajouter
+        public string Ville 
         {
             get
             {
@@ -123,7 +115,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int PrixRestaurant //Mot à ajouter
+        public int PrixRestaurant 
         {
             get
             {
@@ -140,7 +132,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string SiteWeb //Mot à ajouter
+        public string SiteWeb 
         {
             get
             {
@@ -157,7 +149,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int Telephone //Mot à ajouter
+        public string Telephone 
         {
             get
             {
@@ -174,7 +166,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public String Mail //Mot à ajouter
+        public String Mail 
         {
             get
             {
@@ -191,7 +183,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Latitude //Mot à ajouter
+        public string Latitude 
         {
             get
             {
@@ -208,7 +200,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Longitude //Mot à ajouter
+        public string Longitude 
         {
             get
             {
@@ -232,7 +224,7 @@ namespace SearchFood.ViewModel
             _navigationService = navigation;
             _restauServices = new Services();
             //GetRestau = new RelayCommand(Restau);
-            Restau();
+           
 
         }
 
@@ -242,11 +234,11 @@ namespace SearchFood.ViewModel
         {
             restaurant = await _restauServices._restaurants.GetRestaurants(_idrestau);
             NomRestaurant = restaurant.Nom;
-            DureeRepas = (int) restaurant.Duree_repas;
+            if (restaurant.Duree_repas != null) DureeRepas = (int) restaurant.Duree_repas;
             AdresseRestaurant = AdresseRestaurant = restaurant.Adresse;
             CodePostal = restaurant.Code_Postal;
             Ville = restaurant.Ville;
-            PrixRestaurant = (int) restaurant.Prix;
+            if (restaurant.Prix != null) PrixRestaurant = (int) restaurant.Prix;
             SiteWeb = restaurant.Site_Web;
             Telephone = restaurant.Telephone;
             Mail = restaurant.Mail;
@@ -254,23 +246,24 @@ namespace SearchFood.ViewModel
             Longitude = restaurant.Longitude;
 
 
-            commentsListe = await _restauServices._commentaires.GetCommentaires();
+            //commentsListe = await _restauServices._commentaires.GetCommentaires();
 
-            if (commentsListe.Count != 0)
-            {
+            //if (commentsListe.Count != 0)
+            //{
                 
-            }
-            else
-            {
-                MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
-                await msgDialog2.ShowAsync();
-            }
+            //}
+            //else
+            //{
+            //    MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
+            //    await msgDialog2.ShowAsync();
+            //}
         }
         
         //Récupère le paramètre contenant la définition à modifier
         public void GetParameter(object parameter)
         {
             _idrestau = (int) parameter;
+            Restau();
         }
 
         //Permet de réinitialiser la liste à chaque fois que l'on navigue sur cette page

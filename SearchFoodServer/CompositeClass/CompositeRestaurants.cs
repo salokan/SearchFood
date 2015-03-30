@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
 namespace SearchFoodServer.CompositeClass
 {
@@ -23,6 +20,7 @@ namespace SearchFoodServer.CompositeClass
         Nullable<int> _prix;
         int _idCategories;
         int _idTypesCuisine;
+        int _typeLivraison;
 
 
         [DataMember]
@@ -121,6 +119,13 @@ namespace SearchFoodServer.CompositeClass
         {
             get { return _idTypesCuisine; }
             set { _idTypesCuisine = value; }
+        }
+
+        [DataMember]
+        public int TypeLivraison
+        {
+            get { return _typeLivraison; }
+            set { _typeLivraison = value; }
         }
     }
 }

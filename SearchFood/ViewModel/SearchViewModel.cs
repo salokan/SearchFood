@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
+using SearchFood.View;
 
 namespace SearchFood.ViewModel
 {
@@ -119,28 +120,28 @@ namespace SearchFood.ViewModel
             set { _peuImporteDelai = value; }
         }
 
-        private bool _restaurantAutre;
+        private bool _restaurantservice;
 
-        public bool RestaurantAutre
+        public bool Restaurantservice
         {
-            get { return _restaurantAutre; }
-            set { _restaurantAutre = value; }
+            get { return _restaurantservice; }
+            set { _restaurantservice = value; }
         }
 
-        private bool _fastFoodAutre;
+        private bool _fastFoodservice;
 
-        public bool FastFoodAutre
+        public bool FastFoodservice
         {
-            get { return _fastFoodAutre; }
-            set { _fastFoodAutre = value; }
+            get { return _fastFoodservice; }
+            set { _fastFoodservice = value; }
         }
 
-        private bool _peuImporteAutre;
+        private bool _peuImporteservice;
 
-        public bool PeuImporteAutre
+        public bool PeuImporteservice
         {
-            get { return _peuImporteAutre; }
-            set { _peuImporteAutre = value; }
+            get { return _peuImporteservice; }
+            set { _peuImporteservice = value; }
         }
 
         #endregion
@@ -370,54 +371,61 @@ namespace SearchFood.ViewModel
 
         private async void Rechercher()
         {
+            restaurantsListe.Clear();
+            //trouver un moyen de vider la gridview
             string prix;
             string distance;
             string delai;
             string typeDeCuisine;
-            string autre;
+            string service;
             bool aEmporter;
             int minNote;
             int maxNote;
 
             if (_petitBudget)
-                prix = "Petit Budget";
+                prix = "1";
             else if (_moyenBudget)
-                prix = "Moyen Budget";
+                prix = "2";
             else if (_grosBudget)
-                prix = "Gros budget";
+                prix = "3";
             else
                 prix = "";
 
             distance = _distance;
 
             if (_courtDelai)
-                delai = "Court Delai";
+                delai = "1";
             else if (_moyenDelai)
-                delai = "Moyen Delai";
+                delai = "2";
             else if (_longDelai)
-                delai = "Long Delai";
+                delai = "3";
             else
                 delai = "";
 
             typeDeCuisine = _typeCuisineChoisie;
 
-            if (_restaurantAutre)
-                autre = "Restaurant";
-            else if (_fastFoodAutre)
-                autre = "Fast-Food";
+            if (_restaurantservice)
+                service = "Restaurant";
+            else if (_fastFoodservice)
+                service = "Fast-Food";
             else
-                autre = "";
+                service = "";
 
             aEmporter = _aEmporter;
-
             minNote = _minNotationChoisie;
-
             maxNote = _maxNotationChoisie;
 
-            MessageDialog msgDialog = new MessageDialog("Prix : " + prix + " ; Distance : " + distance + " ; Délai : " + delai + " ; Type de cuisine : " + typeDeCuisine + " ; Autre : " + autre + " ; A emporter : " + aEmporter + " ; Note minimal : " + minNote + " ; Note maximale : " + maxNote, "Félicitation");
-            await msgDialog.ShowAsync();
-
             restaurantsListe = await _service._restaurants.GetRestaurants();
+            //restaurantsListe = restaurantsListe.FindAll(s =>
+            //    (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
+            //    (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null) 
+                //&& 
+                //(_service._typesCuisines.GetTypeCuisine(s.Id_Type_Cuisine).ToString() == typeDeCuisine || typeDeCuisine.Equals("") || typeDeCuisine == null) &&
+                //(_service._typesCuisines.GetTypeCuisine(s.Id_Categorie).ToString() == service || service.Equals("") || service == null)
+                //);
+            //Ajouter : à emporter + note + distance
+
+
 
             if (restaurantsListe.Count != 0)
             {
@@ -426,8 +434,30 @@ namespace SearchFood.ViewModel
                 NomResultat = "Nom : " + restaurantsListe[idResultat].Nom;
                 Categorie categorie = await _service._categories.GetCategorie(restaurantsListe[idResultat].Id_Categorie);
                 CategorieResultat = "Catégorie : " + categorie.Nom_Categorie;
-                PrixResultat = "Prix : " + restaurantsListe[idResultat].Prix + "€";
-                DureeResultat = "Durée : " + restaurantsListe[idResultat].Duree_repas + "mn";
+                if (restaurantsListe[idResultat].Prix == 1)
+                {
+                    PrixResultat = "Prix : Petit Budget";
+                }
+                else if (restaurantsListe[idResultat].Prix == 2)
+                {
+                    PrixResultat = "Prix : Budget Moyen";
+                }
+                else
+                {
+                    PrixResultat = "Prix : Gros Budget";
+                }
+                if (restaurantsListe[idResultat].Duree_repas == 1)
+                {
+                    DureeResultat = "Durée : Rapide";
+                }
+                else if (restaurantsListe[idResultat].Duree_repas == 2)
+                {
+                    DureeResultat = "Durée : Moyen";
+                }
+                else
+                {
+                    DureeResultat = "Durée : Long";
+                }
                 Type_Cuisine typeCuisine = await _service._typesCuisines.GetTypeCuisine(restaurantsListe[idResultat].Id_Type_Cuisine);
                 TypeCuisineResultat = "Type de cuisine : " + typeCuisine.Type_Cuisine1;
             }
@@ -442,23 +472,50 @@ namespace SearchFood.ViewModel
         {
             MessageDialog msgDialog2 = new MessageDialog("On navigue vers détails restaurant de id : " + idRestaurant, "Attention");
             await msgDialog2.ShowAsync();
+            _navigationService.Navigate(typeof(Restau), idRestaurant);
         }
 
         private async void Suivant()
         {
-            if (idResultat == restaurantsListe.Count-1)
-                idResultat = 0;
-            else
-                idResultat++;
+            if (restaurantsListe.Count != 0)
+            {
+                //faire si liste > 0
+                if (idResultat == restaurantsListe.Count - 1)
+                    idResultat = 0;
+                else
+                    idResultat++;
 
-            idRestaurant = restaurantsListe[idResultat].Id_Restaurant;
-            NomResultat = "Nom : " + restaurantsListe[idResultat].Nom;
-            Categorie categorie = await _service._categories.GetCategorie(restaurantsListe[idResultat].Id_Categorie);
-            CategorieResultat = "Catégorie : " + categorie.Nom_Categorie;
-            PrixResultat = "Prix : " + restaurantsListe[idResultat].Prix + "€";
-            DureeResultat = "Durée : " + restaurantsListe[idResultat].Duree_repas + "mn";
-            Type_Cuisine typeCuisine = await _service._typesCuisines.GetTypeCuisine(restaurantsListe[idResultat].Id_Type_Cuisine);
-            TypeCuisineResultat = "Type de cuisine : " + typeCuisine.Type_Cuisine1;
+                idRestaurant = restaurantsListe[idResultat].Id_Restaurant;
+                NomResultat = "Nom : " + restaurantsListe[idResultat].Nom;
+                Categorie categorie = await _service._categories.GetCategorie(restaurantsListe[idResultat].Id_Categorie);
+                CategorieResultat = "Catégorie : " + categorie.Nom_Categorie;
+                if (restaurantsListe[idResultat].Prix == 1)
+                {
+                    PrixResultat = "Prix : Petit Budget";
+                }
+                else if (restaurantsListe[idResultat].Prix == 2)
+                {
+                    PrixResultat = "Prix : Budget Moyen";
+                }
+                else
+                {
+                    PrixResultat = "Prix : Gros Budget";
+                }
+                if (restaurantsListe[idResultat].Duree_repas == 1)
+                {
+                    DureeResultat = "Durée : Rapide";
+                }
+                else if (restaurantsListe[idResultat].Duree_repas == 2)
+                {
+                    DureeResultat = "Durée : Moyen";
+                }
+                else
+                {
+                    DureeResultat = "Durée : Long";
+                }
+                Type_Cuisine typeCuisine = await _service._typesCuisines.GetTypeCuisine(restaurantsListe[idResultat].Id_Type_Cuisine);
+                TypeCuisineResultat = "Type de cuisine : " + typeCuisine.Type_Cuisine1;
+            }
         }
     }
 }
