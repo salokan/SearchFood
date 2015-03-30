@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
+using SearchFood.View;
 
 namespace SearchFood.ViewModel
 {
@@ -495,6 +496,7 @@ namespace SearchFood.ViewModel
         {
             MessageDialog msgDialog2 = new MessageDialog("On navigue vers détails restaurant de id : " + idRestaurant, "Attention");
             await msgDialog2.ShowAsync();
+            _navigationService.Navigate(typeof(Restau), idRestaurant);
         }
 
         private async void Suivant()
