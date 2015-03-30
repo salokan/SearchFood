@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
+using SearchFood.View;
 
 namespace SearchFood.ViewModel
 {
@@ -119,30 +120,6 @@ namespace SearchFood.ViewModel
             set { _peuImporteDelai = value; }
         }
 
-        private bool _restaurantservice;
-
-        public bool Restaurantservice
-        {
-            get { return _restaurantservice; }
-            set { _restaurantservice = value; }
-        }
-
-        private bool _fastFoodservice;
-
-        public bool FastFoodservice
-        {
-            get { return _fastFoodservice; }
-            set { _fastFoodservice = value; }
-        }
-
-        private bool _peuImporteservice;
-
-        public bool PeuImporteservice
-        {
-            get { return _peuImporteservice; }
-            set { _peuImporteservice = value; }
-        }
-
         #endregion
 
         #region Combobox
@@ -152,8 +129,14 @@ namespace SearchFood.ViewModel
             get { return _typeDeCuisine1; }
             set { _typeDeCuisine1 = value; RaisePropertyChanged(); }
         }
+        public ObservableCollection<string> CategorieCuisine
+        {
+            get { return _categorieCuisine; }
+            set { _categorieCuisine = value; RaisePropertyChanged(); }
+        }
 
         private ObservableCollection<string> _typeDeCuisine = new ObservableCollection<string>();
+
 
         public ObservableCollection<int> MinNotation
         {
@@ -184,6 +167,24 @@ namespace SearchFood.ViewModel
                 if (_typeCuisineChoisie != value)
                 {
                     _typeCuisineChoisie = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _categorieCuisineChoisie;
+        public string CategorieCuisineChoisie
+        {
+            get
+            {
+                return _categorieCuisineChoisie;
+            }
+
+            set
+            {
+                if (_categorieCuisineChoisie != value)
+                {
+                    _categorieCuisineChoisie = value;
                     RaisePropertyChanged();
                 }
             }
@@ -231,8 +232,12 @@ namespace SearchFood.ViewModel
 
         private bool _aEmporter;
         private ObservableCollection<string> _typeDeCuisine1;
+        private ObservableCollection<string> _categorieCuisine = new ObservableCollection<string>();
         private ObservableCollection<int> _minNotation1;
         private ObservableCollection<int> _maxNotation1;
+        List<Type_Cuisine> typeCuisinelist = new List<Type_Cuisine>();
+        List<Categorie> categorieCuisineList = new List<Categorie>();
+        List<Note> noteList = new List<Note>();
 
         public bool AEmporter
         {
@@ -350,11 +355,17 @@ namespace SearchFood.ViewModel
 
         private async void InitComponents()
         {
-            List<Type_Cuisine> typeCuisinelist = await _service._typesCuisines.GetTypesCuisines();
+            typeCuisinelist = await _service._typesCuisines.GetTypesCuisines();
+            categorieCuisineList = await _service._categories.GetCategories();
 
             foreach (Type_Cuisine tc in typeCuisinelist)
             {
                 _typeDeCuisine.Add(tc.Type_Cuisine1);
+            }
+
+            foreach (Categorie cat in categorieCuisineList)
+            {
+                _categorieCuisine.Add(cat.Nom_Categorie);
             }
 
             for (int i = 0; i < 5; i++)
@@ -363,6 +374,7 @@ namespace SearchFood.ViewModel
                 _maxNotation.Add(i + 1);
             }
 
+            CategorieCuisine = _categorieCuisine;
             TypeDeCuisine = _typeDeCuisine;
             MinNotation = _minNotation;
             MaxNotation = _maxNotation;
@@ -375,11 +387,12 @@ namespace SearchFood.ViewModel
             string prix;
             string distance;
             string delai;
-            string typeDeCuisine;
-            string service;
             bool aEmporter;
+            int livraison;
             int minNote;
             int maxNote;
+            int idTypeDeCuisine = 0;
+            int idCategorieCuisine = 0;
 
             if (_petitBudget)
                 prix = "1";
@@ -401,28 +414,40 @@ namespace SearchFood.ViewModel
             else
                 delai = "";
 
-            typeDeCuisine = _typeCuisineChoisie;
+            foreach (Type_Cuisine tc in typeCuisinelist)
+            {
+                if(tc.Type_Cuisine1.Equals(_typeCuisineChoisie))
+                {
+                    idTypeDeCuisine = tc.Id_Type_Cuisine;
+                }
+            }
 
-            if (_restaurantservice)
-                service = "Restaurant";
-            else if (_fastFoodservice)
-                service = "Fast-Food";
-            else
-                service = "";
+            foreach (Categorie cat in categorieCuisineList)
+            {
+                if (cat.Nom_Categorie.Equals(_categorieCuisineChoisie))
+                {
+                    idCategorieCuisine = cat.Id_Categorie;
+                }
+            }
 
             aEmporter = _aEmporter;
+            if(aEmporter)
+            {
+                livraison = 1;
+            } else {
+                livraison = 0;
+            }
             minNote = _minNotationChoisie;
             maxNote = _maxNotationChoisie;
 
             restaurantsListe = await _service._restaurants.GetRestaurants();
             restaurantsListe = restaurantsListe.FindAll(s =>
                 (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
-                (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null) 
-                //&& 
-                //(_service._typesCuisines.GetTypeCuisine(s.Id_Type_Cuisine).ToString() == typeDeCuisine || typeDeCuisine.Equals("") || typeDeCuisine == null) &&
-                //(_service._typesCuisines.GetTypeCuisine(s.Id_Categorie).ToString() == service || service.Equals("") || service == null)
+                (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
+                (s.Id_Type_Cuisine == idTypeDeCuisine) &&
+                (s.Id_Categorie == idCategorieCuisine) &&
+                (s.Livraison == livraison)
                 );
-            //Ajouter : à emporter + note + distance
 
 
 
@@ -471,6 +496,7 @@ namespace SearchFood.ViewModel
         {
             MessageDialog msgDialog2 = new MessageDialog("On navigue vers détails restaurant de id : " + idRestaurant, "Attention");
             await msgDialog2.ShowAsync();
+            _navigationService.Navigate(typeof(Restau), idRestaurant);
         }
 
         private async void Suivant()

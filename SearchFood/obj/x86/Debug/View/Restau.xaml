@@ -50,7 +50,7 @@
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Prix" FontSize="20"/>
                     <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding PrixRestaurant}" FontSize="20" />
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Adresse" FontSize="20"/>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding AdresseRestaurant}" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding AdresseRestaurant}" FontSize="20" />
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="Code Postal" FontSize="20"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding CodePostal}" FontSize="20"  />
                     <TextBlock Grid.Column="0" Grid.Row="3" Text="Ville" FontSize="20"/>
