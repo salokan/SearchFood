@@ -91,6 +91,11 @@ namespace SearchFood.Webservices
             return notes;
         }
 
+        public async Task<float> GetMoyenneNotesRestaurant(int idRestaurant)
+        {
+            return await _client.GetMoyenneNoteRestaurantAsync(idRestaurant);
+        }
+
         public async void AddNotes(Note n)
         {
             await _client.AddNotesAsync(n);

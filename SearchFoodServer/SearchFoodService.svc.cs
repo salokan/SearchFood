@@ -128,6 +128,11 @@ namespace SearchFoodServer
             return _notes.GetNoteByUser(idUser);
         }
 
+        public float GetMoyenneNoteRestaurant(int idRestaurant)
+        {
+            return _notes.GetMoyenneNoteRestaurant(idRestaurant);
+        }
+
         public void AddNotes(Note n)
         {
             _notes.AddNotes(n);
