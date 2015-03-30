@@ -35,6 +35,7 @@ namespace SearchFoodServer
         public Nullable<int> Prix { get; set; }
         public int Id_Categorie { get; set; }
         public int Id_Type_Cuisine { get; set; }
+        public Nullable<int> Livraison { get; set; }
     
         public virtual Categorie Categorie { get; set; }
         public virtual ICollection<Commentaire> Commentaire { get; set; }

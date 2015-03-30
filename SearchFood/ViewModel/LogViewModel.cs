@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using SearchFood.Common;
 using SearchFood.Navigation;
 using Windows.UI.Popups;
 using SearchFood.SearchFoodServiceReference;
@@ -9,6 +10,7 @@ using SearchFood.View;
 using SearchFood.Model;
 using System.Text.RegularExpressions;
 using Windows.UI.Xaml;
+using RelayCommand = SearchFood.Common.RelayCommand;
 
 namespace SearchFood.ViewModel
 {
@@ -22,7 +24,7 @@ namespace SearchFood.ViewModel
         private String _passwordInscription;
         private String _pseudoLogin;
         private String _passwordLogin;
-        private Services _userService; 
+        private Services _userService;
 
 
         public LogViewModel(INavigationService navigation)
@@ -192,7 +194,7 @@ namespace SearchFood.ViewModel
 
         }
         public bool IsValidEmail(string strIn)
-        { 
+        {
             if (String.IsNullOrEmpty(strIn))
                 return false;
             try

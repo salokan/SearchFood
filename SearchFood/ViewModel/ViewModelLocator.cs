@@ -54,12 +54,21 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public RestauViewModel Restau
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<RestauViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<LogViewModel>();
+            SimpleIoc.Default.Register<RestauViewModel>();
             SimpleIoc.Default.Register<AccountViewModel>();
         }
     }

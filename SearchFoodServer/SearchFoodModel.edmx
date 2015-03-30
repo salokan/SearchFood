@@ -57,6 +57,7 @@
           <Property Name="Prix" Type="int" />
           <Property Name="Id_Categorie" Type="int" Nullable="false" />
           <Property Name="Id_Type_Cuisine" Type="int" Nullable="false" />
+          <Property Name="Livraison" Type="int" />
         </EntityType>
         <EntityType Name="Type_Cuisine">
           <Key>
@@ -281,6 +282,7 @@
           <NavigationProperty Name="Historique" Relationship="Self.FK_Historique_Restaurant" FromRole="Restaurant" ToRole="Historique" />
           <NavigationProperty Name="Note" Relationship="Self.FK_Note_Restaurant" FromRole="Restaurant" ToRole="Note" />
           <NavigationProperty Name="Type_Cuisine" Relationship="Self.FK_Restaurant_Type_Cuisine" FromRole="Restaurant" ToRole="Type_Cuisine" />
+          <Property Name="Livraison" Type="Int32" />
         </EntityType>
         <EntityType Name="Type_Cuisine">
           <Key>
@@ -488,6 +490,7 @@
           <EntitySetMapping Name="Restaurant">
             <EntityTypeMapping TypeName="searchfoodModel.Restaurant">
               <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="Livraison" ColumnName="Livraison" />
                 <ScalarProperty Name="Id_Restaurant" ColumnName="Id_Restaurant" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Site_Web" ColumnName="Site_Web" />
