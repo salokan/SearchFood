@@ -21,9 +21,14 @@ namespace SearchFood.ViewModel
             SearchCommand = new RelayCommand(Search);
             AccountCommande = new RelayCommand(Account);
             RestauCommand = new RelayCommand(Restau);
-            //if (((App)(Application.Current)).UserConnected != null)
-            
-            
+
+            ConnectedHeader = Visibility.Collapsed;
+            DeconnectedHeader = Visibility.Visible; 
+
+            if (((App)(Application.Current)).UserConnected != null)
+             {
+                ConnectedHeader = Visibility.Visible;
+                DeconnectedHeader = Visibility.Collapsed;             }
         }
 
         # region Getter / Setter Button
