@@ -16,11 +16,12 @@ using RelayCommand = GalaSoft.MvvmLight.Command.RelayCommand;
 
 namespace SearchFood.ViewModel
 {
-    public class RestauViewModel : ViewModelBase
+    public class RestauViewModel : ViewModelBase, IViewModel
     {
         private List<Commentaire> commentsListe = new List<Commentaire>();
         private INavigationService _navigationService;
         private Restaurant restaurant = new Restaurant();
+        private int _idrestau;
         private string _nomRestaurant;
         private int _dureeRepas;
         private String _adresseRestaurant;
@@ -231,15 +232,15 @@ namespace SearchFood.ViewModel
             _navigationService = navigation;
             _restauServices = new Services();
             //GetRestau = new RelayCommand(Restau);
-            Restau(1);
+            Restau();
 
         }
 
         public ICommand GetRestau { get; set; }
 
-        public async void Restau(int idrestau)
+        public async void Restau()
         {
-            restaurant = await _restauServices._restaurants.GetRestaurants(idrestau);
+            restaurant = await _restauServices._restaurants.GetRestaurants(_idrestau);
             NomRestaurant = restaurant.Nom;
             DureeRepas = (int) restaurant.Duree_repas;
             AdresseRestaurant = AdresseRestaurant = restaurant.Adresse;
@@ -264,6 +265,18 @@ namespace SearchFood.ViewModel
                 MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
                 await msgDialog2.ShowAsync();
             }
+        }
+        
+        //Récupère le paramètre contenant la définition à modifier
+        public void GetParameter(object parameter)
+        {
+            _idrestau = (int) parameter;
+        }
+
+        //Permet de réinitialiser la liste à chaque fois que l'on navigue sur cette page
+        public void OnNavigatedTo()
+        {
+
         }
     }
 }

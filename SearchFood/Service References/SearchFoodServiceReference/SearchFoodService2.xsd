@@ -76,7 +76,7 @@
       <xs:element minOccurs="0" name="LongitudeValue" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="MailValue" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NomRestaurantsValue" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="PrixValue" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="PrixValue" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="SitesWebValue" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TelephoneValue" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VilleValue" nillable="true" type="xs:string" />

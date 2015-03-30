@@ -129,7 +129,7 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private SearchFood.SearchFoodServiceReference.Categorie CategorieField;
         
-        private int Code_PostalField;
+        private string Code_PostalField;
         
         private System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Commentaire> CommentaireField;
         
@@ -153,11 +153,11 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.Note> NoteField;
         
-        private System.Nullable<double> PrixField;
+        private System.Nullable<int> PrixField;
         
         private string Site_WebField;
         
-        private int TelephoneField;
+        private string TelephoneField;
         
         private SearchFood.SearchFoodServiceReference.Type_Cuisine Type_CuisineField;
         
@@ -190,7 +190,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Code_Postal {
+        public string Code_Postal {
             get {
                 return this.Code_PostalField;
             }
@@ -346,7 +346,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<double> Prix {
+        public System.Nullable<int> Prix {
             get {
                 return this.PrixField;
             }
@@ -372,7 +372,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Telephone {
+        public string Telephone {
             get {
                 return this.TelephoneField;
             }
@@ -1177,7 +1177,7 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string AdresseValueField;
         
-        private int CodePostalValueField;
+        private string CodePostalValueField;
         
         private System.Nullable<int> DureeRepasValueField;
         
@@ -1195,11 +1195,11 @@ namespace SearchFood.SearchFoodServiceReference {
         
         private string NomRestaurantsValueField;
         
-        private System.Nullable<double> PrixValueField;
+        private System.Nullable<int> PrixValueField;
         
         private string SitesWebValueField;
         
-        private int TelephoneValueField;
+        private string TelephoneValueField;
         
         private string VilleValueField;
         
@@ -1217,7 +1217,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int CodePostalValue {
+        public string CodePostalValue {
             get {
                 return this.CodePostalValueField;
             }
@@ -1334,7 +1334,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<double> PrixValue {
+        public System.Nullable<int> PrixValue {
             get {
                 return this.PrixValueField;
             }
@@ -1360,7 +1360,7 @@ namespace SearchFood.SearchFoodServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TelephoneValue {
+        public string TelephoneValue {
             get {
                 return this.TelephoneValueField;
             }
