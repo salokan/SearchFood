@@ -90,10 +90,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetCommentairesByRestaurant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRestaurant" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCommentairesByRestaurantResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetCommentairesByRestaurantResult" nillable="true" type="q7:ArrayOfCompositeCommentaires" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddCommentaires">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="c" nillable="true" type="q7:Commentaire" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="c" nillable="true" type="q8:Commentaire" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -117,7 +131,7 @@
   <xs:element name="UpdateCommentaires">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="c" nillable="true" type="q8:Commentaire" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="c" nillable="true" type="q9:Commentaire" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -134,7 +148,7 @@
   <xs:element name="GetHistoriquesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetHistoriquesResult" nillable="true" type="q9:ArrayOfCompositeHistorique" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetHistoriquesResult" nillable="true" type="q10:ArrayOfCompositeHistorique" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -148,7 +162,7 @@
   <xs:element name="GetHistoriqueResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetHistoriqueResult" nillable="true" type="q10:CompositeHistorique" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetHistoriqueResult" nillable="true" type="q11:CompositeHistorique" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -162,14 +176,14 @@
   <xs:element name="GetHistoriqueByUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetHistoriqueByUserResult" nillable="true" type="q11:ArrayOfCompositeHistorique" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetHistoriqueByUserResult" nillable="true" type="q12:ArrayOfCompositeHistorique" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddHistorique">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="h" nillable="true" type="q12:Historique" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="h" nillable="true" type="q13:Historique" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -193,7 +207,7 @@
   <xs:element name="UpdateHistorique">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="h" nillable="true" type="q13:Historique" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="h" nillable="true" type="q14:Historique" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -210,7 +224,7 @@
   <xs:element name="GetNotesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNotesResult" nillable="true" type="q14:ArrayOfCompositeNotes" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNotesResult" nillable="true" type="q15:ArrayOfCompositeNotes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -224,7 +238,7 @@
   <xs:element name="GetNoteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNoteResult" nillable="true" type="q15:CompositeNotes" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNoteResult" nillable="true" type="q16:CompositeNotes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -238,7 +252,7 @@
   <xs:element name="GetNoteByRestaurantResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNoteByRestaurantResult" nillable="true" type="q16:ArrayOfCompositeNotes" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNoteByRestaurantResult" nillable="true" type="q17:ArrayOfCompositeNotes" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -252,14 +266,28 @@
   <xs:element name="GetNoteByUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNoteByUserResult" nillable="true" type="q17:ArrayOfCompositeNotes" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetNoteByUserResult" nillable="true" type="q18:ArrayOfCompositeNotes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMoyenneNoteRestaurant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRestaurant" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMoyenneNoteRestaurantResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetMoyenneNoteRestaurantResult" type="xs:float" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddNotes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="n" nillable="true" type="q18:Note" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="n" nillable="true" type="q19:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -283,7 +311,7 @@
   <xs:element name="UpdateNotes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="n" nillable="true" type="q19:Note" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="n" nillable="true" type="q20:Note" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -300,7 +328,7 @@
   <xs:element name="GetRestaurantsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetRestaurantsResult" nillable="true" type="q20:ArrayOfCompositeRestaurants" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetRestaurantsResult" nillable="true" type="q21:ArrayOfCompositeRestaurants" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -314,14 +342,14 @@
   <xs:element name="GetRestaurantResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetRestaurantResult" nillable="true" type="q21:CompositeRestaurants" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetRestaurantResult" nillable="true" type="q22:CompositeRestaurants" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddRestaurants">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="r" nillable="true" type="q22:Restaurant" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="r" nillable="true" type="q23:Restaurant" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -345,7 +373,7 @@
   <xs:element name="UpdateRestaurants">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="r" nillable="true" type="q23:Restaurant" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="r" nillable="true" type="q24:Restaurant" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -362,7 +390,7 @@
   <xs:element name="GetTypesCuisineResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetTypesCuisineResult" nillable="true" type="q24:ArrayOfCompositeTypesCuisine" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetTypesCuisineResult" nillable="true" type="q25:ArrayOfCompositeTypesCuisine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -376,14 +404,14 @@
   <xs:element name="GetTypeCuisineResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetTypeCuisineResult" nillable="true" type="q25:CompositeTypesCuisine" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetTypeCuisineResult" nillable="true" type="q26:CompositeTypesCuisine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddTypesCuisine">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="tc" nillable="true" type="q26:Type_Cuisine" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="tc" nillable="true" type="q27:Type_Cuisine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -407,7 +435,7 @@
   <xs:element name="UpdateTypesCuisine">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="tc" nillable="true" type="q27:Type_Cuisine" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="tc" nillable="true" type="q28:Type_Cuisine" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -424,7 +452,7 @@
   <xs:element name="GetUtilisateursResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetUtilisateursResult" nillable="true" type="q28:ArrayOfCompositeUtilisateurs" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetUtilisateursResult" nillable="true" type="q29:ArrayOfCompositeUtilisateurs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -438,7 +466,7 @@
   <xs:element name="GetUtilisateurResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetUtilisateurResult" nillable="true" type="q29:CompositeUtilisateurs" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="GetUtilisateurResult" nillable="true" type="q30:CompositeUtilisateurs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -453,14 +481,14 @@
   <xs:element name="AuthentificationUtilisateurResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="AuthentificationUtilisateurResult" nillable="true" type="q30:CompositeUtilisateurs" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SearchFoodServer.CompositeClass" minOccurs="0" name="AuthentificationUtilisateurResult" nillable="true" type="q31:CompositeUtilisateurs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddUtilisateurs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q31:Utilisateur" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q32:Utilisateur" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -486,7 +514,7 @@
   <xs:element name="UpdateUtilisateurs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q32:Utilisateur" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/SearchFoodServer" minOccurs="0" name="u" nillable="true" type="q33:Utilisateur" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

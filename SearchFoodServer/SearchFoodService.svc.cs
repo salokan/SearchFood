@@ -53,6 +53,11 @@ namespace SearchFoodServer
            return  _commentaires.GetCommentaire(id);
         }
 
+        public List<CompositeCommentaires> GetCommentairesByRestaurant(int idRestaurant)
+        {
+            return _commentaires.GetCommentaireByRestaurant(idRestaurant);
+        }
+
         public void AddCommentaires(Commentaire c)
         {
             _commentaires.AddCommentaires(c);
@@ -121,6 +126,11 @@ namespace SearchFoodServer
         public List<CompositeNotes> GetNoteByUser(int idUser)
         {
             return _notes.GetNoteByUser(idUser);
+        }
+
+        public float GetMoyenneNoteRestaurant(int idRestaurant)
+        {
+            return _notes.GetMoyenneNoteRestaurant(idRestaurant);
         }
 
         public void AddNotes(Note n)

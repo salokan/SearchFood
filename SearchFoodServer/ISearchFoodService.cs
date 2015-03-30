@@ -25,6 +25,9 @@ namespace SearchFoodServer
         List<CompositeCommentaires> GetCommentaires();
         [OperationContract]
         CompositeCommentaires GetCommentaire(int id);
+
+        [OperationContract]
+        List<CompositeCommentaires> GetCommentairesByRestaurant(int idRestaurant);
         [OperationContract]
         void AddCommentaires(Commentaire c);
         [OperationContract]
@@ -57,6 +60,8 @@ namespace SearchFoodServer
         List<CompositeNotes> GetNoteByRestaurant(int idRestaurant);
         [OperationContract]
         List<CompositeNotes> GetNoteByUser(int idUser);
+        [OperationContract]
+        float GetMoyenneNoteRestaurant(int idRestaurant);
         [OperationContract]
         void AddNotes(Note n);
         [OperationContract]

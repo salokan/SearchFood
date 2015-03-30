@@ -1600,6 +1600,9 @@ namespace SearchFood.SearchFoodServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCommentaire", ReplyAction="http://tempuri.org/ISearchFoodService/GetCommentaireResponse")]
         System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCommentaires> GetCommentaireAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurantResponse")]
+        System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCommentaires>> GetCommentairesByRestaurantAsync(int idRestaurant);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddCommentaires", ReplyAction="http://tempuri.org/ISearchFoodService/AddCommentairesResponse")]
         System.Threading.Tasks.Task AddCommentairesAsync(SearchFood.SearchFoodServiceReference.Commentaire c);
         
@@ -1638,6 +1641,9 @@ namespace SearchFood.SearchFoodServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNoteByUser", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteByUserResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByUserAsync(int idUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetMoyenneNoteRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetMoyenneNoteRestaurantResponse")]
+        System.Threading.Tasks.Task<float> GetMoyenneNoteRestaurantAsync(int idRestaurant);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddNotes", ReplyAction="http://tempuri.org/ISearchFoodService/AddNotesResponse")]
         System.Threading.Tasks.Task AddNotesAsync(SearchFood.SearchFoodServiceReference.Note n);
@@ -1774,6 +1780,10 @@ namespace SearchFood.SearchFoodServiceReference {
             return base.Channel.GetCommentaireAsync(id);
         }
         
+        public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCommentaires>> GetCommentairesByRestaurantAsync(int idRestaurant) {
+            return base.Channel.GetCommentairesByRestaurantAsync(idRestaurant);
+        }
+        
         public System.Threading.Tasks.Task AddCommentairesAsync(SearchFood.SearchFoodServiceReference.Commentaire c) {
             return base.Channel.AddCommentairesAsync(c);
         }
@@ -1824,6 +1834,10 @@ namespace SearchFood.SearchFoodServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByUserAsync(int idUser) {
             return base.Channel.GetNoteByUserAsync(idUser);
+        }
+        
+        public System.Threading.Tasks.Task<float> GetMoyenneNoteRestaurantAsync(int idRestaurant) {
+            return base.Channel.GetMoyenneNoteRestaurantAsync(idRestaurant);
         }
         
         public System.Threading.Tasks.Task AddNotesAsync(SearchFood.SearchFoodServiceReference.Note n) {
