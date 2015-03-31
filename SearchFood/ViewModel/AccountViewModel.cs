@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic; 
-using GalaSoft.MvvmLight; 
+﻿using System.Collections.Generic;
+using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using SearchFood.Navigation; 
 using SearchFood.SearchFoodServiceReference;  
 
@@ -11,10 +13,14 @@ namespace SearchFood.ViewModel
         private List<Historique> _historiques;
         private INavigationService _navigationService;
 
+        public ICommand GoBackButton { get; set; }
+        
+
         public AccountViewModel(INavigationService navigation)
         {
             _navigationService = navigation; 
             Historiques = new List<Historique>();
+            GoBackButton = new RelayCommand(GoBack); 
         }
 
         #region Getter / Setter MVVM 
@@ -29,5 +35,10 @@ namespace SearchFood.ViewModel
             set { _historiques = value; RaisePropertyChanged(); }
         }
         #endregion
+
+        public void GoBack()
+        {
+            _navigationService.GoBack();
+        }
     }
 }

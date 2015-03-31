@@ -14,12 +14,12 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="Teal">
+        <Grid Grid.Row="0" Background="Teal" DataContext="{Binding Account, Source={StaticResource Locator}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="39,0,39,0" Command="{Binding NavigationHelper, ElementName=pageRoot}"
+            <Button Grid.Column="0" Margin="39,0,39,0" Command="{Binding GoBackButton}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Center" AutomationProperties.Name="hi"
                         AutomationProperties.AutomationId="BackButton" AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock VerticalAlignment="Center" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" />

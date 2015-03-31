@@ -68,6 +68,20 @@ namespace SearchFood.Webservices
             return commentaires;
         }
 
+        public async Task<Commentaire> GetCommentairesByUserAndRestaurant(int idUser, int idRestaurant)
+        {
+            Commentaire commentaire = new Commentaire();
+
+            CompositeCommentaires commentaireComposite = await _client.GetCommentaireByUserAndRestaurantAsync(idUser, idRestaurant);
+
+            commentaire.Id_Commentaire = commentaireComposite.IdCommentairesValue;
+            commentaire.Id_Restaurant = commentaireComposite.IdRestaurantsValue;
+            commentaire.Id_Utilisateur = commentaireComposite.IdUtilisateursValue;
+            commentaire.Commentaire1 = commentaireComposite.CommentairesValue;
+
+            return commentaire;
+        }
+
         public async void AddCommentaires(Commentaire c)
         {
             await _client.AddCommentairesAsync(c);

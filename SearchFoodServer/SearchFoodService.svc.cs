@@ -58,6 +58,11 @@ namespace SearchFoodServer
             return _commentaires.GetCommentaireByRestaurant(idRestaurant);
         }
 
+        public CompositeCommentaires GetCommentaireByUserAndRestaurant(int idUser, int idRestaurant)
+        {
+            return _commentaires.GetCommentaireByUserAndRestaurant(idUser, idRestaurant);
+        }
+
         public void AddCommentaires(Commentaire c)
         {
             _commentaires.AddCommentaires(c);

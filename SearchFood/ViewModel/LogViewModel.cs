@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using SearchFood.Common;
 using SearchFood.Navigation;
 using Windows.UI.Popups;
 using SearchFood.SearchFoodServiceReference;

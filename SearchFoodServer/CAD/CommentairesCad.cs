@@ -89,6 +89,31 @@ namespace SearchFoodServer.CAD
             return commentairesList;     
         }
 
+        public CompositeCommentaires GetCommentaireByUserAndRestaurant(int idUser, int idRestaurant)
+        {
+            CompositeCommentaires compositeCommentaires = new CompositeCommentaires();
+            Commentaire commentaire;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from c in bdd.Commentaire
+                              where c.Id_Utilisateur == idUser && c.Id_Restaurant == idRestaurant
+                              select c;
+
+                commentaire = requete.FirstOrDefault();
+            }
+
+            if (commentaire != null)
+            {
+                compositeCommentaires.IdCommentairesValue = commentaire.Id_Commentaire;
+                compositeCommentaires.IdRestaurantsValue = commentaire.Id_Restaurant;
+                compositeCommentaires.IdUtilisateursValue = commentaire.Id_Utilisateur;
+                compositeCommentaires.CommentairesValue = commentaire.Commentaire1;
+            }
+
+            return compositeCommentaires;
+        }
+
         public void AddCommentaires(Commentaire c)
         {
             using (var bdd = new searchfoodEntities())

@@ -68,7 +68,9 @@ namespace SearchFood.ViewModel
         public void Logout()
         {
             ConnectedHeader = Visibility.Collapsed;
-            DeconnectedHeader = Visibility.Visible; 
+            DeconnectedHeader = Visibility.Visible;
+
+            ((App) (Application.Current)).UserConnected = null;
         }
         public void Account()
         {

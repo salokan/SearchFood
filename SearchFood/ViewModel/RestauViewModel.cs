@@ -14,10 +14,9 @@ namespace SearchFood.ViewModel
 {
     public class RestauViewModel : ViewModelBase, IViewModel
     {
-        private List<Commentaire> commentsListe = new List<Commentaire>();
+        private List<Commentaire> _commentsListe = new List<Commentaire>();
         private INavigationService _navigationService;
-        private Restaurant restaurant = new Restaurant();
-        private int idResultat;
+        private Restaurant _restaurant = new Restaurant();
         private int _idrestau;
         private string _nomRestaurant;
         private int _dureeRepas;
@@ -31,12 +30,15 @@ namespace SearchFood.ViewModel
         private string _latitude;
         private string _longitude;
 
-        private string _pseudo;
-        private string _commentaire;
+        private int _idCommentaireExiste;
 
         private string _newCommentaire;
 
-        private Services _restauServices;
+        private Services _service;
+        private string _textBoutonCommentaire;
+
+        public ICommand AjouterCommentaireButton { get; set; }
+        public ICommand GoBackButton { get; set; }
         
 
         #region Champs Restaurant
@@ -229,19 +231,17 @@ namespace SearchFood.ViewModel
 
         #endregion
 
+        #region Champs Commentaire
+
         public ObservableCollection<CommentairesModel> Commentaireslist
         {
             get { return _commentairesList; }
 
             set
             {
-                if (_commentairesList != value)
-                {
-                    _commentairesList = value;
-                    RaisePropertyChanged();
-                }
+                _commentairesList = value;
+                RaisePropertyChanged();
             }
-
         }
 
         private ObservableCollection<CommentairesModel> _commentairesList = new ObservableCollection<CommentairesModel>();
@@ -263,56 +263,88 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public string TextBoutonCommentaire
+        {
+            get
+            {
+                return _textBoutonCommentaire;
+            }
 
+            set
+            {
+                if (_textBoutonCommentaire != value)
+                {
+                    _textBoutonCommentaire = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
+        #endregion
 
         public RestauViewModel(INavigationService navigation)
         {
             _navigationService = navigation;
-            _restauServices = new Services();
-            //GetRestau = new RelayCommand(Restau);
+            _service = new Services();
             AjouterCommentaireButton = new RelayCommand(AjouterCommentaire);
-            
+            GoBackButton = new RelayCommand(GoBack);  
         }
 
-        public ICommand GetRestau { get; set; }
-
-        public ICommand AjouterCommentaireButton { get; set; }
-
-        public async void Restau()
+        public async void InitRestau()
         {
-            restaurant = await _restauServices._restaurants.GetRestaurants(_idrestau);
-            NomRestaurant = restaurant.Nom;
-            if (restaurant.Duree_repas != null) DureeRepas = (int) restaurant.Duree_repas;
-            AdresseRestaurant = AdresseRestaurant = restaurant.Adresse;
-            CodePostal = restaurant.Code_Postal;
-            Ville = restaurant.Ville;
-            if (restaurant.Prix != null) PrixRestaurant = (int) restaurant.Prix;
-            SiteWeb = restaurant.Site_Web;
-            Telephone = restaurant.Telephone;
-            Mail = restaurant.Mail;
-            Latitude = restaurant.Latitude;
-            Longitude = restaurant.Longitude;
+            _restaurant = await _service._restaurants.GetRestaurants(_idrestau);
+            NomRestaurant = _restaurant.Nom;
+            if (_restaurant.Duree_repas != null) DureeRepas = (int) _restaurant.Duree_repas;
+            AdresseRestaurant = AdresseRestaurant = _restaurant.Adresse;
+            CodePostal = _restaurant.Code_Postal;
+            Ville = _restaurant.Ville;
+            if (_restaurant.Prix != null) PrixRestaurant = (int) _restaurant.Prix;
+            SiteWeb = _restaurant.Site_Web;
+            Telephone = _restaurant.Telephone;
+            Mail = _restaurant.Mail;
+            Latitude = _restaurant.Latitude;
+            Longitude = _restaurant.Longitude;
 
+            //Si l'utilisateur est authentifié, on récupère son commentaire si il en a un et on l'affiche
+            if (((App) (Application.Current)).UserConnected != null)
+            {
+                Commentaire commentaire = await _service._commentaires.GetCommentairesByUserAndRestaurant(((App) (Application.Current)).UserConnected.Id_Utilisateur,_idrestau);
 
+                if (commentaire.Id_Utilisateur == ((App) (Application.Current)).UserConnected.Id_Utilisateur)
+                {
+                    NewCommentaire = commentaire.Commentaire1;
+                    TextBoutonCommentaire = "Modifier Commentaire";
+                    _idCommentaireExiste = commentaire.Id_Commentaire;
+                }
+                else
+                {
+                    NewCommentaire = "Ajouter un commentaire";
+                    TextBoutonCommentaire = "Ajouter Commentaire";
+                    _idCommentaireExiste = 0;
+                }
+            }
+            else
+            {
+                NewCommentaire = "Connectez vous pour poster un commentaire";
+                TextBoutonCommentaire = "Ajouter Commentaire";
+            }
         }
 
         public async void InitCommentaireList()
         {
-            commentsListe = await _restauServices._commentaires.GetCommentairesByRestaurant(_idrestau);
+            _commentairesList = new ObservableCollection<CommentairesModel>();
+            _commentsListe = await _service._commentaires.GetCommentairesByRestaurant(_idrestau);
             
+            Utilisateur utilisateur;
 
-            Utilisateur utilisateur = new Utilisateur();
-
-            foreach (Commentaire c in commentsListe)
+            foreach (Commentaire c in _commentsListe)
             {
                 CommentairesModel commentairesModel = new CommentairesModel();
                 commentairesModel.Commentaire = c.Commentaire1;
-                utilisateur = await _restauServices._utilisateurs.GetUtilisateur(c.Id_Utilisateur);
+                utilisateur = await _service._utilisateurs.GetUtilisateur(c.Id_Utilisateur);
                 commentairesModel.Utilisateur = utilisateur.Pseudonyme;
                 _commentairesList.Add(commentairesModel);
             }
-
 
             Commentaireslist = _commentairesList;
         }
@@ -321,26 +353,44 @@ namespace SearchFood.ViewModel
         {
             if(((App)(Application.Current)).UserConnected != null)
             {
-                Commentaire commentaire = new Commentaire { Commentaire1 = NewCommentaire, Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur };
+                if (_idCommentaireExiste != 0)
+                {
+                    Commentaire commentaire = new Commentaire {Id_Commentaire = _idCommentaireExiste, Commentaire1 = NewCommentaire, Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur };
 
-                _restauServices._commentaires.AddCommentaires(commentaire);
+                    _service._commentaires.UpdateCommentaires(commentaire);
 
-                MessageDialog msgDialog = new MessageDialog("Commentaire ajouté avec succès", "Félicitation");
-                await msgDialog.ShowAsync();
+                    MessageDialog msgDialog = new MessageDialog("Commentaire modifié avec succès", "Félicitation");
+                    await msgDialog.ShowAsync();
+                }
+                else
+                {
+                    Commentaire commentaire = new Commentaire { Commentaire1 = NewCommentaire, Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur };
+
+                    _service._commentaires.AddCommentaires(commentaire);
+
+                    MessageDialog msgDialog = new MessageDialog("Commentaire ajouté avec succès", "Félicitation");
+                    await msgDialog.ShowAsync();
+                }
+                InitRestau();
+                InitCommentaireList();
             }
             else
             {
-                MessageDialog msgDialog2 = new MessageDialog("Vous n'êtes pas connecté", "Attention");
-                await msgDialog2.ShowAsync();
-            }
-           
+                MessageDialog msgDialog = new MessageDialog("Vous n'êtes pas connecté", "Attention");
+                await msgDialog.ShowAsync();
+            }   
+        }
+
+        public void GoBack()
+        {
+            _navigationService.GoBack();
         }
         
         //Récupère le paramètre contenant la définition à modifier
         public void GetParameter(object parameter)
         {
             _idrestau = (int) parameter;
-            Restau();
+            InitRestau();
             InitCommentaireList();
         }
 

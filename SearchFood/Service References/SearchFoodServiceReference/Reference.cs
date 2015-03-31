@@ -1603,6 +1603,9 @@ namespace SearchFood.SearchFoodServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetCommentairesByRestaurantResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCommentaires>> GetCommentairesByRestaurantAsync(int idRestaurant);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetCommentaireByUserAndRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetCommentaireByUserAndRestaurantResponse")]
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCommentaires> GetCommentaireByUserAndRestaurantAsync(int idUser, int idRestaurant);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/AddCommentaires", ReplyAction="http://tempuri.org/ISearchFoodService/AddCommentairesResponse")]
         System.Threading.Tasks.Task AddCommentairesAsync(SearchFood.SearchFoodServiceReference.Commentaire c);
         
@@ -1782,6 +1785,10 @@ namespace SearchFood.SearchFoodServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeCommentaires>> GetCommentairesByRestaurantAsync(int idRestaurant) {
             return base.Channel.GetCommentairesByRestaurantAsync(idRestaurant);
+        }
+        
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeCommentaires> GetCommentaireByUserAndRestaurantAsync(int idUser, int idRestaurant) {
+            return base.Channel.GetCommentaireByUserAndRestaurantAsync(idUser, idRestaurant);
         }
         
         public System.Threading.Tasks.Task AddCommentairesAsync(SearchFood.SearchFoodServiceReference.Commentaire c) {
