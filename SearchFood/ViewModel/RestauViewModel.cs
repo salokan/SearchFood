@@ -5,6 +5,10 @@ using GalaSoft.MvvmLight;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
+using System.Threading.Tasks;
+using Bing.Maps;
+using SearchFood.BingMapsRESTService.Common.JSON;
+using System.Runtime.Serialization.Json;
 
 namespace SearchFood.ViewModel
 {
@@ -228,6 +232,7 @@ namespace SearchFood.ViewModel
 
         }
 
+
         public ICommand GetRestau { get; set; }
 
         public async void Restau()
@@ -242,8 +247,45 @@ namespace SearchFood.ViewModel
             SiteWeb = restaurant.Site_Web;
             Telephone = restaurant.Telephone;
             Mail = restaurant.Mail;
-            Latitude = restaurant.Latitude;
-            Longitude = restaurant.Longitude;
+            Uri geocodeRequest = new Uri(string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}", AdresseRestaurant + ", " + CodePostal + " " + Ville, "AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog"));
+            Response r = await GetResponse(geocodeRequest);
+            if (r != null &&
+            r.ResourceSets != null &&
+            r.ResourceSets.Length > 0 &&
+            r.ResourceSets[0].Resources != null &&
+            r.ResourceSets[0].Resources.Length > 0)
+            {
+                LocationCollection locations = new LocationCollection();
+
+                int i = 1;
+
+                foreach (BingMapsRESTService.Common.JSON.Location l
+                         in r.ResourceSets[0].Resources)
+                {
+                    Bing.Maps.Location location = new Bing.Maps.Location(l.Point.Coordinates[0], l.Point.Coordinates[1]);
+                    Pushpin pin = new Pushpin()
+                    {
+                        Tag = l.Name,
+                        Text = i.ToString()
+                    };
+
+                    i++;
+
+                    pin.Tapped += (s, a) =>
+                    {
+                        var p = s as Pushpin;
+                        ShowMessage(p.Tag as string);
+                    };
+
+                    MapLayer.SetPosition(pin, location);
+                    MyMap.Children.Add(pin);
+                    locations.Add(location);
+                }
+                MyMap.SetView(new LocationRect(locations));
+                GeocodeResults.ItemsSource = r.ResourceSets[0].Resources;
+            }
+            Latitude = "";
+            Longitude = "";
 
 
             //commentsListe = await _restauServices._commentaires.GetCommentaires();
@@ -257,6 +299,17 @@ namespace SearchFood.ViewModel
             //    MessageDialog msgDialog2 = new MessageDialog("Aucun restaurant ne correspond à votre recherche", "Attention");
             //    await msgDialog2.ShowAsync();
             //}
+        }
+        private async Task<Response> GetResponse(Uri uri)
+        {
+            System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
+            var response = await client.GetAsync(uri);
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Response));
+                return ser.ReadObject(stream) as Response;
+            }
         }
         
         //Récupère le paramètre contenant la définition à modifier
