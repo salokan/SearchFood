@@ -11,8 +11,6 @@ using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
 using System.Threading.Tasks;
 using Bing.Maps;
-using SearchFood.BingMapsRESTService.Common.JSON;
-using System.Runtime.Serialization.Json;
 
 namespace SearchFood.ViewModel
 {
@@ -388,17 +386,6 @@ namespace SearchFood.ViewModel
         public void GoBack()
         {
             _navigationService.GoBack();
-        }
-        private async Task<Response> GetResponse(Uri uri)
-        {
-            System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
-            var response = await client.GetAsync(uri);
-
-            using (var stream = await response.Content.ReadAsStreamAsync())
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Response));
-                return ser.ReadObject(stream) as Response;
-            }
         }
         
         //Récupère le paramètre contenant la définition à modifier
