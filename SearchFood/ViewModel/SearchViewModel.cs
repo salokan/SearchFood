@@ -20,6 +20,8 @@ namespace SearchFood.ViewModel
         private int idResultat = 0;
         private int idRestaurant = 0;
 
+        
+
         private Services _service = new Services();
 
         #region Boutons
@@ -29,6 +31,8 @@ namespace SearchFood.ViewModel
         public ICommand ChoisirBouton { get; set; }
 
         public ICommand SuivantBouton { get; set; }
+
+        public ICommand GoBackButton { get; set; }
 
         #endregion
 
@@ -349,6 +353,7 @@ namespace SearchFood.ViewModel
             RechercherBouton = new RelayCommand(Rechercher);
             ChoisirBouton = new RelayCommand(Choisir);
             SuivantBouton = new RelayCommand(Suivant);
+            GoBackButton = new RelayCommand(GoBack); 
             
             InitComponents();
         }
@@ -441,13 +446,13 @@ namespace SearchFood.ViewModel
             maxNote = _maxNotationChoisie;
 
             restaurantsListe = await _service._restaurants.GetRestaurants();
-            restaurantsListe = restaurantsListe.FindAll(s =>
-                (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
-                (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
-                (s.Id_Type_Cuisine == idTypeDeCuisine) &&
-                (s.Id_Categorie == idCategorieCuisine) &&
-                (s.Livraison == livraison)
-                );
+            //restaurantsListe = restaurantsListe.FindAll(s =>
+            //    (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
+            //    (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
+            //    (s.Id_Type_Cuisine == idTypeDeCuisine) &&
+            //    (s.Id_Categorie == idCategorieCuisine) &&
+            //    (s.Livraison == livraison)
+            //    );
 
 
 
@@ -494,9 +499,13 @@ namespace SearchFood.ViewModel
 
         private async void Choisir()
         {
-            MessageDialog msgDialog2 = new MessageDialog("On navigue vers détails restaurant de id : " + idRestaurant, "Attention");
-            await msgDialog2.ShowAsync();
-            _navigationService.Navigate(typeof(Restau), idRestaurant);
+            if (idRestaurant <= 0)
+            {
+                MessageDialog msgDialog = new MessageDialog("Vous n'avez pas choisi de restaurant", "Attention");
+                await msgDialog.ShowAsync();
+            }
+            else
+                _navigationService.Navigate(typeof(Restau), idRestaurant);
         }
 
         private async void Suivant()
@@ -540,6 +549,11 @@ namespace SearchFood.ViewModel
                 Type_Cuisine typeCuisine = await _service._typesCuisines.GetTypeCuisine(restaurantsListe[idResultat].Id_Type_Cuisine);
                 TypeCuisineResultat = "Type de cuisine : " + typeCuisine.Type_Cuisine1;
             }
+        }
+
+        public void GoBack()
+        {
+            _navigationService.GoBack();
         }
     }
 }

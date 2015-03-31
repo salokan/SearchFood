@@ -25,9 +25,10 @@ namespace SearchFoodServer
         List<CompositeCommentaires> GetCommentaires();
         [OperationContract]
         CompositeCommentaires GetCommentaire(int id);
-
         [OperationContract]
         List<CompositeCommentaires> GetCommentairesByRestaurant(int idRestaurant);
+        [OperationContract]
+        CompositeCommentaires GetCommentaireByUserAndRestaurant(int idUser, int idRestaurant);
         [OperationContract]
         void AddCommentaires(Commentaire c);
         [OperationContract]
