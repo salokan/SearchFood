@@ -362,55 +362,6 @@ namespace SearchFood.ViewModel
                     Commentaire commentaire = new Commentaire {Id_Commentaire = _idCommentaireExiste, Commentaire1 = NewCommentaire, Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur };
 
                     _service._commentaires.UpdateCommentaires(commentaire);
-            restaurant = await _restauServices._restaurants.GetRestaurants(_idrestau);
-            NomRestaurant = restaurant.Nom;
-            if (restaurant.Duree_repas != null) DureeRepas = (int) restaurant.Duree_repas;
-            AdresseRestaurant = AdresseRestaurant = restaurant.Adresse;
-            CodePostal = restaurant.Code_Postal;
-            Ville = restaurant.Ville;
-            if (restaurant.Prix != null) PrixRestaurant = (int) restaurant.Prix;
-            SiteWeb = restaurant.Site_Web;
-            Telephone = restaurant.Telephone;
-            Mail = restaurant.Mail;
-            Uri geocodeRequest = new Uri(string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}", AdresseRestaurant + ", " + CodePostal + " " + Ville, "AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog"));
-            Response r = await GetResponse(geocodeRequest);
-            if (r != null &&
-            r.ResourceSets != null &&
-            r.ResourceSets.Length > 0 &&
-            r.ResourceSets[0].Resources != null &&
-            r.ResourceSets[0].Resources.Length > 0)
-            {
-                LocationCollection locations = new LocationCollection();
-
-                int i = 1;
-
-                foreach (BingMapsRESTService.Common.JSON.Location l
-                         in r.ResourceSets[0].Resources)
-                {
-                    Bing.Maps.Location location = new Bing.Maps.Location(l.Point.Coordinates[0], l.Point.Coordinates[1]);
-                    Pushpin pin = new Pushpin()
-                    {
-                        Tag = l.Name,
-                        Text = i.ToString()
-                    };
-
-                    i++;
-
-                    pin.Tapped += (s, a) =>
-                    {
-                        var p = s as Pushpin;
-                        ShowMessage(p.Tag as string);
-                    };
-
-                    MapLayer.SetPosition(pin, location);
-                    MyMap.Children.Add(pin);
-                    locations.Add(location);
-                }
-                MyMap.SetView(new LocationRect(locations));
-                GeocodeResults.ItemsSource = r.ResourceSets[0].Resources;
-            }
-            Latitude = "";
-            Longitude = "";
 
                     MessageDialog msgDialog = new MessageDialog("Commentaire modifié avec succès", "Félicitation");
                     await msgDialog.ShowAsync();
