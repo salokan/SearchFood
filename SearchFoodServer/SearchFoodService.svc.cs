@@ -123,6 +123,11 @@ namespace SearchFoodServer
             return _notes.GetNote(id);
         }
 
+        public CompositeNotes GetNoteByUserAndRestaurant(int idUser, int idRestaurant)
+        {
+            return _notes.GetNoteByUserAndRestaurant(idUser, idRestaurant);
+        }
+
         public List<CompositeNotes> GetNoteByRestaurant(int idRestaurant)
         {
             return _notes.GetNoteByRestaurant(idRestaurant);

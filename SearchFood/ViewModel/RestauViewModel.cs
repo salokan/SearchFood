@@ -31,6 +31,8 @@ namespace SearchFood.ViewModel
         private string _mail;
         private string _latitude;
         private string _longitude;
+        private string _noteMoyenne;
+
 
         private int _idCommentaireExiste;
         
@@ -41,6 +43,11 @@ namespace SearchFood.ViewModel
 
         public ICommand AjouterCommentaireButton { get; set; }
         public ICommand GoBackButton { get; set; }
+        public ICommand OneStar { get; set; }
+        public ICommand TwoStar { get; set; }
+        public ICommand ThreeStar { get; set; }
+        public ICommand FourStar { get; set; }
+        public ICommand FiveStar { get; set; }
         
 
         #region Champs Restaurant
@@ -231,6 +238,23 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public string NoteMoyenne
+        {
+            get
+            {
+                return _noteMoyenne;
+            }
+
+            set
+            {
+                if (_noteMoyenne != value)
+                {
+                    _noteMoyenne = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
         #region Champs Commentaire
@@ -289,7 +313,65 @@ namespace SearchFood.ViewModel
             _navigationService = navigation;
             _service = new Services();
             AjouterCommentaireButton = new RelayCommand(AjouterCommentaire);
-            GoBackButton = new RelayCommand(GoBack);  
+            GoBackButton = new RelayCommand(GoBack);
+            OneStar = new RelayCommand(OneStarMethod);
+            TwoStar = new RelayCommand(TwoStarMethod);
+            ThreeStar = new RelayCommand(ThreeStarMethod);
+            FourStar = new RelayCommand(FourStarMethod);
+            FiveStar = new RelayCommand(FiveStarMethod);
+        }
+
+        public void OneStarMethod()
+        {
+            AddNote(1);
+        }
+        public void TwoStarMethod()
+        {
+            AddNote(2);
+        }
+        public void ThreeStarMethod()
+        {
+            AddNote(3);
+        }
+        public void FourStarMethod()
+        {
+            AddNote(4);
+        }
+        public void FiveStarMethod()
+        {
+            AddNote(5);
+        }
+
+        public async void AddNote(int note)
+        {
+            if (((App) (Application.Current)).UserConnected != null)
+            {
+                Note n = new Note();
+                n.Note1 = note;
+                n.Id_Restaurant = _restaurant.Id_Restaurant;
+                n.Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur;
+
+                Note noteAvant = await _service._notes.GetNoteByUserAndRestaurant(((App)(Application.Current)).UserConnected.Id_Utilisateur, _restaurant.Id_Restaurant);
+
+                if (noteAvant.Id_Note != 0)
+                {
+                    n.Id_Note = noteAvant.Id_Note;
+                    _service._notes.UpdateNotes(n);
+                }
+                else
+                {
+                    _service._notes.AddNotes(n);
+                }
+
+                MessageDialog msgDialog = new MessageDialog("Votre note a été prise en compte", "Félicitation");
+                await msgDialog.ShowAsync();
+                InitRestau();
+            }
+            else
+            {
+                MessageDialog msgDialog = new MessageDialog("Vous n'êtes pas connecté", "Attention");
+                await msgDialog.ShowAsync();
+            } 
         }
 
         public async void InitRestau()
@@ -303,8 +385,11 @@ namespace SearchFood.ViewModel
             if (_restaurant.Prix != null) PrixRestaurant = (int) _restaurant.Prix;
             SiteWeb = _restaurant.Site_Web;
             Telephone = _restaurant.Telephone;
-            Mail = _restaurant.Mail; 
+            Mail = _restaurant.Mail;
 
+            float moyenneNote = await _service._notes.GetMoyenneNotesRestaurant(_restaurant.Id_Restaurant);
+
+            NoteMoyenne = moyenneNote.ToString();
 
             string BingMapsKey = "AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog";
 
@@ -319,7 +404,6 @@ namespace SearchFood.ViewModel
                 Latitude = l.Point.Coordinates[0].ToString();
                 Longitude =l.Point.Coordinates[1].ToString();
             }
-
 
             //Si l'utilisateur est authentifié, on récupère son commentaire si il en a un et on l'affiche
             if (((App) (Application.Current)).UserConnected != null)

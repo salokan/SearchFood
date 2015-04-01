@@ -58,6 +58,8 @@ namespace SearchFoodServer
         [OperationContract]
         CompositeNotes GetNote(int id);
         [OperationContract]
+        CompositeNotes GetNoteByUserAndRestaurant(int idUser, int idRestaurant);
+        [OperationContract]
         List<CompositeNotes> GetNoteByRestaurant(int idRestaurant);
         [OperationContract]
         List<CompositeNotes> GetNoteByUser(int idUser);

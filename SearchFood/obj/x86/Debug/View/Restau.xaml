@@ -46,6 +46,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Prix" FontSize="20"/>
                     <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding PrixRestaurant}" FontSize="20" />
@@ -61,8 +62,29 @@
                     <TextBlock Grid.Column="1" Grid.Row="5" Text="{Binding Telephone}" FontSize="20"/>
                     <TextBlock Grid.Column="0" Grid.Row="6" Text="Mail" FontSize="20"/>
                     <TextBlock Grid.Column="1" Grid.Row="6" Text="{Binding Mail}" FontSize="20"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="Note" FontSize="20"/>
+                    <TextBlock Grid.Column="1" Grid.Row="7" Text="{Binding NoteMoyenne}" FontSize="20"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Notation" FontSize="20"/>
+
+                    <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Command="{Binding OneStar}">
+                            <TextBlock>1</TextBlock>
+                        </Button>
+                        <Button Command="{Binding TwoStar}">
+                            <TextBlock>2</TextBlock>
+                        </Button>
+                        <Button Command="{Binding ThreeStar}">
+                            <TextBlock>3</TextBlock>
+                        </Button>
+                        <Button Command="{Binding FourStar}">
+                            <TextBlock>4</TextBlock>
+                        </Button>
+                        <Button Command="{Binding FiveStar}">
+                            <TextBlock>5</TextBlock>
+                        </Button>
+                    </StackPanel>
                 </Grid>
-                <ListView Height="281" ItemsSource="{Binding Path=Commentaireslist}">
+                <ListView Height="275" ItemsSource="{Binding Path=Commentaireslist}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Height="60" Width="468">

@@ -128,6 +128,12 @@
   <wsdl:message name="ISearchFoodService_GetNote_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetNoteResponse" />
   </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNoteByUserAndRestaurant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoteByUserAndRestaurant" />
+  </wsdl:message>
+  <wsdl:message name="ISearchFoodService_GetNoteByUserAndRestaurant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNoteByUserAndRestaurantResponse" />
+  </wsdl:message>
   <wsdl:message name="ISearchFoodService_GetNoteByRestaurant_InputMessage">
     <wsdl:part name="parameters" element="tns:GetNoteByRestaurant" />
   </wsdl:message>
@@ -352,6 +358,10 @@
     <wsdl:operation name="GetNote">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNote" message="tns:ISearchFoodService_GetNote_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteResponse" message="tns:ISearchFoodService_GetNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNoteByUserAndRestaurant">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteByUserAndRestaurant" message="tns:ISearchFoodService_GetNoteByUserAndRestaurant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteByUserAndRestaurantResponse" message="tns:ISearchFoodService_GetNoteByUserAndRestaurant_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetNoteByRestaurant">
       <wsdl:input wsaw:Action="http://tempuri.org/ISearchFoodService/GetNoteByRestaurant" message="tns:ISearchFoodService_GetNoteByRestaurant_InputMessage" />
@@ -625,6 +635,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetNote">
       <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNoteByUserAndRestaurant">
+      <soap:operation soapAction="http://tempuri.org/ISearchFoodService/GetNoteByUserAndRestaurant" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -49,6 +49,20 @@ namespace SearchFood.Webservices
             return note;
         }
 
+        public async Task<Note> GetNoteByUserAndRestaurant(int idUser, int idRestaurant)
+        {
+            Note note = new Note();
+
+            CompositeNotes noteComposite = await _client.GetNoteByUserAndRestaurantAsync(idUser, idRestaurant);
+
+            note.Id_Note = noteComposite.IdNotesValue;
+            note.Id_Restaurant = noteComposite.IdRestaurantsValue;
+            note.Id_Utilisateur = noteComposite.IdUtilisateursValue;
+            note.Note1 = noteComposite.NotesValue;
+
+            return note;
+        }
+
         public async Task<List<Note>> GetNoteByRestaurant(int idRestaurant)
         {
             ObservableCollection<CompositeNotes> notesList;
