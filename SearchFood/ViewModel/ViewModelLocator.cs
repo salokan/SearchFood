@@ -62,6 +62,14 @@ namespace SearchFood.ViewModel
             }
         }
 
+        public CreateRestaurantViewModel CreateRestaurant
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CreateRestaurantViewModel>();
+            }
+        }
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -70,6 +78,7 @@ namespace SearchFood.ViewModel
             SimpleIoc.Default.Register<LogViewModel>();
             SimpleIoc.Default.Register<RestauViewModel>();
             SimpleIoc.Default.Register<AccountViewModel>();
+            SimpleIoc.Default.Register<CreateRestaurantViewModel>();
         }
     }
 }

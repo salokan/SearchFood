@@ -1,10 +1,9 @@
-﻿using Windows.UI.Xaml;
-using SearchFood.Common;
+﻿using SearchFood.Common;
 using Windows.UI.Xaml.Navigation;
 
 namespace SearchFood.View
 {
-    public sealed partial class Search
+    public sealed partial class CreateRestaurant
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -20,9 +19,10 @@ namespace SearchFood.View
         }
 
 
-        public Search()
+        public CreateRestaurant()
         {
             InitializeComponent();
+
             navigationHelper = new NavigationHelper(this);
             navigationHelper.LoadState += navigationHelper_LoadState;
             navigationHelper.SaveState += navigationHelper_SaveState;
@@ -50,12 +50,5 @@ namespace SearchFood.View
         }
 
         #endregion
-
-        private void RechercherClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            borderResultat.Visibility = Visibility.Visible;
-            boutonChoisir.Visibility = Visibility.Visible;
-            boutonSuivant.Visibility = Visibility.Visible;
-        }
     }
 }

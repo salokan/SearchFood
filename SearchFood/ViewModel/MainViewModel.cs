@@ -20,7 +20,7 @@ namespace SearchFood.ViewModel
             LogoutCommand = new RelayCommand(Logout);
             SearchCommand = new RelayCommand(Search);
             AccountCommande = new RelayCommand(Account);
-            RestauCommand = new RelayCommand(Restau);
+            CreateRestaurantCommand = new RelayCommand(MonRestaurant);
 
             ConnectedHeader = Visibility.Collapsed;
             DeconnectedHeader = Visibility.Visible; 
@@ -40,7 +40,7 @@ namespace SearchFood.ViewModel
 
         public ICommand SearchCommand { get; set; }
 
-        public ICommand RestauCommand { get; set; }
+        public ICommand CreateRestaurantCommand { get; set; }
 
         public ICommand CreateAccountCommand { get; set; }
 
@@ -59,9 +59,9 @@ namespace SearchFood.ViewModel
             _navigationService.Navigate(typeof(Search));
         }
 
-        public void Restau()
+        public void MonRestaurant()
         {
-            _navigationService.Navigate(typeof(Restau));
+            _navigationService.Navigate(typeof(CreateRestaurant));
         }
 
         

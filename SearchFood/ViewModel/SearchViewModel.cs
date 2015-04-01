@@ -20,8 +20,6 @@ namespace SearchFood.ViewModel
         private int idResultat = 0;
         private int idRestaurant = 0;
 
-        
-
         private Services _service = new Services();
 
         #region Boutons
