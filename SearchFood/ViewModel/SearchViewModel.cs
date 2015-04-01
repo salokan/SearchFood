@@ -450,8 +450,8 @@ namespace SearchFood.ViewModel
                 (s.Id_Type_Cuisine == idTypeDeCuisine || idTypeDeCuisine == 0) &&
                 (s.Id_Categorie == idCategorieCuisine || idCategorieCuisine == 0) &&
                 (s.Livraison == livraison)
+                //Note
                 );
-
 
 
             if (restaurantsListe.Count != 0)

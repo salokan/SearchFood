@@ -235,6 +235,14 @@ namespace SearchFood.ViewModel
     [DataContract(Namespace = "http://schemas.microsoft.com/search/local/ws/rest/v1")]
     public class Location : Resource
     {
+        private double Latitude;
+        private double Longitude;
+
+        public Location(double Latitude, double Longitude)
+        {
+            this.Latitude = Latitude;
+            this.Longitude = Longitude;
+        }
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
