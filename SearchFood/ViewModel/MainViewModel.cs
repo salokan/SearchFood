@@ -51,6 +51,7 @@ namespace SearchFood.ViewModel
         public ICommand CreateRestaurantCommand { get; set; }
 
         public ICommand CreateAccountCommand { get; set; }
+        public ICommand RestauCommand { get; set; }
 
         public ICommand LogoutCommand { get; set; }
 

@@ -4,13 +4,21 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SearchFood.Navigation; 
 using SearchFood.SearchFoodServiceReference;
-using SearchFood.Model;  
+using SearchFood.Model;
+using Windows.UI.Xaml;  
 
 namespace SearchFood.ViewModel
 {
     public class AccountViewModel : ViewModelBase
     {
         private Utilisateur _utilisateur;
+        private Historique _historique;
+        private Restaurant _restaurant;
+        private Categorie _categorie;
+        private Type_Cuisine _typeCuisine;
+        private string _nomRestaurant;
+        private string _categorieRestaurant;
+        private string _typeCuisineRestaurant;
         private List<Historique> _historiques;
         private Restaurant restaurant;
         private List<Restaurant> _historiqueRestaurant;
@@ -24,9 +32,9 @@ namespace SearchFood.ViewModel
             _navigationService = navigation;
             _service = new Services();
             Historiques = new List<Historique>();
-            HistoriqueRestaurant = new List<Historique>();
+            HistoriqueRestaurant = new List<Restaurant>();
             GoBackButton = new RelayCommand(GoBack);
-
+            _utilisateur = ((App)(Application.Current)).UserConnected;
             InitHistorique();
         }
 
@@ -36,8 +44,14 @@ namespace SearchFood.ViewModel
 
             foreach (Historique histo in _historiques)
             {
-                //restaurant = await _service._restaurants.GetRestaurantsById(histo.Id_Restaurant);
-                //_historiqueRestaurant.Add(restaurant);
+                restaurant = await _service._restaurants.GetRestaurants(histo.Id_Restaurant);
+                _historiqueRestaurant.Add(restaurant);
+                Restaurant = restaurant;
+                Historique = histo;
+                Categorie = await _service._categories.GetCategorie(restaurant.Id_Categorie);
+                CategorieRestaurant = Categorie.Nom_Categorie;
+                Type_Cuisine = await _service._typesCuisines.GetTypeCuisine(restaurant.Id_Type_Cuisine);
+                Type_CuisineRestaurant = Type_Cuisine.Type_Cuisine1;
             }
         }
 
@@ -47,6 +61,47 @@ namespace SearchFood.ViewModel
             get { return _utilisateur; }
             set { _utilisateur = value; RaisePropertyChanged(); }
         }
+        public Restaurant Restaurant
+        {
+            get { return _restaurant; }
+            set { _restaurant = value; RaisePropertyChanged(); }
+        }
+
+        public Historique Historique
+        {
+            get { return _historique; }
+            set { _historique = value; RaisePropertyChanged(); }
+        }
+
+        public Categorie Categorie
+        {
+            get { return _categorie; }
+            set { _categorie = value; RaisePropertyChanged(); }
+        }
+
+        public Type_Cuisine Type_Cuisine
+        {
+            get { return _typeCuisine; }
+            set { _typeCuisine = value; RaisePropertyChanged(); }
+        }
+        public string NomRestaurant
+        {
+            get { return _nomRestaurant; }
+            set { _nomRestaurant = value; RaisePropertyChanged(); }
+        }
+
+        public string CategorieRestaurant
+        {
+            get { return _categorieRestaurant; }
+            set { _categorieRestaurant = value; RaisePropertyChanged(); }
+        }
+
+        public string Type_CuisineRestaurant
+        {
+            get { return _typeCuisineRestaurant; }
+            set { _typeCuisineRestaurant = value; RaisePropertyChanged(); }
+        }
+
         public List<Historique> Historiques
         {
             get { return _historiques; }
@@ -55,134 +110,9 @@ namespace SearchFood.ViewModel
         public List<Restaurant> HistoriqueRestaurant
         {
             get { return _historiqueRestaurant; }
-            set { _historiques = value; RaisePropertyChanged(); }
+            set { _historiqueRestaurant = value; RaisePropertyChanged(); }
         }
 
-        private string _nom;
-        public string Nom
-        {
-            get
-            {
-                return _nom;
-            }
-
-            set
-            {
-                if (_nom != value)
-                {
-                    _nom = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private string _duree;
-        public string Duree
-        {
-            get
-            {
-                return _duree;
-            }
-
-            set
-            {
-                if (_duree != value)
-                {
-                    _duree = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private string _date;
-        public string Date
-        {
-            get
-            {
-                return _date;
-            }
-
-            set
-            {
-                if (_date != value)
-                {
-                    _date = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private string _prix;
-        public string Prix
-        {
-            get
-            {
-                return _prix;
-            }
-
-            set
-            {
-                if (_prix != value)
-                {
-                    _prix = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private string _categorie;
-        public string Categorie
-        {
-            get
-            {
-                return _categorie;
-            }
-
-            set
-            {
-                if (_categorie != value)
-                {
-                    _categorie = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private string _typeCuisine;
-        public string TypeCuisine
-        {
-            get
-            {
-                return _typeCuisine;
-            }
-
-            set
-            {
-                if (_typeCuisine != value)
-                {
-                    _typeCuisine = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
-        private string _commentaire;
-        public int Commentaire
-        {
-            get
-            {
-                return _commentaire;
-            }
-
-            set
-            {
-                if (_commentaire != value)
-                {
-                    _commentaire = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
         #endregion
 
         public void GoBack()
