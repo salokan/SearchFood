@@ -77,7 +77,7 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="5">
                 <TextBlock Text="Carte" FontSize="28" HorizontalAlignment="Center"/>
-                <Maps:Map Height="346" Margin="378,0,0,0" />
+                <Maps:Map x:Name="myMap" Height="346" Margin="378,0,0,0" ZoomLevel="12" Credentials="AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog"/>
             </StackPanel>
         </Grid>
     </Grid>

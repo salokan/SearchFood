@@ -9,6 +9,8 @@ using SearchFood.Common;
 using SearchFood.Model;
 using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
+using System.Threading.Tasks;
+using Bing.Maps;
 
 namespace SearchFood.ViewModel
 {
@@ -31,7 +33,7 @@ namespace SearchFood.ViewModel
         private string _longitude;
 
         private int _idCommentaireExiste;
-
+        
         private string _newCommentaire;
 
         private Services _service;
@@ -334,7 +336,7 @@ namespace SearchFood.ViewModel
         {
             _commentairesList = new ObservableCollection<CommentairesModel>();
             _commentsListe = await _service._commentaires.GetCommentairesByRestaurant(_idrestau);
-            
+           
             Utilisateur utilisateur;
 
             foreach (Commentaire c in _commentsListe)
@@ -344,7 +346,7 @@ namespace SearchFood.ViewModel
                 utilisateur = await _service._utilisateurs.GetUtilisateur(c.Id_Utilisateur);
                 commentairesModel.Utilisateur = utilisateur.Pseudonyme;
                 _commentairesList.Add(commentairesModel);
-            }
+        }
 
             Commentaireslist = _commentairesList;
         }
@@ -354,7 +356,7 @@ namespace SearchFood.ViewModel
             if(((App)(Application.Current)).UserConnected != null)
             {
                 if (_idCommentaireExiste != 0)
-                {
+        {
                     Commentaire commentaire = new Commentaire {Id_Commentaire = _idCommentaireExiste, Commentaire1 = NewCommentaire, Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur };
 
                     _service._commentaires.UpdateCommentaires(commentaire);
@@ -380,7 +382,7 @@ namespace SearchFood.ViewModel
                 await msgDialog.ShowAsync();
             }   
         }
-
+                
         public void GoBack()
         {
             _navigationService.GoBack();
