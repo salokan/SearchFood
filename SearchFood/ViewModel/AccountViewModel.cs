@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -24,7 +25,20 @@ namespace SearchFood.ViewModel
         private List<Restaurant> _historiqueRestaurant;
         private INavigationService _navigationService;
         private Services _service;
-        
+
+        public ObservableCollection<HistoriquesModel> Historiqueslist
+        {
+            get { return _historiqueslist; }
+
+            set
+            {
+                _historiqueslist = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private ObservableCollection<HistoriquesModel> _historiqueslist = new ObservableCollection<HistoriquesModel>();
+
         public ICommand GoBackButton { get; set; }
 
         public AccountViewModel(INavigationService navigation)
@@ -35,7 +49,7 @@ namespace SearchFood.ViewModel
             HistoriqueRestaurant = new List<Restaurant>();
             GoBackButton = new RelayCommand(GoBack);
             _utilisateur = ((App)(Application.Current)).UserConnected;
-            InitHistorique();
+            InithistoriqueList();
         }
 
         private async void InitHistorique()
@@ -52,6 +66,30 @@ namespace SearchFood.ViewModel
                 CategorieRestaurant = Categorie.Nom_Categorie;
                 Type_Cuisine = await _service._typesCuisines.GetTypeCuisine(restaurant.Id_Type_Cuisine);
                 Type_CuisineRestaurant = Type_Cuisine.Type_Cuisine1;
+            }
+        }
+
+        private async void InithistoriqueList()
+        {
+            _historiqueslist = new ObservableCollection<HistoriquesModel>();
+            _historiques = new List<Historique>();
+            _historiques = await _service._historique.GetHistoriqueByUser(((App)(Application.Current)).UserConnected.Id_Utilisateur);
+
+            foreach (Historique histo in _historiques)
+            {
+                restaurant = await _service._restaurants.GetRestaurants(histo.Id_Restaurant);
+                _historiqueRestaurant.Add(restaurant);
+                Restaurant = restaurant;
+                Historique = histo;
+                Categorie = await _service._categories.GetCategorie(restaurant.Id_Categorie);
+                CategorieRestaurant = Categorie.Nom_Categorie;
+                Type_Cuisine = await _service._typesCuisines.GetTypeCuisine(restaurant.Id_Type_Cuisine);
+                Type_CuisineRestaurant = Type_Cuisine.Type_Cuisine1;
+
+
+                HistoriquesModel historiqueModel = new HistoriquesModel{Date = histo.Date.ToString(), NomRestaurant = restaurant.Nom, TypeCuisine = Type_CuisineRestaurant, Categorie = CategorieRestaurant};
+
+                _historiqueslist.Add(historiqueModel);
             }
         }
 

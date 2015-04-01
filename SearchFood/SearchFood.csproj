@@ -112,6 +112,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Model\CommentairesModel.cs" />
+    <Compile Include="Model\HistoriquesModel.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\BingMapsRESTServices.cs" />
     <Compile Include="ViewModel\CreateRestaurantViewModel.cs" />
