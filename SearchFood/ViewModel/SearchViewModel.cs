@@ -447,8 +447,8 @@ namespace SearchFood.ViewModel
             restaurantsListe = restaurantsListe.FindAll(s =>
                 (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
                 (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
-                (s.Id_Type_Cuisine == idTypeDeCuisine) &&
-                (s.Id_Categorie == idCategorieCuisine) &&
+                (s.Id_Type_Cuisine == idTypeDeCuisine || idTypeDeCuisine == 0) &&
+                (s.Id_Categorie == idCategorieCuisine || idCategorieCuisine == 0) &&
                 (s.Livraison == livraison)
                 );
 

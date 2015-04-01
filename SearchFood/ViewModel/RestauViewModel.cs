@@ -312,7 +312,7 @@ namespace SearchFood.ViewModel
 
             Uri geocodeRequest = new Uri(
                 string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}",
-                AdresseRestaurant + " " + CodePostal + " " + Ville, BingMapsKey));
+               "9 rue Jean de Mansencal 31500 Toulouse", BingMapsKey));
 
             Response r = await GetResponse(geocodeRequest);
 
