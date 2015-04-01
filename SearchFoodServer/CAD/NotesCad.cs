@@ -60,6 +60,31 @@ namespace SearchFoodServer.CAD
             return compositeNotes;
         }
 
+        public CompositeNotes GetNoteByUserAndRestaurant(int idUser, int idRestaurant)
+        {
+            CompositeNotes compositeNotes = new CompositeNotes();
+            Note note;
+
+            using (var bdd = new searchfoodEntities())
+            {
+                var requete = from n in bdd.Note
+                              where n.Id_Utilisateur == idUser && n.Id_Restaurant == idRestaurant
+                              select n;
+
+                note = requete.FirstOrDefault();
+            }
+
+            if (note != null)
+            {
+                compositeNotes.IdNotesValue = note.Id_Note;
+                compositeNotes.IdRestaurantsValue = note.Id_Restaurant;
+                compositeNotes.IdUtilisateursValue = note.Id_Utilisateur;
+                compositeNotes.NotesValue = note.Note1;
+            }
+
+            return compositeNotes;
+        }
+
         public List<CompositeNotes> GetNoteByRestaurant(int idRestaurant)
         {
             List<CompositeNotes> notesList = new List<CompositeNotes>();

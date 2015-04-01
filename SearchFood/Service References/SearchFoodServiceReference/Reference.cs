@@ -1639,6 +1639,9 @@ namespace SearchFood.SearchFoodServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNote", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteResponse")]
         System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeNotes> GetNoteAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNoteByUserAndRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteByUserAndRestaurantResponse")]
+        System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeNotes> GetNoteByUserAndRestaurantAsync(int idUser, int idRestaurant);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISearchFoodService/GetNoteByRestaurant", ReplyAction="http://tempuri.org/ISearchFoodService/GetNoteByRestaurantResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByRestaurantAsync(int idRestaurant);
         
@@ -1833,6 +1836,10 @@ namespace SearchFood.SearchFoodServiceReference {
         
         public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeNotes> GetNoteAsync(int id) {
             return base.Channel.GetNoteAsync(id);
+        }
+        
+        public System.Threading.Tasks.Task<SearchFood.SearchFoodServiceReference.CompositeNotes> GetNoteByUserAndRestaurantAsync(int idUser, int idRestaurant) {
+            return base.Channel.GetNoteByUserAndRestaurantAsync(idUser, idRestaurant);
         }
         
         public System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<SearchFood.SearchFoodServiceReference.CompositeNotes>> GetNoteByRestaurantAsync(int idRestaurant) {
