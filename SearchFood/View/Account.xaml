@@ -53,7 +53,7 @@
                 </Grid> 
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="5">
-                <ListView VerticalAlignment="Top" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Historiques, Mode=TwoWay}" Margin="10,10,10,100" Width="Auto" >
+                <ListView VerticalAlignment="Top" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=HistoriqueRestaurant, Mode=TwoWay}" Margin="10,10,10,100" Width="Auto" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -64,11 +64,11 @@
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="{Binding Restaurant.Note}" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="0" TextWrapping="Wrap" Text="{Binding Nom}" Margin="5,0,0,0" FontWeight="Bold"/>
                                 <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Date}"/>
-                                <TextBlock Grid.Column="2" TextWrapping="Wrap" Text="{Binding Restaurant.Categorie}" />
-                                <TextBlock Grid.Column="3" TextWrapping="Wrap" Text="{Binding Restaurant.Type_Cuisine}" />
-                                <TextBlock Grid.Column="3" TextWrapping="Wrap" Text="{Binding Restaurant.Commentaire}" />
+                                <TextBlock Grid.Column="2" TextWrapping="Wrap" Text="{Binding Categorie}" />
+                                <TextBlock Grid.Column="3" TextWrapping="Wrap" Text="{Binding Type_Cuisine}" />
+                                <TextBlock Grid.Column="3" TextWrapping="Wrap" Text="{Binding Commentaire}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

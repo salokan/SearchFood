@@ -11,6 +11,7 @@ using SearchFood.Navigation;
 using SearchFood.SearchFoodServiceReference;
 using System.Threading.Tasks;
 using Bing.Maps;
+using Windows.Data.Xml.Dom;
 
 namespace SearchFood.ViewModel
 {
@@ -31,6 +32,7 @@ namespace SearchFood.ViewModel
         private string _mail;
         private string _latitude;
         private string _longitude;
+        private string bingMapsUri;
 
         private int _idCommentaireExiste;
         
@@ -303,9 +305,13 @@ namespace SearchFood.ViewModel
             if (_restaurant.Prix != null) PrixRestaurant = (int) _restaurant.Prix;
             SiteWeb = _restaurant.Site_Web;
             Telephone = _restaurant.Telephone;
-            Mail = _restaurant.Mail;
-            Latitude = _restaurant.Latitude;
-            Longitude = _restaurant.Longitude;
+            Mail = _restaurant.Mail; 
+
+            bingMapsUri = string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}", AdresseRestaurant + ", " + CodePostal + " " + Ville, "AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog");
+            XmlDocument bingMapsXmlDoc = new XmlDocument();
+            bingMapsXmlDoc.LoadXml(bingMapsUri);
+            Longitude = bingMapsXmlDoc.DocumentElement.SelectSingleNode(@".//rest:Longitude").InnerText;
+            Latitude = bingMapsXmlDoc.DocumentElement.SelectSingleNode(@".//rest:Latitude").InnerText;
 
             //Si l'utilisateur est authentifié, on récupère son commentaire si il en a un et on l'affiche
             if (((App) (Application.Current)).UserConnected != null)
