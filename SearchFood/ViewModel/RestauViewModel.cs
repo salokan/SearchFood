@@ -12,6 +12,7 @@ using SearchFood.SearchFoodServiceReference;
 using System.Threading.Tasks;
 using Bing.Maps;
 using Windows.Data.Xml.Dom;
+using System.Runtime.Serialization.Json;
 
 namespace SearchFood.ViewModel
 {
@@ -32,7 +33,6 @@ namespace SearchFood.ViewModel
         private string _mail;
         private string _latitude;
         private string _longitude;
-        private string bingMapsUri;
 
         private int _idCommentaireExiste;
         
@@ -307,11 +307,21 @@ namespace SearchFood.ViewModel
             Telephone = _restaurant.Telephone;
             Mail = _restaurant.Mail; 
 
-            bingMapsUri = string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}", AdresseRestaurant + ", " + CodePostal + " " + Ville, "AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog");
-            XmlDocument bingMapsXmlDoc = new XmlDocument();
-            bingMapsXmlDoc.LoadXml(bingMapsUri);
-            Longitude = bingMapsXmlDoc.DocumentElement.SelectSingleNode(@".//rest:Longitude").InnerText;
-            Latitude = bingMapsXmlDoc.DocumentElement.SelectSingleNode(@".//rest:Latitude").InnerText;
+
+            string BingMapsKey = "AuYeRnpqm1vyzkRFey2o4jXKWwYGdJGAPF7FrTA4d0w8w_vCF2z1NT9oT6BsVvog";
+
+            Uri geocodeRequest = new Uri(
+                string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}",
+                AdresseRestaurant + " " + CodePostal + " " + Ville, BingMapsKey));
+
+            Response r = await GetResponse(geocodeRequest);
+
+            foreach (Location l in r.ResourceSets[0].Resources)
+            {
+                Latitude = l.Point.Coordinates[0].ToString();
+                Longitude =l.Point.Coordinates[1].ToString();
+            }
+
 
             //Si l'utilisateur est authentifié, on récupère son commentaire si il en a un et on l'affiche
             if (((App) (Application.Current)).UserConnected != null)
@@ -337,6 +347,17 @@ namespace SearchFood.ViewModel
                 TextBoutonCommentaire = "Ajouter Commentaire";
             }
         }
+        private async Task<Response> GetResponse(Uri uri)
+        {
+            System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
+            var response = await client.GetAsync(uri);
+
+            using (var stream = await response.Content.ReadAsStreamAsync())
+            {
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Response));
+                return ser.ReadObject(stream) as Response;
+            }
+        } 
 
         public async void InitCommentaireList()
         {
