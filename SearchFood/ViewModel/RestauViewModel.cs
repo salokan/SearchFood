@@ -23,16 +23,16 @@ namespace SearchFood.ViewModel
         private Restaurant _restaurant = new Restaurant();
         private int _idrestau;
         private string _nomRestaurant;
-        private int _dureeRepas;
+        private string _dureeRepas;
         private String _adresseRestaurant;
         private string _codePostal;
         private String _ville;
-        private int _prixRestaurant;
+        private string _prixRestaurant;
         private string _siteWeb;
         private string _telephone;
         private string _mail;
-        private string _latitude;
-        private string _longitude;
+        private double _latitude;
+        private double _longitude;
 
         private int _idCommentaireExiste;
         
@@ -63,7 +63,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int DureeRepas 
+        public string DureeRepas 
         {
             get
             {
@@ -131,7 +131,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public int PrixRestaurant 
+        public string PrixRestaurant 
         {
             get
             {
@@ -199,7 +199,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Latitude 
+        public double Latitude 
         {
             get
             {
@@ -216,7 +216,7 @@ namespace SearchFood.ViewModel
             }
         }
 
-        public string Longitude 
+        public double Longitude 
         {
             get
             {
@@ -298,11 +298,33 @@ namespace SearchFood.ViewModel
         {
             _restaurant = await _service._restaurants.GetRestaurants(_idrestau);
             NomRestaurant = _restaurant.Nom;
-            if (_restaurant.Duree_repas != null) DureeRepas = (int) _restaurant.Duree_repas;
+            if (_restaurant.Duree_repas == 1)
+            {
+                DureeRepas = "Durée : Rapide";
+            }
+            else if (_restaurant.Duree_repas == 2)
+            {
+                DureeRepas = "Durée : Moyen";
+            }
+            else
+            {
+                DureeRepas = "Durée : Long";
+            }
             AdresseRestaurant = AdresseRestaurant = _restaurant.Adresse;
             CodePostal = _restaurant.Code_Postal;
             Ville = _restaurant.Ville;
-            if (_restaurant.Prix != null) PrixRestaurant = (int) _restaurant.Prix;
+            if (_restaurant.Prix == 1)
+            {
+                PrixRestaurant = "Prix : Petit Budget";
+            }
+            else if (_restaurant.Prix == 2)
+            {
+                PrixRestaurant = "Prix : Budget Moyen";
+            }
+            else
+            {
+                PrixRestaurant = "Prix : Gros Budget";
+            }
             SiteWeb = _restaurant.Site_Web;
             Telephone = _restaurant.Telephone;
             Mail = _restaurant.Mail; 
@@ -312,14 +334,14 @@ namespace SearchFood.ViewModel
 
             Uri geocodeRequest = new Uri(
                 string.Format("http://dev.virtualearth.net/REST/v1/Locations?q={0}&key={1}",
-               "9 rue Jean de Mansencal 31500 Toulouse", BingMapsKey));
+                "9 rue Jean de Mansencal 31500 Toulouse", BingMapsKey));
 
             Response r = await GetResponse(geocodeRequest);
 
             foreach (Location l in r.ResourceSets[0].Resources)
             {
-                Latitude = l.Point.Coordinates[0].ToString();
-                Longitude =l.Point.Coordinates[1].ToString();
+                Latitude = l.Point.Coordinates[0];
+                Longitude =l.Point.Coordinates[1];
             }
 
 
