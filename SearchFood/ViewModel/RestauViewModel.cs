@@ -40,6 +40,7 @@ namespace SearchFood.ViewModel
         private string _textBoutonCommentaire;
 
         public ICommand AjouterCommentaireButton { get; set; }
+        public ICommand AddHistorique { get; set; }
         public ICommand GoBackButton { get; set; }
         
 
@@ -289,7 +290,8 @@ namespace SearchFood.ViewModel
             _navigationService = navigation;
             _service = new Services();
             AjouterCommentaireButton = new RelayCommand(AjouterCommentaire);
-            GoBackButton = new RelayCommand(GoBack);  
+            GoBackButton = new RelayCommand(GoBack);
+            AddHistorique = new RelayCommand(AddHisto);  
         }
 
         public async void InitRestau()
@@ -433,6 +435,23 @@ namespace SearchFood.ViewModel
         public void GoBack()
         {
             _navigationService.GoBack();
+        }
+
+        public async void AddHisto()
+        {
+            if (((App)(Application.Current)).UserConnected != null)
+            {
+                DateTime today = DateTime.Now;
+                Historique historique = new Historique { Id_Restaurant = _idrestau, Id_Utilisateur = ((App)(Application.Current)).UserConnected.Id_Utilisateur, Date = today };
+                _service._historique.AddHistorique(historique);
+                MessageDialog msgDialog = new MessageDialog("Restaurant ajouté à l'historique", "Félicitation");
+                await msgDialog.ShowAsync();
+            }
+            else
+            {
+                MessageDialog msgDialog = new MessageDialog("Vous n'êtes pas connecté", "Attention");
+                await msgDialog.ShowAsync();
+            }   
         }
         
         //Récupère le paramètre contenant la définition à modifier

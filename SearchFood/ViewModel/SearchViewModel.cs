@@ -15,8 +15,9 @@ namespace SearchFood.ViewModel
     public class SearchViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        
+
         private List<Restaurant> restaurantsListe = new List<Restaurant>();
+        private List<Restaurant> allRestaurantsListe = new List<Restaurant>();
         private int idResultat = 0;
         private int idRestaurant = 0;
 
@@ -443,15 +444,36 @@ namespace SearchFood.ViewModel
             minNote = _minNotationChoisie;
             maxNote = _maxNotationChoisie;
 
-            restaurantsListe = await _service._restaurants.GetRestaurants();
-            restaurantsListe = restaurantsListe.FindAll(s =>
-                (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
-                (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null)  &&
+            allRestaurantsListe = await _service._restaurants.GetRestaurants();
+            restaurantsListe = allRestaurantsListe.FindAll(s =>
+                ((s.Prix - 1).ToString().Equals(prix) || (s.Prix + 1).ToString().Equals(prix) || prix.Equals("") || prix == null) &&
+                ((s.Duree_repas - 1).ToString().Equals(delai) || (s.Duree_repas + 1).ToString().Equals(delai) || delai.Equals("") || delai == null) &&
                 (s.Id_Type_Cuisine == idTypeDeCuisine || idTypeDeCuisine == 0) &&
                 (s.Id_Categorie == idCategorieCuisine || idCategorieCuisine == 0) &&
                 (s.Livraison == livraison)
-                //Note
                 );
+
+            if (restaurantsListe.Count == 0)
+            {
+                restaurantsListe = allRestaurantsListe.FindAll(s =>
+                    (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
+                    (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null) &&
+                    (s.Id_Type_Cuisine == idTypeDeCuisine || idTypeDeCuisine == 0) &&
+                    (s.Id_Categorie == idCategorieCuisine || idCategorieCuisine == 0) &&
+                    (s.Livraison == livraison)
+                    );
+            }
+
+            if (restaurantsListe.Count == 0)
+            {
+                restaurantsListe = allRestaurantsListe.FindAll(s =>
+                    (s.Prix.ToString().Equals(prix) || prix.Equals("") || prix == null) &&
+                    (s.Duree_repas.ToString().Equals(delai) || delai.Equals("") || delai == null) &&
+                    (s.Id_Type_Cuisine == idTypeDeCuisine || idTypeDeCuisine == 0) &&
+                    (s.Id_Categorie == idCategorieCuisine || idCategorieCuisine == 0) 
+                    );
+            }
+
 
 
             if (restaurantsListe.Count != 0)

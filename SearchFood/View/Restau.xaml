@@ -91,6 +91,7 @@
                         </Maps:MapLayer>
                     </Maps:Map.Children>
                 </Maps:Map>
+                <Button Content="J'y suis allé" VerticalAlignment="Bottom" HorizontalAlignment="Right" Command="{Binding AddHistorique}" Margin="0, 200, 0, 0"/>
             </StackPanel>
         </Grid>
     </Grid>

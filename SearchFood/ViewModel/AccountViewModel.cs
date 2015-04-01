@@ -87,7 +87,7 @@ namespace SearchFood.ViewModel
                 Type_CuisineRestaurant = Type_Cuisine.Type_Cuisine1;
 
 
-                HistoriquesModel historiqueModel = new HistoriquesModel{Date = histo.Date.ToString(), NomRestaurant = restaurant.Nom, TypeCuisine = Type_CuisineRestaurant, Categorie = CategorieRestaurant};
+                HistoriquesModel historiqueModel = new HistoriquesModel{Date = histo.Date.ToString().Substring(0, 10), NomRestaurant = restaurant.Nom, TypeCuisine = Type_CuisineRestaurant, Categorie = CategorieRestaurant};
 
                 _historiqueslist.Add(historiqueModel);
             }
