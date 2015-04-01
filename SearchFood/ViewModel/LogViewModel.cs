@@ -108,7 +108,7 @@ namespace SearchFood.ViewModel
             {
                 var userconnected = await _userService._utilisateurs.AuthentificationUtilisateur(_pseudoLogin, _passwordLogin);
 
-                if (userconnected != null)
+                if (userconnected.Id_Utilisateur != 0)
                 {
                     ((App)(Application.Current)).UserConnected = userconnected;
                     _navigationService.Navigate(typeof(MainPage));

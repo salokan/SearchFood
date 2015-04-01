@@ -32,8 +32,8 @@
         <Grid Grid.Row="1" >
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-60,0,0">
                 <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Rechercher" Command="{Binding SearchCommand}"/>
-                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Surprend-Moi"  Margin="40,0,40,0" Command="{Binding RestauCommand}"/>
-                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Autour de moi" Command="{Binding AutourCommande}" />
+                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Surprend-Moi" Command="{Binding RestauCommand}" Margin="40,0,40,0"/>
+                <Button VerticalAlignment="Center" HorizontalAlignment="Center" Background="Teal" Width="250" Height="250" Content="Mon Restaurant"  Command="{Binding CreateRestaurantCommand}"/>
             </StackPanel>
         </Grid>
     </Grid>

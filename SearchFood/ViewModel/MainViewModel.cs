@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 using SearchFood.Common;
 using SearchFood.Navigation;
 using SearchFood.View;
-using Windows.UI.Xaml;
+using Windows.UI.Xaml; 
 using SearchFood.SearchFoodServiceReference;
 using System.Collections.Generic;
 using System;
@@ -14,7 +14,7 @@ namespace SearchFood.ViewModel
     public class MainViewModel : ViewModelBase, IViewModel
     {
         private Visibility _connectedHeader;
-        private Visibility _deconnectedHeader;
+        private Visibility _deconnectedHeader;  
         private readonly INavigationService _navigationService;
         private List<Restaurant> restaurantsListe = new List<Restaurant>();
         private Services _service;
@@ -28,6 +28,7 @@ namespace SearchFood.ViewModel
             SearchCommand = new RelayCommand(Search);
             AccountCommande = new RelayCommand(Account);
             RestauCommand = new RelayCommand(Restau);
+            CreateRestaurantCommand = new RelayCommand(MonRestaurant);
 
             ConnectedHeader = Visibility.Collapsed;
             DeconnectedHeader = Visibility.Visible; 
@@ -47,7 +48,7 @@ namespace SearchFood.ViewModel
 
         public ICommand SearchCommand { get; set; }
 
-        public ICommand RestauCommand { get; set; }
+        public ICommand CreateRestaurantCommand { get; set; }
 
         public ICommand CreateAccountCommand { get; set; }
 
@@ -66,6 +67,11 @@ namespace SearchFood.ViewModel
             _navigationService.Navigate(typeof(Search));
         }
 
+        public void MonRestaurant()
+        {
+            _navigationService.Navigate(typeof(CreateRestaurant));
+        }
+
         public async void Restau()
         {
             Random rnd = new Random();
@@ -73,7 +79,6 @@ namespace SearchFood.ViewModel
             int r = rnd.Next(restaurantsListe.Count);
             _navigationService.Navigate(typeof(Restau), restaurantsListe[r].Id_Restaurant);
         }
-
         
         public void Logout()
         {
